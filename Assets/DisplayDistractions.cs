@@ -7,41 +7,38 @@ public class DisplayDistractions : MonoBehaviour
 
     [SerializeField]
     List<GameObject> distractionSpots;
-
-    float distractionDelay = 5.0f;
-    float showTimer = 0.0f;
+    float distractionTimer = 6.0f;
 
     int distractionSpot;
 
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < distractionSpots.Count; ++i)
+            distractionSpots[i].gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (distractionDelay <= 0.0f && showTimer <= 0.0f)
+        if (distractionTimer <= 0.0f)
         {
-            showTimer = 7.0f;
-            distractionSpot = Random.Range(0, distractionSpots.Count);
-            Debug.Log(distractionSpots.Count);
+            Invoke("Activate", 5.0f);
+            Invoke("Deactivate", 10.0f);
+            distractionTimer = 6.0f;
         }
         else
-        {
-            
-            distractionDelay -= Time.deltaTime;
-        }
+            distractionTimer -= Time.deltaTime;
+    }
 
-        if (showTimer <= 0.0f && distractionDelay <= 0.0f)
-        {
-            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "";
-            distractionDelay = 5.0f;
-        }
-        else
-        {
-            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "distraction!";
-            showTimer -= Time.deltaTime;
-        }
+    void Activate()
+    {
+        distractionSpot = Random.Range(0, distractionSpots.Count);
+        distractionSpots[distractionSpot].gameObject.SetActive(true);
+        distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = Color.blue;
+    }
+    void Deactivate()
+    {
+        distractionSpots[distractionSpot].gameObject.SetActive(false);
     }
 }
