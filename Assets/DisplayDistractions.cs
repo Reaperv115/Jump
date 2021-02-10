@@ -35,7 +35,14 @@ public class DisplayDistractions : MonoBehaviour
     {
         distractionSpot = Random.Range(0, distractionSpots.Count);
         distractionSpots[distractionSpot].gameObject.SetActive(true);
-        distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = Color.blue;
+
+        int bigandMean = Random.Range(1, 4);
+        Debug.Log(bigandMean);
+        if ((bigandMean % 2).Equals(0))
+        {
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "DISTRACTIONS!";
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = Color.blue;
+        }
     }
     void Deactivate()
     {
