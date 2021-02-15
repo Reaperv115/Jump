@@ -7,26 +7,41 @@ public class Player : MonoBehaviour
     BoxCollider2D bc2d;
     Rigidbody2D rb2d;
 
+    SpriteRenderer spriteRenderer;
+    Sprite standingSprite, jumpingSprite;
+
     // Start is called before the first frame update
     void Start()
     { 
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        standingSprite = Resources.Load<Sprite>("jumping4");
+        jumpingSprite = Resources.Load<Sprite>("jumping3");
     }
 
     void Update()
     {
-        foreach (Touch touch in Input.touches)
+        if (isGrounded())
         {
-            if (touch.fingerId.Equals(0))
+            spriteRenderer.sprite = Resources.Load<Sprite>("jumping4");
+            if (Input.touchCount > 0)
             {
-                if (isGrounded())
+                Touch t = Input.GetTouch(0);
+
+                
+                if (t.fingerId.Equals(0))
                 {
                     float jumpVelocity = 15f;
                     rb2d.velocity = Vector2.up * jumpVelocity;
+
                 }
+
+               
             }
         }
+        else
+            spriteRenderer.sprite = Resources.Load<Sprite>("jumping3");
     }
 
     public bool isGrounded()
