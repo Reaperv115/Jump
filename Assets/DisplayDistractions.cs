@@ -37,7 +37,6 @@ public class DisplayDistractions : MonoBehaviour
         distractionSpots[distractionSpot].gameObject.SetActive(true);
 
         int bigandMean = Random.Range(1, 4);
-        Debug.Log(bigandMean);
         if ((bigandMean % 2).Equals(0))
         {
             distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "DISTRACTIONS!";

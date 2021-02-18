@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class Player : MonoBehaviour
     Rigidbody2D rb2d;
 
     SpriteRenderer spriteRenderer;
-    Sprite standingSprite, jumpingSprite;
+    Sprite standingSprite;
+    Sprite[] jumpingSprites;
+
+
+    int jumpingIndex = 0;
+    bool canJump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,31 +23,44 @@ public class Player : MonoBehaviour
         bc2d = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         standingSprite = Resources.Load<Sprite>("jumping4");
-        jumpingSprite = Resources.Load<Sprite>("jumping3");
+        jumpingSprites = Resources.LoadAll<Sprite>("jumping");
     }
 
     void Update()
     {
+        Debug.Log(canJump);
         if (isGrounded())
         {
-            spriteRenderer.sprite = Resources.Load<Sprite>("jumping4");
+            spriteRenderer.sprite = standingSprite;
+            canJump = true;
+        }
+
+        if (canJump && isGrounded())
+        {
             if (Input.touchCount > 0)
             {
                 Touch t = Input.GetTouch(0);
 
-                
-                if (t.fingerId.Equals(0))
+                if (t.phase == TouchPhase.Began && t.fingerId.Equals(0))
                 {
                     float jumpVelocity = 15f;
                     rb2d.velocity = Vector2.up * jumpVelocity;
-
+                    canJump = false;
+                    if (jumpingIndex == 3)
+                    {
+                        spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                        jumpingIndex = 0;
+                    }
+                    else
+                    {
+                        spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                        ++jumpingIndex;
+                    }
                 }
-
-               
             }
         }
-        else
-            spriteRenderer.sprite = Resources.Load<Sprite>("jumping3");
+
+        
     }
 
     public bool isGrounded()
