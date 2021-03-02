@@ -10,12 +10,11 @@ public class Why : MonoBehaviour
     void Start()
     {
         whyCount = GameObject.Find("why count").GetComponent<TextMeshProUGUI>();
-        numWhy = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        whyCount.text = "Count: " + numWhy;
+        whyCount.text = "Count: " + SaveData.current.profile.numWhy.ToString();
     }
 }

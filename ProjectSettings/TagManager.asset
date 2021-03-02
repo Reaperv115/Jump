@@ -15,7 +15,7 @@ TagManager:
   - background
   - title
   - player
-  - 
+  - accolades
   - 
   - 
   - 
@@ -53,6 +53,6 @@ TagManager:
   - name: title
     uniqueID: 4155183357
     locked: 0
-  - name: 
+  - name: accolades
     uniqueID: 4009600739
     locked: 0

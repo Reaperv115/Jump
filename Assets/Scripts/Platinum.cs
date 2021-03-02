@@ -10,12 +10,11 @@ public class Platinum : MonoBehaviour
     void Start()
     {
         platCount = GameObject.Find("platinum count").GetComponent<TextMeshProUGUI>();
-        numPlat = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        platCount.text = "Count: " + numPlat;
+        platCount.text = "Count: " + SaveData.current.profile.numPlat.ToString();
     }
 }

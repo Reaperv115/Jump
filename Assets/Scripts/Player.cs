@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
 
     int jumpingIndex = 0;
+
     bool canJump = false;
 
     // Start is called before the first frame update
@@ -28,7 +29,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(canJump);
         if (isGrounded())
         {
             spriteRenderer.sprite = standingSprite;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
             {
                 Touch t = Input.GetTouch(0);
 
-                if (t.phase == TouchPhase.Began && t.fingerId.Equals(0))
+                if (t.phase == TouchPhase.Began)
                 {
                     float jumpVelocity = 15f;
                     rb2d.velocity = Vector2.up * jumpVelocity;
@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
 
         
     }
+
 
     public bool isGrounded()
     {

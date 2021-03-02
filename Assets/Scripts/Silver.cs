@@ -10,12 +10,11 @@ public class Silver : MonoBehaviour
     void Start()
     {
         silverCount = GameObject.Find("silver count").GetComponent<TextMeshProUGUI>();
-        numSilver = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-       silverCount.text = "Count: " + numSilver;
+        silverCount.text = "Count: " + SaveData.current.profile.numSilver.ToString();
     }
 }

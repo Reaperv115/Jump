@@ -1,4 +1,7 @@
-﻿using TMPro;
+﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,9 +21,10 @@ public class Rope : MonoBehaviour
 
     float risingDist;
     float loweringDist;
-    int jumps = 0;
 
-    bool goUp = true, goDown;
+    int numcurrJumps;
+
+    public bool goUp, goDown;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +47,7 @@ public class Rope : MonoBehaviour
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
 
-        succeessfulJumps.text = "jumps: " + jumps.ToString();
+        succeessfulJumps.text = "jumps: " + numcurrJumps;
 
         if (goUp)
         {
@@ -63,34 +67,44 @@ public class Rope : MonoBehaviour
             {
                 goDown = false;
                 goUp = true;
-                ++jumps;
+                ++numcurrJumps;
+
+                if (numcurrJumps == 1)
+                    ++SaveData.current.profile.numBronze;
+                if (numcurrJumps == 2)
+                    ++SaveData.current.profile.numSilver;
+                if (numcurrJumps == 3)
+                    ++SaveData.current.profile.numGold;
+                if (numcurrJumps == 4)
+                    ++SaveData.current.profile.numPlat;
+                if (numcurrJumps == 5)
+                    ++SaveData.current.profile.numWhy;
             }
         }
 
     }
 
-    public void setDirection(string direction)
-    {
-        if (direction.Equals("up"))
-            goUp = true;
-        else
-            goDown = true;
-    }
-
     public void resetJumps()
     {
-        jumps = 0;
+        numcurrJumps = 0;
+    }
+
+    public int getJumps()
+    {
+        return SaveData.current.profile.numofJumps;
     }
 
     public void Replay()
     {
-        Debug.Log("begin replay");
+        SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("Game");
     }
 
     public void gotoMenu()
     {
+        SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -102,6 +116,12 @@ public class Rope : MonoBehaviour
             goDown = false;
             playAgain.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(true);
+            SaveData.current.profile.numofJumps = numcurrJumps;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SerializationManager.Save("Data", SaveData.current);
     }
 }
