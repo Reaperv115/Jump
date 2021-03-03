@@ -39,6 +39,7 @@ public class Rope : MonoBehaviour
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         gameover.text = "";
+        SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
 
     // Update is called once per frame
@@ -69,15 +70,15 @@ public class Rope : MonoBehaviour
                 goUp = true;
                 ++numcurrJumps;
 
-                if (numcurrJumps == 1)
-                    ++SaveData.current.profile.numBronze;
-                if (numcurrJumps == 2)
-                    ++SaveData.current.profile.numSilver;
-                if (numcurrJumps == 3)
-                    ++SaveData.current.profile.numGold;
-                if (numcurrJumps == 4)
-                    ++SaveData.current.profile.numPlat;
                 if (numcurrJumps == 5)
+                    ++SaveData.current.profile.numBronze;
+                if (numcurrJumps == 15)
+                    ++SaveData.current.profile.numSilver;
+                if (numcurrJumps == 50)
+                    ++SaveData.current.profile.numGold;
+                if (numcurrJumps == 75)
+                    ++SaveData.current.profile.numPlat;
+                if (numcurrJumps == 100)
                     ++SaveData.current.profile.numWhy;
             }
         }
