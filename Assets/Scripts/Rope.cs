@@ -95,6 +95,11 @@ public class Rope : MonoBehaviour
         return SaveData.current.profile.numofJumps;
     }
 
+    public int getcurrJumps()
+    {
+        return numcurrJumps;
+    }
+
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);

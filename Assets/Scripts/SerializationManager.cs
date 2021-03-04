@@ -9,11 +9,9 @@ public class SerializationManager
    public static bool Save(string saveName, object saveData)
     {
         BinaryFormatter formatter = getbinaryFormatter();
-        Debug.Log(Application.persistentDataPath);
 
         if (!Directory.Exists(Application.persistentDataPath + "/saves"))
         {
-            Debug.Log("directory created");
             Directory.CreateDirectory(Application.persistentDataPath + "/saves");
         }
         else
