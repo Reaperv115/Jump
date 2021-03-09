@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     int jumpingIndex = 0;
 
     bool canJump = false;
+    bool isPlaying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,26 +36,29 @@ public class Player : MonoBehaviour
             canJump = true;
         }
 
-        if (canJump && isGrounded())
+        if (isPlaying)
         {
-            if (Input.touchCount > 0)
+            if (canJump && isGrounded())
             {
-                Touch t = Input.GetTouch(0);
-
-                if (t.phase == TouchPhase.Began)
+                if (Input.touchCount > 0)
                 {
-                    float jumpVelocity = 15f;
-                    rb2d.velocity = Vector2.up * jumpVelocity;
-                    canJump = false;
-                    if (jumpingIndex == 3)
+                    Touch t = Input.GetTouch(0);
+
+                    if (t.phase == TouchPhase.Began)
                     {
-                        spriteRenderer.sprite = jumpingSprites[jumpingIndex];
-                        jumpingIndex = 0;
-                    }
-                    else
-                    {
-                        spriteRenderer.sprite = jumpingSprites[jumpingIndex];
-                        ++jumpingIndex;
+                        float jumpVelocity = 15f;
+                        rb2d.velocity = Vector2.up * jumpVelocity;
+                        canJump = false;
+                        if (jumpingIndex == 3)
+                        {
+                            spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                            jumpingIndex = 0;
+                        }
+                        else
+                        {
+                            spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                            ++jumpingIndex;
+                        }
                     }
                 }
             }
@@ -63,6 +67,10 @@ public class Player : MonoBehaviour
         
     }
 
+    public void setisPlaying(bool playing)
+    {
+        isPlaying = playing;
+    }
 
     public bool isGrounded()
     {

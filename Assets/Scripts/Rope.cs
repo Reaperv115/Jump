@@ -13,11 +13,14 @@ public class Rope : MonoBehaviour
     [SerializeField]
     Transform lowestPoint;
 
+    Player player;
+
     TextMeshProUGUI gameover;
     TextMeshPro succeessfulJumps;
 
     Button playAgain;
     Button mainMenu;
+    Button toggleAccolades;
 
     float risingDist;
     float loweringDist;
@@ -33,6 +36,8 @@ public class Rope : MonoBehaviour
         succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshPro>();
         playAgain = GameObject.Find("Play Again").GetComponent<Button>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
+        player = GameObject.Find("player").GetComponent<Player>();
+        toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         playAgain.onClick.AddListener(Replay);
@@ -124,6 +129,8 @@ public class Rope : MonoBehaviour
             playAgain.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(true);
             SaveData.current.profile.numofJumps = numcurrJumps;
+            collision.GetComponent<Player>().setisPlaying(false);
+            toggleAccolades.gameObject.SetActive(true);
         }
     }
 
@@ -135,9 +142,12 @@ public class Rope : MonoBehaviour
     void resetGame()
     {
         resetJumps();
+        transform.position = highestPoint.position;
+        goDown = true;
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         gameover.text = "";
-        goUp = true;
+        player.setisPlaying(true);
+        toggleAccolades.gameObject.SetActive(false);
     }
 }
