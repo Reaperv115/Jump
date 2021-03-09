@@ -138,9 +138,6 @@ public class Rope : MonoBehaviour
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         gameover.text = "";
-        if (loweringDist < risingDist)
-            goUp = true;
-        else
-            goDown = true;
+        goUp = true;
     }
 }
