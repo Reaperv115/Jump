@@ -52,7 +52,7 @@ public class Rope : MonoBehaviour
 
         if (goUp)
         {
-            transform.Translate(new Vector2(0.0f, 0.10f), Space.World);
+            transform.Translate(new Vector2(0.0f, 0.13f), Space.World);
             risingDist = Vector2.Distance(transform.position, highestPoint.position);
             if (risingDist < 0.1f)
             {
@@ -62,7 +62,7 @@ public class Rope : MonoBehaviour
         }
         if (goDown)
         {
-            transform.Translate(new Vector2(0.0f, -0.10f), Space.World);
+            transform.Translate(new Vector2(0.0f, -0.13f), Space.World);
             loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
             if (loweringDist < 0.1f)
             {
@@ -103,7 +103,8 @@ public class Rope : MonoBehaviour
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);
-        SceneManager.LoadScene("Game");
+        resetGame();
+        //SceneManager.LoadScene("Game");
     }
 
     public void gotoMenu()
@@ -129,5 +130,17 @@ public class Rope : MonoBehaviour
     private void OnApplicationQuit()
     {
         SerializationManager.Save("Data", SaveData.current);
+    }
+
+    void resetGame()
+    {
+        resetJumps();
+        playAgain.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(false);
+        gameover.text = "";
+        if (loweringDist < risingDist)
+            goUp = true;
+        else
+            goDown = true;
     }
 }
