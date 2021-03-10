@@ -16,6 +16,8 @@ public class Rope : MonoBehaviour
     Player player;
 
     TextMeshProUGUI gameover;
+    TextMeshProUGUI personalbestDisplay;
+
     TextMeshPro succeessfulJumps;
 
     Button playAgain;
@@ -25,7 +27,7 @@ public class Rope : MonoBehaviour
     float risingDist;
     float loweringDist;
 
-    int numcurrJumps;
+    int numcurrJumps, personalBest;
 
     public bool goUp, goDown;
 
@@ -38,6 +40,7 @@ public class Rope : MonoBehaviour
         mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
         player = GameObject.Find("player").GetComponent<Player>();
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
+        personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         playAgain.onClick.AddListener(Replay);
@@ -52,6 +55,8 @@ public class Rope : MonoBehaviour
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+
+        personalbestDisplay.text = "Personal Best: " + SaveData.current.profile.numofJumps;
 
         succeessfulJumps.text = "jumps: " + numcurrJumps;
 
@@ -128,9 +133,15 @@ public class Rope : MonoBehaviour
             goDown = false;
             playAgain.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(true);
-            SaveData.current.profile.numofJumps = numcurrJumps;
+            //SaveData.current.profile.numofJumps = personalBest;
             collision.GetComponent<Player>().setisPlaying(false);
             toggleAccolades.gameObject.SetActive(true);
+
+            if (numcurrJumps > personalBest)
+            {
+                personalBest = numcurrJumps;
+                SaveData.current.profile.numofJumps = personalBest;
+            }
         }
     }
 
