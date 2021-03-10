@@ -27,7 +27,7 @@ public class Rope : MonoBehaviour
     float risingDist;
     float loweringDist;
 
-    int numcurrJumps, personalBest;
+    int numcurrJumps = 0;
 
     public bool goUp, goDown;
 
@@ -137,10 +137,9 @@ public class Rope : MonoBehaviour
             collision.GetComponent<Player>().setisPlaying(false);
             toggleAccolades.gameObject.SetActive(true);
 
-            if (numcurrJumps > personalBest)
+            if (numcurrJumps > SaveData.current.profile.numofJumps)
             {
-                personalBest = numcurrJumps;
-                SaveData.current.profile.numofJumps = personalBest;
+                SaveData.current.profile.numofJumps = numcurrJumps;
             }
         }
     }
@@ -153,6 +152,7 @@ public class Rope : MonoBehaviour
     void resetGame()
     {
         resetJumps();
+        GameObject.Find("sky").GetComponent<GameBackground>().resetBackground();
         transform.position = highestPoint.position;
         goDown = true;
         playAgain.gameObject.SetActive(false);

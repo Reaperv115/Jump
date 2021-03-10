@@ -31,4 +31,9 @@ public class GameBackground : MonoBehaviour
         if (rope.getcurrJumps() == 30)
             spriteRenderer.sprite = background[2];
     }
+
+    public void resetBackground()
+    {
+        spriteRenderer.sprite = background[0];
+    }
 }
