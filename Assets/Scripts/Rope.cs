@@ -28,6 +28,8 @@ public class Rope : MonoBehaviour
     float loweringDist;
 
     int numcurrJumps = 0;
+    float speedX = 0.0f, speedY = 12.0f;
+    Vector2 movement;
 
     public bool goUp, goDown;
 
@@ -62,7 +64,8 @@ public class Rope : MonoBehaviour
 
         if (goUp)
         {
-            transform.Translate(new Vector2(0.0f, 0.13f), Space.World);
+            movement = new Vector2(speedX, speedY);
+            transform.Translate(movement * Time.deltaTime);
             risingDist = Vector2.Distance(transform.position, highestPoint.position);
             if (risingDist < 0.1f)
             {
@@ -72,7 +75,8 @@ public class Rope : MonoBehaviour
         }
         if (goDown)
         {
-            transform.Translate(new Vector2(0.0f, -0.13f), Space.World);
+            movement = new Vector2(speedX, -speedY);
+            transform.Translate(movement * Time.deltaTime);
             loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
             if (loweringDist < 0.1f)
             {
