@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEditor;
@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Rope : MonoBehaviour
+public class DoubleDutchRope : MonoBehaviour
 {
     [SerializeField]
     Transform highestPoint;
@@ -18,11 +18,9 @@ public class Rope : MonoBehaviour
     TextMeshProUGUI gameover;
     TextMeshProUGUI personalbestDisplay;
 
-    TextMeshPro succeessfulJumps;
+    Button toggleAccolades;
 
-    public Button playAgain;
-    public Button mainMenu;
-    public Button toggleAccolades;
+    Rope initialRope;
 
     float risingDist;
     float loweringDist;
@@ -31,29 +29,17 @@ public class Rope : MonoBehaviour
     float speedX = 0.0f, speedY = 12.0f;
     Vector2 movement;
 
-    [SerializeField]
-    GameObject rope2;
-    GameObject tmpRope;
-
-    public bool goUp, goDown;
+    public bool goUp, goDown = true;
 
     // Start is called before the first frame update
     void Start()
     {
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshPro>();
-        playAgain = GameObject.Find("Play Again").GetComponent<Button>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
         player = GameObject.Find("player").GetComponent<Player>();
-        toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
+        initialRope = GameObject.Find("rope").GetComponent<Rope>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        playAgain.onClick.AddListener(Replay);
-        playAgain.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
-        gameover.text = "";
-        SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
 
     // Update is called once per frame
@@ -61,10 +47,6 @@ public class Rope : MonoBehaviour
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-
-        personalbestDisplay.text = "Personal Best: " + SaveData.current.profile.numofJumps;
-
-        succeessfulJumps.text = "jumps: " + numcurrJumps;
 
         if (goUp)
         {
@@ -86,23 +68,9 @@ public class Rope : MonoBehaviour
             {
                 goDown = false;
                 goUp = true;
-                ++numcurrJumps;
-
-                if (numcurrJumps == 5)
-                    ++SaveData.current.profile.numBronze;
-                if (numcurrJumps == 15)
-                    ++SaveData.current.profile.numSilver;
-                if (numcurrJumps == 30)
-                {
-                    tmpRope = Instantiate<GameObject>(rope2, highestPoint);
-                    tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
-                }
-                if (numcurrJumps == 50)
-                    ++SaveData.current.profile.numGold;
-                if (numcurrJumps == 75)
-                    ++SaveData.current.profile.numPlat;
-                if (numcurrJumps == 100)
-                    ++SaveData.current.profile.numWhy;
+                int tmpJumps = initialRope.getcurrJumps();
+                tmpJumps++;
+                initialRope.setJumps(tmpJumps);
             }
         }
 
@@ -133,12 +101,7 @@ public class Rope : MonoBehaviour
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
-        
-    }
 
-    public void setJumps(int numjumps)
-    {
-        numcurrJumps = numjumps;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -148,13 +111,14 @@ public class Rope : MonoBehaviour
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;
-            playAgain.gameObject.SetActive(true);
-            mainMenu.gameObject.SetActive(true);
+            initialRope.goUp = false;
+            initialRope.goDown = false;
             collision.GetComponent<Player>().setisPlaying(false);
-            toggleAccolades.gameObject.SetActive(true);
-            Destroy(tmpRope);
+            initialRope.toggleAccolades.gameObject.SetActive(true);
+            initialRope.playAgain.gameObject.SetActive(true);
+            initialRope.mainMenu.gameObject.SetActive(true);
 
-            if (numcurrJumps > SaveData.current.profile.numofJumps)
+            if (initialRope.getcurrJumps() > SaveData.current.profile.numofJumps)
             {
                 SaveData.current.profile.numofJumps = numcurrJumps;
             }
@@ -170,12 +134,12 @@ public class Rope : MonoBehaviour
     {
         resetJumps();
         GameObject.Find("sky").GetComponent<GameBackground>().resetBackground();
+        initialRope.playAgain.gameObject.SetActive(false);
+        initialRope.mainMenu.gameObject.SetActive(false);
+        initialRope.toggleAccolades.gameObject.SetActive(false);
         transform.position = highestPoint.position;
         goDown = true;
-        playAgain.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
         gameover.text = "";
         player.setisPlaying(true);
-        toggleAccolades.gameObject.SetActive(false);
     }
 }
