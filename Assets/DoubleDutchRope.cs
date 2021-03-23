@@ -108,6 +108,7 @@ public class DoubleDutchRope : MonoBehaviour
     {
         if (collision.transform.name.Equals("player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
+            Debug.Log("double dutch got me");
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;
@@ -117,6 +118,7 @@ public class DoubleDutchRope : MonoBehaviour
             initialRope.toggleAccolades.gameObject.SetActive(true);
             initialRope.playAgain.gameObject.SetActive(true);
             initialRope.mainMenu.gameObject.SetActive(true);
+            Destroy(this.gameObject);
 
             if (initialRope.getcurrJumps() > SaveData.current.profile.numofJumps)
             {
@@ -141,5 +143,6 @@ public class DoubleDutchRope : MonoBehaviour
         goDown = true;
         gameover.text = "";
         player.setisPlaying(true);
+        
     }
 }

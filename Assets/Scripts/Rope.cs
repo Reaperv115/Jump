@@ -145,6 +145,7 @@ public class Rope : MonoBehaviour
     {
         if (collision.transform.name.Equals("player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
+            Debug.Log("initial rope rope got me");
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;
