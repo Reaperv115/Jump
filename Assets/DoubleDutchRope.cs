@@ -26,7 +26,7 @@ public class DoubleDutchRope : MonoBehaviour
     float loweringDist;
 
     int numcurrJumps = 0;
-    float speedX = 0.0f, speedY = 12.0f;
+    float speedX = 0.0f, speedY = 7.0f;
     Vector2 movement;
 
     public bool goUp, goDown = true;
@@ -108,7 +108,6 @@ public class DoubleDutchRope : MonoBehaviour
     {
         if (collision.transform.name.Equals("player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            Debug.Log("double dutch got me");
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;

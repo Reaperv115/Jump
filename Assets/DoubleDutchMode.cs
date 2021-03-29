@@ -3,51 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BeginPlay : MonoBehaviour
+public class DoubleDutchMode : MonoBehaviour
 {
-    Button play;
-    Button toggleAccolades;
+    bool doubledutchMode;
+
+    Button regularButton;
     Button ddButton;
     Button extremeddButton;
+    Button accoladesButton;
 
     Rope rope;
 
     Player player;
-
-    bool regularMode;
-
     // Start is called before the first frame update
     void Start()
     {
-        regularMode = false;
-        play = GetComponent<Button>();
-        play.onClick.AddListener(Play);
+
         player = GameObject.Find("player").GetComponent<Player>();
-        toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
-        ddButton = GameObject.Find("Double Dutch").GetComponent<Button>();
+
+        regularButton = GameObject.Find("Regular").GetComponent<Button>();
         extremeddButton = GameObject.Find("Extreme Double Dutch").GetComponent<Button>();
+        accoladesButton = GameObject.Find("Toggle Accolades").GetComponent<Button>();
+
+        ddButton = GetComponent<Button>();
+        ddButton.onClick.AddListener(begindoubleDutch);
+
         rope = GameObject.Find("rope").GetComponent<Rope>();
     }
 
     public bool getMode()
     {
-        return regularMode;
+        return doubledutchMode;
     }
 
-    public void setMode(bool mode)
+    public void begindoubleDutch()
     {
-        regularMode = mode;
-    }
 
-    public void Play()
-    {
-        rope.setregularMode(true);
-
-        rope.goUp = true;
+        rope.setddMode(true);
+        rope.goDown = true;
+        rope.setmileStone(Random.Range(1, 100));
         player.setisPlaying(true);
-        toggleAccolades.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        regularButton.gameObject.SetActive(false);
         ddButton.gameObject.SetActive(false);
         extremeddButton.gameObject.SetActive(false);
+        accoladesButton.gameObject.SetActive(false);
     }
 }

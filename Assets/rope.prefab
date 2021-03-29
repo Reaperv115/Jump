@@ -124,6 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highestPoint: {fileID: 1075699506203922669, guid: 4407a7aa2a646694f9ea169da9b18605, type: 3}
   lowestPoint: {fileID: 9190388074013499510, guid: 142ec433c021dd14489e32d417276f71, type: 3}
-  rope2: {fileID: 2242034366065236785}
+  playAgain: {fileID: 0}
+  mainMenu: {fileID: 0}
+  toggleAccolades: {fileID: 0}
+  rope2: {fileID: 2242034366065236785, guid: dfd9b94a8fc51d242a8cd6b28991c53a, type: 3}
   goUp: 0
   goDown: 0
