@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        standingSprite = Resources.Load<Sprite>("jumping4");
+        standingSprite = Resources.Load<Sprite>("Players/ryan");
         jumpingSprites = Resources.LoadAll<Sprite>("jumping");
     }
 

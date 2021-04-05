@@ -75,10 +75,13 @@ public class Rope : MonoBehaviour
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
 
+        // displaying your personal best score
         personalbestDisplay.text = "Personal Best: " + SaveData.current.profile.numofJumps;
 
+        //displaying jumps
         succeessfulJumps.text = "jumps: " + numcurrJumps;
 
+        // regular jump rope
         if (regularMode)
         {
             if (goUp)
@@ -117,6 +120,7 @@ public class Rope : MonoBehaviour
             }
         }
 
+        // double dutch mode
         if (ddMode)
         {
             if (goUp)
@@ -161,6 +165,7 @@ public class Rope : MonoBehaviour
             }
         }
 
+        // extreme double dutch mode
         if (extremeddMode)
         {
             if (goUp)
