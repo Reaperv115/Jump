@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9c07f7bf4bd9fff408ea45e37d95e45d
   - enabled: 1
-    path: Assets/Scenes/Change Character.unity
-    guid: 466394a9871ef6e4fac17439beee35fc
-  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Change Character.unity
+    guid: 466394a9871ef6e4fac17439beee35fc
   m_configObjects: {}

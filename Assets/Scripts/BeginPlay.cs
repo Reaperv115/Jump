@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BeginPlay : MonoBehaviour
@@ -12,7 +13,10 @@ public class BeginPlay : MonoBehaviour
 
     Rope rope;
 
-    Player player;
+    GameObject player;
+
+    [SerializeField]
+    GameObject sky;
 
     bool regularMode;
 
@@ -22,7 +26,6 @@ public class BeginPlay : MonoBehaviour
         regularMode = false;
         play = GetComponent<Button>();
         play.onClick.AddListener(Play);
-        player = GameObject.Find("player").GetComponent<Player>();
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         ddButton = GameObject.Find("Double Dutch").GetComponent<Button>();
         extremeddButton = GameObject.Find("Extreme Double Dutch").GetComponent<Button>();
@@ -42,9 +45,9 @@ public class BeginPlay : MonoBehaviour
     public void Play()
     {
         rope.setregularMode(true);
-
+        player = rope.returnPlayer();
         rope.goUp = true;
-        player.setisPlaying(true);
+        player.GetComponent<Player>().setisPlaying(true);
         toggleAccolades.gameObject.SetActive(false);
         gameObject.SetActive(false);
         ddButton.gameObject.SetActive(false);

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -9,14 +11,23 @@ public class Player : MonoBehaviour
     Rigidbody2D rb2d;
 
     SpriteRenderer spriteRenderer;
-    Sprite standingSprite;
     Sprite[] jumpingSprites;
+    Sprite[] playerSprites;
+    Sprite standingSprite;
 
+    TMP_Dropdown characterSelection;
+
+    static GameObject player;
+
+    int selectedSkin;
 
     int jumpingIndex = 0;
 
     bool canJump = false;
     bool isPlaying = false;
+    bool hasPlayed = false;
+
+    Scene scene;
 
     // Start is called before the first frame update
     void Start()
@@ -24,16 +35,87 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        standingSprite = Resources.Load<Sprite>("Players/ryan");
         jumpingSprites = Resources.LoadAll<Sprite>("jumping");
+        playerSprites = Resources.LoadAll<Sprite>("Players");
+        scene = SceneManager.GetActiveScene();
+        DontDestroyOnLoad(this.gameObject);
+
+        if (scene.name.Equals("MainMenu"))
+            characterSelection = GameObject.Find("character selection").GetComponent<TMP_Dropdown>();
     }
 
     void Update()
     {
+        scene = SceneManager.GetActiveScene();
+        if (scene.name.Equals("MainMenu"))
+        {
+            if (!characterSelection)
+            {
+                characterSelection = GameObject.Find("character selection").GetComponent<TMP_Dropdown>();
+                switch (characterSelection.value)
+                {
+
+                    case 0:
+                        {
+                            standingSprite = playerSprites[0];
+                            selectedSkin = 0;
+                            break;
+                        }
+                    case 1:
+                        {
+                            standingSprite = playerSprites[1];
+                            selectedSkin = 1;
+                            break;
+                        }
+                    case 2:
+                        {
+                            standingSprite = playerSprites[2];
+                            selectedSkin = 2;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (characterSelection.value)
+                {
+
+                    case 0:
+                        {
+                            standingSprite = playerSprites[0];
+                            selectedSkin = 0;
+                            break;
+                        }
+                    case 1:
+                        {
+                            standingSprite = playerSprites[1];
+                            selectedSkin = 1;
+                            break;
+                        }
+                    case 2:
+                        {
+                            standingSprite = playerSprites[2];
+                            selectedSkin = 2;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+            
+        }
+        if (scene.name.Equals("Game"))
+        {
+            hasPlayed = true;
+        }
+        
+
         if (isGrounded())
         {
-            spriteRenderer.sprite = standingSprite;
             canJump = true;
+            spriteRenderer.sprite = standingSprite;
         }
 
         if (isPlaying)
@@ -70,6 +152,11 @@ public class Player : MonoBehaviour
     public void setisPlaying(bool playing)
     {
         isPlaying = playing;
+    }
+
+    public bool returnhasPlayed()
+    {
+        return hasPlayed;
     }
 
     public bool isGrounded()

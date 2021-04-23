@@ -14,7 +14,10 @@ public class ExtremeDoubleDutch : MonoBehaviour
 
     Rope rope;
 
-    Player player;
+    [SerializeField]
+    GameObject sky;
+
+    GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,7 @@ public class ExtremeDoubleDutch : MonoBehaviour
         extremeddButton.onClick.AddListener(beginextremeddMode);
         regularButton = GameObject.Find("Regular").GetComponent<Button>();
         ddButton = GameObject.Find("Double Dutch").GetComponent<Button>();
-        player = GameObject.Find("player").GetComponent<Player>();
+        
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
     }
 
@@ -35,14 +38,14 @@ public class ExtremeDoubleDutch : MonoBehaviour
     public void beginextremeddMode()
     {
         rope.setextremeddMode(true);
-        rope.goDown = true;
+        rope.goUp = true;
         rope.setmileStone(Random.Range(1, 100));
-
+        player = rope.returnPlayer();
         extremeddMode = true;
         extremeddButton.gameObject.SetActive(false);
         regularButton.gameObject.SetActive(false);
         ddButton.gameObject.SetActive(false);
-        player.setisPlaying(true);
+        player.GetComponent<Player>().setisPlaying(true);
         toggleAccolades.gameObject.SetActive(false);
     }
 }
