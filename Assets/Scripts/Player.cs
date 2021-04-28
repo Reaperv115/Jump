@@ -17,10 +17,6 @@ public class Player : MonoBehaviour
 
     TMP_Dropdown characterSelection;
 
-    static GameObject player;
-
-    int selectedSkin;
-
     int jumpingIndex = 0;
 
     bool canJump = false;
@@ -58,19 +54,16 @@ public class Player : MonoBehaviour
                     case 0:
                         {
                             standingSprite = playerSprites[0];
-                            selectedSkin = 0;
                             break;
                         }
                     case 1:
                         {
                             standingSprite = playerSprites[1];
-                            selectedSkin = 1;
                             break;
                         }
                     case 2:
                         {
                             standingSprite = playerSprites[2];
-                            selectedSkin = 2;
                             break;
                         }
                     default:
@@ -85,19 +78,16 @@ public class Player : MonoBehaviour
                     case 0:
                         {
                             standingSprite = playerSprites[0];
-                            selectedSkin = 0;
                             break;
                         }
                     case 1:
                         {
                             standingSprite = playerSprites[1];
-                            selectedSkin = 1;
                             break;
                         }
                     case 2:
                         {
                             standingSprite = playerSprites[2];
-                            selectedSkin = 2;
                             break;
                         }
                     default:
@@ -105,10 +95,6 @@ public class Player : MonoBehaviour
                 }
             }
             
-        }
-        if (scene.name.Equals("Game"))
-        {
-            hasPlayed = true;
         }
         
 
@@ -120,7 +106,7 @@ public class Player : MonoBehaviour
 
         if (isPlaying)
         {
-            if (canJump && isGrounded())
+            if (canJump)
             {
                 if (Input.touchCount > 0)
                 {

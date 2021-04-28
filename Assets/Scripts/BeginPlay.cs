@@ -15,9 +15,6 @@ public class BeginPlay : MonoBehaviour
 
     GameObject player;
 
-    [SerializeField]
-    GameObject sky;
-
     bool regularMode;
 
     // Start is called before the first frame update

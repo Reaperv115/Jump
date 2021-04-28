@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class CharacterChange : MonoBehaviour
@@ -23,8 +20,6 @@ public class CharacterChange : MonoBehaviour
         }
         else
         {
-
-
             playerPos = GameObject.Find("player position").GetComponent<Transform>();
             Debug.Log(playerPos.position);
             player = Resources.Load<GameObject>("Players/playerGOs/player");
@@ -32,11 +27,5 @@ public class CharacterChange : MonoBehaviour
             playerSprites = Resources.LoadAll<Sprite>("Players");
         }
 
-        //player.GetComponent<SpriteRenderer>().sprite = playerSprites[0];
-    }
-
-    public GameObject getPlayer()
-    {
-        return player;
     }
 }

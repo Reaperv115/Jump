@@ -1,10 +1,6 @@
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class DoubleDutchRope : MonoBehaviour
 {
@@ -13,12 +9,7 @@ public class DoubleDutchRope : MonoBehaviour
     [SerializeField]
     Transform lowestPoint;
 
-    Player player;
-
     TextMeshProUGUI gameover;
-    TextMeshProUGUI personalbestDisplay;
-
-    Button toggleAccolades;
 
     Rope initialRope;
 
@@ -35,8 +26,6 @@ public class DoubleDutchRope : MonoBehaviour
     void Start()
     {
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        player = GameObject.Find("player").GetComponent<Player>();
-        personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
         initialRope = GameObject.Find("rope").GetComponent<Rope>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
@@ -76,20 +65,11 @@ public class DoubleDutchRope : MonoBehaviour
 
     }
 
-    public void resetJumps()
-    {
-        numcurrJumps = 0;
-    }
+    public void resetJumps() => numcurrJumps = 0;
 
-    public int getJumps()
-    {
-        return SaveData.current.profile.numofJumps;
-    }
+    public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public int getcurrJumps()
-    {
-        return numcurrJumps;
-    }
+    public int getcurrJumps() => numcurrJumps;
 
     public void Replay()
     {
@@ -120,16 +100,12 @@ public class DoubleDutchRope : MonoBehaviour
             Destroy(this.gameObject);
 
             if (initialRope.getcurrJumps() > SaveData.current.profile.numofJumps)
-            {
                 SaveData.current.profile.numofJumps = numcurrJumps;
-            }
+            
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        SerializationManager.Save("Data", SaveData.current);
-    }
+    private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
     void resetGame()
     {
@@ -141,7 +117,6 @@ public class DoubleDutchRope : MonoBehaviour
         transform.position = highestPoint.position;
         goDown = true;
         gameover.text = "";
-        player.setisPlaying(true);
-        
+        initialRope.returnPlayer().GetComponent<Player>().setisPlaying(true);
     }
 }

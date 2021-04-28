@@ -14,9 +14,6 @@ public class DoubleDutchMode : MonoBehaviour
 
     Rope rope;
 
-    [SerializeField]
-    GameObject sky;
-
     GameObject player;
     // Start is called before the first frame update
     void Start()

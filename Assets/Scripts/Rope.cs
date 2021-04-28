@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using TMPro;
-using UnityEditor;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,7 +10,6 @@ public class Rope : MonoBehaviour
     [SerializeField]
     Transform lowestPoint;
 
-    Player player;
     GameObject playerGO;
 
     TextMeshProUGUI gameover;
@@ -43,16 +39,10 @@ public class Rope : MonoBehaviour
     public bool goUp, goDown;
     bool regularMode = false, ddMode = false, extremeddMode = false;
 
-    Transform playerstartingPos;
-
-    [SerializeField]
-    GameObject sky;
-
     // Start is called before the first frame update
     void Start()
     {
         // getting reference of gameobjects
-        playerstartingPos = GameObject.Find("player starting point").GetComponent<Transform>();
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
         succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshPro>();
         playAgain = GameObject.Find("Play Again").GetComponent<Button>();
@@ -70,6 +60,7 @@ public class Rope : MonoBehaviour
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         gameover.text = "";
+
         
         
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
@@ -218,35 +209,17 @@ public class Rope : MonoBehaviour
 
     }
 
-    public void resetJumps()
-    {
-        numcurrJumps = 0;
-    }
+    public void resetJumps() => numcurrJumps = 0;
 
-    public int getJumps()
-    {
-        return SaveData.current.profile.numofJumps;
-    }
+    public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public void setregularMode(bool regularmode)
-    {
-        regularMode = regularmode;
-    }
+    public void setregularMode(bool regularmode) => regularMode = regularmode;
 
-    public void setddMode(bool ddmode)
-    {
-        ddMode = ddmode;
-    }
+    public void setddMode(bool ddmode) => ddMode = ddmode;
 
-    public void setextremeddMode(bool extremeddmode)
-    {
-        extremeddMode = extremeddmode;
-    }
+    public void setextremeddMode(bool extremeddmode) => extremeddMode = extremeddmode;
 
-    public int getcurrJumps()
-    {
-        return numcurrJumps;
-    }
+    public int getcurrJumps() => numcurrJumps;
 
     public void setmileStone(float milestone)
     {
@@ -261,6 +234,7 @@ public class Rope : MonoBehaviour
         if (extremeddMode)
         {
             ddmileStone = Random.Range(1, 100);
+            Debug.Log(ddmileStone);
         }
     }
 
@@ -271,10 +245,7 @@ public class Rope : MonoBehaviour
         
     }
 
-    public void setJumps(int numjumps)
-    {
-        numcurrJumps = numjumps;
-    }
+    public void setJumps(int numjumps) => numcurrJumps = numjumps;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -287,25 +258,17 @@ public class Rope : MonoBehaviour
             mainMenu.gameObject.SetActive(true);
             collision.GetComponent<Player>().setisPlaying(false);
             toggleAccolades.gameObject.SetActive(true);
-            if (extremeddMode)
+            if (extremeddMode || ddMode)
                 Destroy(tmpRope);
 
             if (numcurrJumps > SaveData.current.profile.numofJumps)
-            {
                 SaveData.current.profile.numofJumps = numcurrJumps;
-            }
         }
     }
 
-    public GameObject returnPlayer()
-    {
-        return playerGO;
-    }
+    public GameObject returnPlayer() => playerGO;
 
-    private void OnApplicationQuit()
-    {
-        SerializationManager.Save("Data", SaveData.current);
-    }
+    private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
     void resetGame()
     {

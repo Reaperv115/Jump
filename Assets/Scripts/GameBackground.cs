@@ -26,8 +26,5 @@ public class GameBackground : MonoBehaviour
             spriteRenderer.sprite = background[2];
     }
 
-    public void resetBackground()
-    {
-        spriteRenderer.sprite = background[0];
-    }
+    public void resetBackground() => spriteRenderer.sprite = background[0];
 }

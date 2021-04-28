@@ -14,8 +14,6 @@ public class ExtremeDoubleDutch : MonoBehaviour
 
     Rope rope;
 
-    [SerializeField]
-    GameObject sky;
 
     GameObject player;
     // Start is called before the first frame update
