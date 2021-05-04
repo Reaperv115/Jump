@@ -12,8 +12,5 @@ public class Background : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.material.color = new Color(0.0f, 0.0f, 255f);
     }
-    public void resetBackground()
-    {
-        spriteRenderer.sprite = background[0];
-    }
+    public void resetBackground() => spriteRenderer.sprite = background[0];
 }

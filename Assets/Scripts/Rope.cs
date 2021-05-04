@@ -11,6 +11,7 @@ public class Rope : MonoBehaviour
     Transform lowestPoint;
 
     GameObject playerGO;
+    Difficulties buttons;
 
     TextMeshProUGUI gameover;
     TextMeshProUGUI personalbestDisplay;
@@ -20,9 +21,6 @@ public class Rope : MonoBehaviour
     public Button playAgain;
     public Button mainMenu;
     public Button toggleAccolades;
-    BeginPlay regularButton;
-    DoubleDutchMode ddButton;
-    ExtremeDoubleDutch extremeddButton;
 
     float risingDist;
     float loweringDist;
@@ -37,22 +35,19 @@ public class Rope : MonoBehaviour
     GameObject tmpRope;
 
     public bool goUp, goDown;
-    bool regularMode = false, ddMode = false, extremeddMode = false;
 
     // Start is called before the first frame update
     void Start()
     {
         // getting reference of gameobjects
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
+        personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
         succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshPro>();
         playAgain = GameObject.Find("Play Again").GetComponent<Button>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
+        buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
         
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
-        personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
-        regularButton = GameObject.Find("Regular").GetComponent<BeginPlay>();
-        ddButton = GameObject.Find("Double Dutch").GetComponent<DoubleDutchMode>();
-        extremeddButton = GameObject.Find("Extreme Double Dutch").GetComponent<ExtremeDoubleDutch>();
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
@@ -78,133 +73,140 @@ public class Rope : MonoBehaviour
         //displaying jumps
         succeessfulJumps.text = "jumps: " + numcurrJumps;
 
-        // regular jump rope
-        if (regularMode)
+        
+        switch (buttons.getrequestedDifficulty())
         {
-            if (goUp)
-            {
-                movement = new Vector2(speedX, speedY);
-                transform.Translate(movement * Time.deltaTime);
-                risingDist = Vector2.Distance(transform.position, highestPoint.position);
-                if (risingDist < 0.3f)
+            // regular jump rope
+            case "regular":
                 {
-                    goDown = true;
-                    goUp = false;
-                }
-            }
-            if (goDown)
-            {
-                movement = new Vector2(speedX, -speedY);
-                transform.Translate(movement * Time.deltaTime);
-                loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-                if (loweringDist < 0.3f)
-                {
-                    goDown = false;
-                    goUp = true;
-                    ++numcurrJumps;
-
-                    if (numcurrJumps == 5)
-                        ++SaveData.current.profile.numBronze;
-                    if (numcurrJumps == 15)
-                        ++SaveData.current.profile.numSilver;
-                    if (numcurrJumps == 50)
-                        ++SaveData.current.profile.numGold;
-                    if (numcurrJumps == 75)
-                        ++SaveData.current.profile.numPlat;
-                    if (numcurrJumps == 100)
-                        ++SaveData.current.profile.numWhy;
-                }
-            }
-        }
-
-        // double dutch mode
-        if (ddMode)
-        {
-            if (goUp)
-            {
-                movement = new Vector2(speedX, speedY);
-                transform.Translate(movement * Time.deltaTime);
-                risingDist = Vector2.Distance(transform.position, highestPoint.position);
-                if (risingDist < 0.3f)
-                {
-                    goDown = true;
-                    goUp = false;
-                }
-            }
-            if (goDown)
-            {
-                movement = new Vector2(speedX, -speedY);
-                transform.Translate(movement * Time.deltaTime);
-                loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-                if (loweringDist < 0.3f)
-                {
-                    goDown = false;
-                    goUp = true;
-                    ++numcurrJumps;
-
-                    if (numcurrJumps == 5)
-                        ++SaveData.current.profile.numBronze;
-                    if (numcurrJumps == 15)
-                        ++SaveData.current.profile.numSilver;
-                    if (numcurrJumps == ddmileStone)
+                    if (goUp)
                     {
-                        tmpRope = Instantiate<GameObject>(rope2, highestPoint);
-                        tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
-                        speedY = 7.0f;
+                        movement = new Vector2(speedX, speedY);
+                        transform.Translate(movement * Time.deltaTime);
+                        risingDist = Vector2.Distance(transform.position, highestPoint.position);
+                        if (risingDist < 0.3f)
+                        {
+                            goDown = true;
+                            goUp = false;
+                        }
                     }
-                    if (numcurrJumps == 50)
-                        ++SaveData.current.profile.numGold;
-                    if (numcurrJumps == 75)
-                        ++SaveData.current.profile.numPlat;
-                    if (numcurrJumps == 100)
-                        ++SaveData.current.profile.numWhy;
-                }
-            }
-        }
-
-        // extreme double dutch mode
-        if (extremeddMode)
-        {
-            if (goUp)
-            {
-                movement = new Vector2(speedX, speedY);
-                transform.Translate(movement * Time.deltaTime);
-                risingDist = Vector2.Distance(transform.position, highestPoint.position);
-                if (risingDist < 0.3f)
-                {
-                    goDown = true;
-                    goUp = false;
-                }
-            }
-            if (goDown)
-            {
-                movement = new Vector2(speedX, -speedY);
-                transform.Translate(movement * Time.deltaTime);
-                loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-                if (loweringDist < 0.3f)
-                {
-                    goDown = false;
-                    goUp = true;
-                    ++numcurrJumps;
-
-                    if (numcurrJumps == 5)
-                        ++SaveData.current.profile.numBronze;
-                    if (numcurrJumps == 15)
-                        ++SaveData.current.profile.numSilver;
-                    if (numcurrJumps == ddmileStone)
+                    if (goDown)
                     {
-                        tmpRope = Instantiate<GameObject>(rope2, highestPoint);
-                        tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
-                        speedY = 7.5f;
+                        movement = new Vector2(speedX, -speedY);
+                        transform.Translate(movement * Time.deltaTime);
+                        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+                        if (loweringDist < 0.3f)
+                        {
+                            goDown = false;
+                            goUp = true;
+                            ++numcurrJumps;
+
+                            if (numcurrJumps == 5)
+                                ++SaveData.current.profile.numBronze;
+                            if (numcurrJumps == 15)
+                                ++SaveData.current.profile.numSilver;
+                            if (numcurrJumps == 50)
+                                ++SaveData.current.profile.numGold;
+                            if (numcurrJumps == 75)
+                                ++SaveData.current.profile.numPlat;
+                            if (numcurrJumps == 100)
+                                ++SaveData.current.profile.numWhy;
+                        }
                     }
-                    if (numcurrJumps == 50)
-                        ++SaveData.current.profile.numGold;
-                    if (numcurrJumps == 75)
-                        ++SaveData.current.profile.numPlat;
-                    if (numcurrJumps == 100)
-                        ++SaveData.current.profile.numWhy;
+                    break;
                 }
-            }
+            // double dutch jump rope
+            case "dd":
+                {
+                    if (goUp)
+                    {
+                        movement = new Vector2(speedX, speedY);
+                        transform.Translate(movement * Time.deltaTime);
+                        risingDist = Vector2.Distance(transform.position, highestPoint.position);
+                        if (risingDist < 0.3f)
+                        {
+                            goDown = true;
+                            goUp = false;
+                        }
+                    }
+                    if (goDown)
+                    {
+                        movement = new Vector2(speedX, -speedY);
+                        transform.Translate(movement * Time.deltaTime);
+                        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+                        if (loweringDist < 0.3f)
+                        {
+                            goDown = false;
+                            goUp = true;
+                            ++numcurrJumps;
+
+                            if (numcurrJumps == 5)
+                                ++SaveData.current.profile.numBronze;
+                            if (numcurrJumps == 15)
+                                ++SaveData.current.profile.numSilver;
+                            if (numcurrJumps == ddmileStone)
+                            {
+                                tmpRope = Instantiate<GameObject>(rope2, highestPoint);
+                                tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
+                                speedY = 7.0f;
+                            }
+                            if (numcurrJumps == 50)
+                                ++SaveData.current.profile.numGold;
+                            if (numcurrJumps == 75)
+                                ++SaveData.current.profile.numPlat;
+                            if (numcurrJumps == 100)
+                                ++SaveData.current.profile.numWhy;
+                        }
+                    }
+                    break;
+                }
+            // extreme double dutch jump rope
+            case "edd":
+                {
+                    if (goUp)
+                    {
+                        movement = new Vector2(speedX, speedY);
+                        transform.Translate(movement * Time.deltaTime);
+                        risingDist = Vector2.Distance(transform.position, highestPoint.position);
+                        if (risingDist < 0.3f)
+                        {
+                            goDown = true;
+                            goUp = false;
+                        }
+                    }
+                    if (goDown)
+                    {
+                        movement = new Vector2(speedX, -speedY);
+                        transform.Translate(movement * Time.deltaTime);
+                        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+                        if (loweringDist < 0.3f)
+                        {
+                            goDown = false;
+                            goUp = true;
+                            ++numcurrJumps;
+
+                            if (numcurrJumps == 5)
+                                ++SaveData.current.profile.numBronze;
+                            if (numcurrJumps == 15)
+                                ++SaveData.current.profile.numSilver;
+                            if (numcurrJumps == ddmileStone)
+                            {
+                                tmpRope = Instantiate<GameObject>(rope2, highestPoint);
+                                tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
+                                speedY = 7.5f;
+                            }
+                            if (numcurrJumps == 50)
+                                ++SaveData.current.profile.numGold;
+                            if (numcurrJumps == 75)
+                                ++SaveData.current.profile.numPlat;
+                            if (numcurrJumps == 100)
+                                ++SaveData.current.profile.numWhy;
+                        }
+                    }
+                    break;
+                }
+            default:
+                break;
         }
 
     }
@@ -213,36 +215,26 @@ public class Rope : MonoBehaviour
 
     public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public void setregularMode(bool regularmode) => regularMode = regularmode;
-
-    public void setddMode(bool ddmode) => ddMode = ddmode;
-
-    public void setextremeddMode(bool extremeddmode) => extremeddMode = extremeddmode;
-
     public int getcurrJumps() => numcurrJumps;
 
     public void setmileStone(float milestone)
     {
         ddmileStone = milestone;
-        Debug.Log(ddmileStone);
     }
 
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);
         resetGame();
-        if (extremeddMode)
-        {
+        if (buttons.getrequestedDifficulty().Equals("edd"))
             ddmileStone = Random.Range(1, 100);
-            Debug.Log(ddmileStone);
-        }
+        
     }
 
     public void gotoMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
-        
     }
 
     public void setJumps(int numjumps) => numcurrJumps = numjumps;
@@ -258,7 +250,7 @@ public class Rope : MonoBehaviour
             mainMenu.gameObject.SetActive(true);
             collision.GetComponent<Player>().setisPlaying(false);
             toggleAccolades.gameObject.SetActive(true);
-            if (extremeddMode || ddMode)
+            if (buttons.getrequestedDifficulty().Equals("dd") || buttons.getrequestedDifficulty().Equals("edd"))
                 Destroy(tmpRope);
 
             if (numcurrJumps > SaveData.current.profile.numofJumps)

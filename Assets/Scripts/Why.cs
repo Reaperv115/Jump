@@ -27,9 +27,8 @@ public class Why : MonoBehaviour
             colorTimer = 3.0f;
         }
         else
-        {
             colorTimer -= Time.deltaTime;
-        }
+        
         
         whyCount.text = "Count: " + SaveData.current.profile.numWhy.ToString();
     }

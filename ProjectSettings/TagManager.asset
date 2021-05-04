@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - accolade
+  - rope
   layers:
   - Default
   - TransparentFX

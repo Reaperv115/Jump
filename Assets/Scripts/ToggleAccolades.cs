@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ToggleAccolades : MonoBehaviour
@@ -20,22 +18,15 @@ public class ToggleAccolades : MonoBehaviour
         if (displayAccolades)
         {
             for (int i = 0; i < accolades.Length; ++i)
-            {
                 accolades[i].gameObject.SetActive(true);
-            }
         }
         else
         {
             for (int i = 0; i < accolades.Length; ++i)
-            {
                 accolades[i].gameObject.SetActive(false);
-            }
         }
 
     }
 
-    public void toggleAccolades()
-    {
-        displayAccolades = !displayAccolades;
-    }
+    public void toggleAccolades() => displayAccolades = !displayAccolades;
 }

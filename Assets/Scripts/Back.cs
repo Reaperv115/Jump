@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,14 +12,5 @@ public class Back : MonoBehaviour
         back.onClick.AddListener(goBack);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void goBack()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+    public void goBack() => SceneManager.LoadScene("MainMenu");
 }
