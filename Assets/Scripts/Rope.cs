@@ -34,6 +34,8 @@ public class Rope : MonoBehaviour
     GameObject rope2;
     GameObject tmpRope;
 
+    
+
     public bool goUp, goDown;
 
     // Start is called before the first frame update
@@ -255,6 +257,8 @@ public class Rope : MonoBehaviour
 
             if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
+
+            buttons.getSlider().gameObject.SetActive(true);
         }
     }
 
@@ -274,5 +278,13 @@ public class Rope : MonoBehaviour
         gameover.text = "";
         playerGO.GetComponent<Player>().setisPlaying(true);
         toggleAccolades.gameObject.SetActive(false);
+        setSpeed(buttons.getSlider().value);
+        buttons.getSlider().gameObject.SetActive(false);
+    }
+
+    public void setSpeed(float speed)
+    {
+        speedY = speed;
+        Debug.Log(speedY);
     }
 }

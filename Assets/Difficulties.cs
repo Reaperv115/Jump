@@ -10,7 +10,7 @@ public class Difficulties : MonoBehaviour
 
 
     Rope rope;
-
+    Slider ropeSpeed;
 
     GameObject player;
 
@@ -23,8 +23,8 @@ public class Difficulties : MonoBehaviour
         difficultyButtons[2].GetComponent<Button>();
         difficultyButtons[2].onClick.AddListener(beginEDD);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
-        Debug.Log(toggleAccolades);
         rope = GameObject.FindGameObjectWithTag("rope").GetComponent<Rope>();
+        ropeSpeed = GameObject.FindGameObjectWithTag("options").GetComponent<Slider>();
     }
     public void beginRegular()
     {
@@ -35,6 +35,8 @@ public class Difficulties : MonoBehaviour
         toggleAccolades.gameObject.SetActive(false);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
+        rope.setSpeed(ropeSpeed.value);
+        ropeSpeed.gameObject.SetActive(false);
     }
 
     public void beginDD()
@@ -46,6 +48,8 @@ public class Difficulties : MonoBehaviour
         player.GetComponent<Player>().setisPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
+        rope.setSpeed(ropeSpeed.value);
+        ropeSpeed.gameObject.SetActive(false);
     }
 
     public void beginEDD()
@@ -58,10 +62,17 @@ public class Difficulties : MonoBehaviour
         player = rope.returnPlayer();
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
+        rope.setSpeed(ropeSpeed.value);
+        ropeSpeed.gameObject.SetActive(false);
     }
 
     public string getrequestedDifficulty()
     {
         return selectedDifficulty;
+    }
+
+    public Slider getSlider()
+    {
+        return ropeSpeed;
     }
 }

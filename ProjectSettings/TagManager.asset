@@ -6,6 +6,7 @@ TagManager:
   tags:
   - accolade
   - rope
+  - options
   layers:
   - Default
   - TransparentFX

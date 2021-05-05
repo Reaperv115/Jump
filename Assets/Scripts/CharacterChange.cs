@@ -21,7 +21,6 @@ public class CharacterChange : MonoBehaviour
         else
         {
             playerPos = GameObject.Find("player position").GetComponent<Transform>();
-            Debug.Log(playerPos.position);
             player = Resources.Load<GameObject>("Players/playerGOs/player");
             Instantiate(player, playerPos.position, Quaternion.identity);
             playerSprites = Resources.LoadAll<Sprite>("Players");
