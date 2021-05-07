@@ -8,19 +8,19 @@ public class DoubleDutchRope : MonoBehaviour
     Transform highestPoint;
     [SerializeField]
     Transform lowestPoint;
-
     TextMeshProUGUI gameover;
-
     Rope initialRope;
-
-    float risingDist;
-    float loweringDist;
-
-    int numcurrJumps = 0;
-    float speedX = 0.0f, speedY = 7.0f;
     Vector2 movement;
 
+
+
     public bool goUp, goDown = true;
+    float speedX = 0.0f, speedY = 0.0f;
+    float risingDist;
+    float loweringDist;
+    int numcurrJumps = 0;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,7 @@ public class DoubleDutchRope : MonoBehaviour
         initialRope = GameObject.Find("rope").GetComponent<Rope>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+        speedY = initialRope.buttons.getSlider().value;
     }
 
     // Update is called once per frame

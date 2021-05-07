@@ -11,11 +11,12 @@ public class DisplayDistractions : MonoBehaviour
 
     int distractionSpot;
 
+    int[] distractionSizes = { 25, 35, 25 };
+    Color[] distractionColors = { Color.red, Color.green, Color.black, Color.blue, Color.yellow, Color.cyan, Color.magenta };
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < distractionSpots.Count; ++i)
-            distractionSpots[i].gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,17 +35,32 @@ public class DisplayDistractions : MonoBehaviour
     void Activate()
     {
         distractionSpot = Random.Range(0, distractionSpots.Count);
-        distractionSpots[distractionSpot].gameObject.SetActive(true);
+        
 
         int bigandMean = Random.Range(1, 4);
         if ((bigandMean % 2).Equals(0))
         {
-            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "DISTRACTIONS!";
-            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = Color.blue;
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "IS THIS DISTRACTING?!?!";
+
+            int distractionColor = Random.Range(0, distractionColors.Length);
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = distractionColors[distractionColor];
+
+            int distractionSize = Random.Range(0, distractionSizes.Length);
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().fontSize = distractionSizes[distractionSize];
+        }
+        else
+        {
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "THIS IS A DISTRACTION!!!";
+
+            int distractionColor = Random.Range(0, distractionColors.Length);
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = distractionColors[distractionColor];
+
+            int distractionSize = Random.Range(0, distractionSizes.Length);
+            distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().fontSize = distractionSizes[distractionSize];
         }
     }
     void Deactivate()
     {
-        distractionSpots[distractionSpot].gameObject.SetActive(false);
+        distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "";
     }
 }

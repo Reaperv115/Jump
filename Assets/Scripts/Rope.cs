@@ -11,7 +11,9 @@ public class Rope : MonoBehaviour
     Transform lowestPoint;
 
     GameObject playerGO;
-    Difficulties buttons;
+
+    [HideInInspector]
+    public Difficulties buttons;
 
     TextMeshProUGUI gameover;
     TextMeshProUGUI personalbestDisplay;
@@ -48,7 +50,7 @@ public class Rope : MonoBehaviour
         playAgain = GameObject.Find("Play Again").GetComponent<Button>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
-        
+        Debug.Log(buttons);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
@@ -222,6 +224,7 @@ public class Rope : MonoBehaviour
     public void setmileStone(float milestone)
     {
         ddmileStone = milestone;
+        Debug.Log(ddmileStone);
     }
 
     public void Replay()
@@ -229,7 +232,8 @@ public class Rope : MonoBehaviour
         SerializationManager.Save("Data", SaveData.current);
         resetGame();
         if (buttons.getrequestedDifficulty().Equals("edd"))
-            ddmileStone = Random.Range(1, 100);
+            ddmileStone = Random.Range(1, 5);
+        Debug.Log(ddmileStone);
         
     }
 
@@ -269,7 +273,6 @@ public class Rope : MonoBehaviour
     void resetGame()
     {
         resetJumps();
-        speedY = 12.0f;
         GameObject.Find("background").GetComponent<GameBackground>().resetBackground();
         transform.position = highestPoint.position;
         goDown = true;
@@ -285,6 +288,5 @@ public class Rope : MonoBehaviour
     public void setSpeed(float speed)
     {
         speedY = speed;
-        Debug.Log(speedY);
     }
 }
