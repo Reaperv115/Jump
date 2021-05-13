@@ -1,35 +1,48 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class DoubleDutchRope : Rope
+public class RegularRope : Rope
 {
     [SerializeField]
     Transform highestPoint;
     [SerializeField]
     Transform lowestPoint;
+
+
     TextMeshProUGUI gameover;
-    RegularRope initialRope;
+    
+
+    
 
     GameManager manager;
 
-
-   
-  
-
-
+    
+    
+    float ddmileStone = 0;
+    GameObject backGround;
+    GameObject playerGO;
 
     // Start is called before the first frame update
     void Start()
     {
+        // getting reference of gameobjects
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        initialRope = GameObject.Find("rope").GetComponent<RegularRope>();
+        
+        
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        manager = GameObject.Find("background").GetComponent<GameManager>();
-        //speedY = initialRope.buttons.getSlider().value;
-        goUp = true; 
+        backGround = GameObject.Find("game background");
+        //Debug.Log("Rope" + backGround);
+        manager = backGround.GetComponent<GameManager>();
+        //Debug.Log("Rope" + manager);
+        
+        gameover.text = "";
         goDown = true;
+        goUp = false;
+        speedX = 0.0f;
+        speedY = 12.0f;
     }
 
     // Update is called once per frame
@@ -37,6 +50,12 @@ public class DoubleDutchRope : Rope
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+
+        // displaying your personal best score
+        
+
+        //displaying jumps
+        
 
         if (goUp)
         {
@@ -58,9 +77,6 @@ public class DoubleDutchRope : Rope
             {
                 goDown = false;
                 goUp = true;
-                int tmpJumps = initialRope.getcurrJumps();
-                tmpJumps++;
-                initialRope.setJumps(tmpJumps);
                 ++numcurrJumps;
 
                 if (numcurrJumps == 5)
@@ -84,35 +100,41 @@ public class DoubleDutchRope : Rope
 
     public int getcurrJumps() => numcurrJumps;
 
+    public void setmileStone(float milestone)
+    {
+        ddmileStone = milestone;
+    }
+
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);
+        manager.Replay();
         resetGame();
+        
     }
 
     public void gotoMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
-
     }
+
+    public void setJumps(int numjumps) => numcurrJumps = numjumps;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.name.Equals("player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
+        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;
+            manager.playAgain.gameObject.SetActive(true);
+            manager.mainMenu.gameObject.SetActive(true);
             collision.GetComponent<Player>().setisPlaying(false);
-            manager.getplayagainButton().gameObject.SetActive(true);
-            manager.getmenuButton().gameObject.SetActive(true);
             manager.getaccoladesButton().gameObject.SetActive(true);
-            Destroy(this.gameObject);
 
-            if (initialRope.getcurrJumps() > SaveData.current.profile.numofJumps)
+            if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
-            
         }
     }
 
@@ -121,18 +143,24 @@ public class DoubleDutchRope : Rope
     void resetGame()
     {
         resetJumps();
-        GameObject.Find("sky").GetComponent<GameBackground>().resetBackground();
-        manager.getplayagainButton().gameObject.SetActive(false);
-        manager.getmenuButton().gameObject.SetActive(false);
-        manager.getaccoladesButton().gameObject.SetActive(false);
+        backGround.GetComponent<GameBackground>().resetBackground();
         transform.position = highestPoint.position;
         goDown = true;
+        manager.playAgain.gameObject.SetActive(false);
+        manager.mainMenu.gameObject.SetActive(false);
         gameover.text = "";
-        //initialRope.returnPlayer().GetComponent<Player>().setisPlaying(true);
+        playerGO = manager.getPlayer();
+        playerGO.GetComponent<Player>().setisPlaying(true);
+        manager.getaccoladesButton().gameObject.SetActive(false);
     }
 
     public void setSpeed(float speed)
     {
         speedY = speed;
+    }
+
+    public GameBackground getBackground()
+    {
+        return backGround.GetComponent<GameBackground>();
     }
 }
