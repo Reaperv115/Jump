@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     Button toggleAccolades;
 
     TextMeshProUGUI personalbestDisplay;
-    TextMeshPro succeessfulJumps;
+    TextMeshProUGUI succeessfulJumps;
 
     GameObject player;
 
@@ -28,9 +28,7 @@ public class GameManager : MonoBehaviour
         mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
         personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
-        succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshPro>();
-        Debug.Log(succeessfulJumps);
-        
+        succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshProUGUI>();
         playAgain.onClick.AddListener(Replay);
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
@@ -47,8 +45,8 @@ public class GameManager : MonoBehaviour
         }
         if (rope)
         {
+            //Debug.Log(rope);
             succeessfulJumps.text = "jumps: " + rope.getcurrJumps();
-            Debug.Log(succeessfulJumps.text);
         }
         
     }
@@ -87,5 +85,10 @@ public class GameManager : MonoBehaviour
     public GameObject getRope()
     {
         return Resources.Load<GameObject>("rope");
+    }
+
+    public Difficulties getdifficultyButtons()
+    {
+        return buttons;
     }
 }

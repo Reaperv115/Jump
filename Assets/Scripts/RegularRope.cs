@@ -34,9 +34,8 @@ public class RegularRope : Rope
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         backGround = GameObject.Find("game background");
-        //Debug.Log("Rope" + backGround);
+        Debug.Log("Rope" + backGround);
         manager = backGround.GetComponent<GameManager>();
-        //Debug.Log("Rope" + manager);
         
         gameover.text = "";
         goDown = true;
@@ -50,12 +49,6 @@ public class RegularRope : Rope
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-
-        // displaying your personal best score
-        
-
-        //displaying jumps
-        
 
         if (goUp)
         {
@@ -108,6 +101,9 @@ public class RegularRope : Rope
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);
+        backGround = GameObject.Find("game background");
+        manager = backGround.GetComponent<GameManager>();
+        Debug.Log(manager);
         manager.Replay();
         resetGame();
         
@@ -132,6 +128,7 @@ public class RegularRope : Rope
             manager.mainMenu.gameObject.SetActive(true);
             collision.GetComponent<Player>().setisPlaying(false);
             manager.getaccoladesButton().gameObject.SetActive(true);
+            manager.getdifficultyButtons().getSlider().gameObject.SetActive(true);
 
             if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
@@ -142,16 +139,16 @@ public class RegularRope : Rope
 
     void resetGame()
     {
-        resetJumps();
-        backGround.GetComponent<GameBackground>().resetBackground();
+        //resetJumps();
+        //backGround.GetComponent<GameBackground>().resetBackground();
         transform.position = highestPoint.position;
-        goDown = true;
-        manager.playAgain.gameObject.SetActive(false);
-        manager.mainMenu.gameObject.SetActive(false);
+        //goDown = true;
+        //playerGO = manager.getPlayer();
+        //manager.playAgain.gameObject.SetActive(false);
+        //manager.mainMenu.gameObject.SetActive(false);
         gameover.text = "";
-        playerGO = manager.getPlayer();
-        playerGO.GetComponent<Player>().setisPlaying(true);
-        manager.getaccoladesButton().gameObject.SetActive(false);
+        //playerGO.GetComponent<Player>().setisPlaying(true);
+        //manager.getaccoladesButton().gameObject.SetActive(false);
     }
 
     public void setSpeed(float speed)

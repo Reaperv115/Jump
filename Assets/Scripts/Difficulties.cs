@@ -34,9 +34,7 @@ public class Difficulties : MonoBehaviour
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         ropeSpeed = GameObject.FindGameObjectWithTag("options").GetComponent<Slider>();
         background = GameObject.Find("game background");
-        //Debug.Log("Difficulties" + background);
         manager = background.GetComponent<GameManager>();
-        //Debug.Log(manager);
     }
 
     private void Update()
