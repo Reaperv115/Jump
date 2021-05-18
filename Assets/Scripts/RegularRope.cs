@@ -11,10 +11,10 @@ public class RegularRope : Rope
     Transform lowestPoint;
 
 
-    TextMeshProUGUI gameover;
-    
 
-    
+    //TextMeshProUGUI gameoverText;
+
+    Difficulties buttons;
 
     GameManager manager;
 
@@ -28,16 +28,13 @@ public class RegularRope : Rope
     void Start()
     {
         // getting reference of gameobjects
-        gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        
-        
+
+        buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
+
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         backGround = GameObject.Find("game background");
-        Debug.Log("Rope" + backGround);
         manager = backGround.GetComponent<GameManager>();
-        
-        gameover.text = "";
         goDown = true;
         goUp = false;
         speedX = 0.0f;
@@ -49,7 +46,6 @@ public class RegularRope : Rope
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-
         if (goUp)
         {
             movement = new Vector2(speedX, speedY);
@@ -98,17 +94,6 @@ public class RegularRope : Rope
         ddmileStone = milestone;
     }
 
-    public void Replay()
-    {
-        SerializationManager.Save("Data", SaveData.current);
-        backGround = GameObject.Find("game background");
-        manager = backGround.GetComponent<GameManager>();
-        Debug.Log(manager);
-        manager.Replay();
-        resetGame();
-        
-    }
-
     public void gotoMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
@@ -121,7 +106,7 @@ public class RegularRope : Rope
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            gameover.text = "Game Over!";
+            manager.getGameOver().text = "Game Over!";
             goUp = false;
             goDown = false;
             manager.playAgain.gameObject.SetActive(true);
@@ -129,7 +114,7 @@ public class RegularRope : Rope
             collision.GetComponent<Player>().setisPlaying(false);
             manager.getaccoladesButton().gameObject.SetActive(true);
             manager.getdifficultyButtons().getSlider().gameObject.SetActive(true);
-
+            Destroy(this.gameObject);
             if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
         }
@@ -137,24 +122,24 @@ public class RegularRope : Rope
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
-    void resetGame()
+    public void resetGame()
     {
-        //resetJumps();
-        //backGround.GetComponent<GameBackground>().resetBackground();
-        transform.position = highestPoint.position;
-        //goDown = true;
-        //playerGO = manager.getPlayer();
-        //manager.playAgain.gameObject.SetActive(false);
-        //manager.mainMenu.gameObject.SetActive(false);
-        gameover.text = "";
-        //playerGO.GetComponent<Player>().setisPlaying(true);
-        //manager.getaccoladesButton().gameObject.SetActive(false);
+        resetJumps();
+        this.transform.position = highestPoint.position;
+        goDown = true;
     }
 
     public void setSpeed(float speed)
     {
         speedY = speed;
     }
+
+    public void GoUp(bool direction)
+    {
+        goDown = direction;
+        goUp = !goDown;
+    }
+    
 
     public GameBackground getBackground()
     {

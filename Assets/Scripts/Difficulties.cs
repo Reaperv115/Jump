@@ -96,4 +96,9 @@ public class Difficulties : MonoBehaviour
     {
         return ropeSpeed;
     }
+
+    public GameObject getRope()
+    {
+        return rope;
+    }
 }

@@ -702,6 +702,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &98055372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2580831097742101752, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
+  m_PrefabInstance: {fileID: 1415883433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad66ddbca73d7c84ea58966745c94c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &135557754
 GameObject:
   m_ObjectHideFlags: 0
@@ -6975,6 +6986,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1404080529 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1075699506203922669, guid: 4407a7aa2a646694f9ea169da9b18605, type: 3}
+  m_PrefabInstance: {fileID: 1075699506218259079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1415883433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6982,6 +6998,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2580831097742101752, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
+      propertyPath: highestPoint
+      value: 
+      objectReference: {fileID: 1404080529}
     - target: {fileID: -2580831097742101752, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
       propertyPath: toggleAccolades
       value: 
@@ -9699,14 +9719,14 @@ PrefabInstance:
     - target: {fileID: 3870450054452090409, guid: d7231e088fb1782438d157b50625e765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2076881281348301093, guid: 496d358e0ece9124889ece1f7f3d27f3, type: 3}
+      objectReference: {fileID: 98055372}
     - target: {fileID: 3870450054452090409, guid: d7231e088fb1782438d157b50625e765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Replay
       objectReference: {fileID: 0}
     - target: {fileID: 3870450054452090409, guid: d7231e088fb1782438d157b50625e765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RegularRope, Assembly-CSharp
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3870450054452090414, guid: d7231e088fb1782438d157b50625e765, type: 3}
       propertyPath: m_Pivot.x
