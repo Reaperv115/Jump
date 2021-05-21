@@ -1,35 +1,44 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class DoubleDutchRope : Rope
+public class RegularRope : Rope
 {
     [SerializeField]
     Transform highestPoint;
     [SerializeField]
     Transform lowestPoint;
-    TextMeshProUGUI gameover;
-    RegularRope initialRope;
+
+
+
+    //TextMeshProUGUI gameoverText;
+
+    Difficulties buttons;
 
     GameManager manager;
 
-
-   
-  
-
-
+    bool isgameOver;
+    
+    float ddmileStone = 0;
+    GameObject backGround;
+    GameObject playerGO;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        initialRope = GameObject.Find("rope").GetComponent<RegularRope>();
+        // getting reference of gameobjects
+
+        buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
+        isgameOver = false;
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        manager = GameObject.Find("background").GetComponent<GameManager>();
-        //speedY = initialRope.buttons.getSlider().value;
-        goUp = true; 
+        backGround = GameObject.Find("game background");
+        manager = backGround.GetComponent<GameManager>();
         goDown = true;
+        goUp = false;
+        speedX = 0.0f;
+        speedY = 12.0f;
     }
 
     // Update is called once per frame
@@ -37,7 +46,6 @@ public class DoubleDutchRope : Rope
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-
         if (goUp)
         {
             movement = new Vector2(speedX, speedY);
@@ -58,9 +66,6 @@ public class DoubleDutchRope : Rope
             {
                 goDown = false;
                 goUp = true;
-                int tmpJumps = initialRope.getcurrJumps();
-                tmpJumps++;
-                initialRope.setJumps(tmpJumps);
                 ++numcurrJumps;
 
                 if (numcurrJumps == 5)
@@ -78,61 +83,85 @@ public class DoubleDutchRope : Rope
 
     }
 
-    public void resetJumps() => numcurrJumps = 0;
+    public void resetJumps()
+    {
+        numcurrJumps = 0;
+    }
 
     public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public int getcurrJumps() => numcurrJumps;
-
-    public void Replay()
+    public int getcurrJumps()
     {
-        SerializationManager.Save("Data", SaveData.current);
-        resetGame();
+        return this.numcurrJumps;
+    }
+
+    public void setmileStone(float milestone)
+    {
+        ddmileStone = milestone;
     }
 
     public void gotoMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
-
     }
+
+    public void setJumps(int numjumps) => numcurrJumps = numjumps;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.name.Equals("player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
+        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            gameover.text = "Game Over!";
-            goUp = false;
-            goDown = false;
+            stopRope();
+            resetJumps();
             collision.GetComponent<Player>().setisPlaying(false);
             manager.getplayagainButton().gameObject.SetActive(true);
             manager.getmenuButton().gameObject.SetActive(true);
             manager.getaccoladesButton().gameObject.SetActive(true);
-            Destroy(this.gameObject);
-
-            if (initialRope.getcurrJumps() > SaveData.current.profile.numofJumps)
+            manager.getropeSpeed().gameObject.SetActive(true);
+            manager.getGameOver().GetComponent<TextMeshProUGUI>().text = "GAME OVER!";
+            transform.position = highestPoint.position;
+            //isgameOver = true;
+            if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
-            
         }
     }
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
-    void resetGame()
-    {
-        resetJumps();
-        GameObject.Find("sky").GetComponent<GameBackground>().resetBackground();
-        manager.getplayagainButton().gameObject.SetActive(false);
-        manager.getmenuButton().gameObject.SetActive(false);
-        manager.getaccoladesButton().gameObject.SetActive(false);
-        transform.position = highestPoint.position;
-        goDown = true;
-        gameover.text = "";
-        //initialRope.returnPlayer().GetComponent<Player>().setisPlaying(true);
-    }
 
     public void setSpeed(float speed)
     {
         speedY = speed;
+    }
+
+    public void GoDown(bool direction)
+    {
+        goDown = direction;
+        goUp = !goDown;
+        Debug.Log("go down: " + goDown);
+        Debug.Log("go up: " + goUp);
+    }
+    
+
+    public GameBackground getBackground()
+    {
+        return backGround.GetComponent<GameBackground>();
+    }
+
+    public bool getisgameOver()
+    {
+        return isgameOver;
+    }
+
+    public void setisgameOver(bool isgameover)
+    {
+        isgameOver = isgameover;
+    }
+
+    public void stopRope()
+    {
+        goUp = false;
+        goDown = false;
     }
 }

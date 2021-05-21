@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 2242034366065236749}
   - component: {fileID: 2242034366065236750}
   - component: {fileID: 2242034366065236751}
-  - component: {fileID: 2242034366065236784}
-  m_Layer: 10
+  - component: {fileID: 2312810586467496292}
+  - component: {fileID: 2076881281348301093}
+  m_Layer: 0
   m_Name: rope
-  m_TagString: Untagged
+  m_TagString: rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +45,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -285366557
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f1171a26b0bf9d64a9ce64da1e22d87d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6825aba037aa49747a2a4dd9d1dfa81d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +112,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 80, y: 12.8125}
   m_EdgeRadius: 0
---- !u!114 &2242034366065236784
+--- !u!114 &2312810586467496292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242034366065236785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686975b8d40905e4e80f757342034483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2076881281348301093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,10 +138,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highestPoint: {fileID: 1075699506203922669, guid: 4407a7aa2a646694f9ea169da9b18605, type: 3}
   lowestPoint: {fileID: 9190388074013499510, guid: 142ec433c021dd14489e32d417276f71, type: 3}
-  playAgain: {fileID: 0}
-  mainMenu: {fileID: 0}
-  toggleAccolades: {fileID: 0}
-  rope2: {fileID: 2242034366065236785, guid: dfd9b94a8fc51d242a8cd6b28991c53a, type: 3}
-  goUp: 0
-  goDown: 0
-  sky: {fileID: 405029179231830085, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}

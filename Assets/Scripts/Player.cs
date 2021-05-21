@@ -103,9 +103,10 @@ public class Player : MonoBehaviour
             canJump = true;
             spriteRenderer.sprite = standingSprite;
         }
-
+        //Debug.Log(isPlaying);
         if (isPlaying)
         {
+            //Debug.Log(canJump);
             if (canJump)
             {
                 if (Input.touchCount > 0)
@@ -149,5 +150,10 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;
+    }
+
+    public bool getisPlaying()
+    {
+        return isPlaying;
     }
 }
