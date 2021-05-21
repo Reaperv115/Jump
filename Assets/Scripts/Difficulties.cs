@@ -43,8 +43,8 @@ public class Difficulties : MonoBehaviour
     }
     public void beginRegular()
     {
-        selectedDifficulty = "regular";
-        rope = manager.getRope();
+        //selectedDifficulty = "regular";
+        rope = manager.loadRope();
         tmpRope = Instantiate(rope, GameObject.Find("max height").transform.position, Quaternion.identity);
         player = manager.getPlayer();
         player.GetComponent<Player>().setisPlaying(true);
@@ -53,9 +53,9 @@ public class Difficulties : MonoBehaviour
         {
             difficultyButtons[i].gameObject.SetActive(false);
         }
-        
+
         tmpRope.GetComponent<RegularRope>().setSpeed(ropeSpeed.value);
-        ropeSpeed.gameObject.SetActive(false);
+        manager.getropeSpeed().gameObject.SetActive(false);
     }
 
     public void beginDD()
@@ -99,6 +99,11 @@ public class Difficulties : MonoBehaviour
 
     public GameObject getRope()
     {
-        return rope;
+        return tmpRope;
+    }
+
+    public Button[] getdifficultyButtons()
+    {
+        return difficultyButtons;
     }
 }

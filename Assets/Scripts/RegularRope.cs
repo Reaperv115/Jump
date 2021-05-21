@@ -18,7 +18,7 @@ public class RegularRope : Rope
 
     GameManager manager;
 
-    
+    bool isgameOver;
     
     float ddmileStone = 0;
     GameObject backGround;
@@ -30,7 +30,7 @@ public class RegularRope : Rope
         // getting reference of gameobjects
 
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
-
+        isgameOver = false;
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         backGround = GameObject.Find("game background");
@@ -83,11 +83,17 @@ public class RegularRope : Rope
 
     }
 
-    public void resetJumps() => numcurrJumps = 0;
+    public void resetJumps()
+    {
+        numcurrJumps = 0;
+    }
 
     public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public int getcurrJumps() => numcurrJumps;
+    public int getcurrJumps()
+    {
+        return this.numcurrJumps;
+    }
 
     public void setmileStone(float milestone)
     {
@@ -106,15 +112,16 @@ public class RegularRope : Rope
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            manager.getGameOver().text = "Game Over!";
-            goUp = false;
-            goDown = false;
-            manager.playAgain.gameObject.SetActive(true);
-            manager.mainMenu.gameObject.SetActive(true);
+            stopRope();
+            resetJumps();
             collision.GetComponent<Player>().setisPlaying(false);
+            manager.getplayagainButton().gameObject.SetActive(true);
+            manager.getmenuButton().gameObject.SetActive(true);
             manager.getaccoladesButton().gameObject.SetActive(true);
-            manager.getdifficultyButtons().getSlider().gameObject.SetActive(true);
-            Destroy(this.gameObject);
+            manager.getropeSpeed().gameObject.SetActive(true);
+            manager.getGameOver().GetComponent<TextMeshProUGUI>().text = "GAME OVER!";
+            transform.position = highestPoint.position;
+            //isgameOver = true;
             if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
         }
@@ -122,27 +129,39 @@ public class RegularRope : Rope
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
-    public void resetGame()
-    {
-        resetJumps();
-        this.transform.position = highestPoint.position;
-        goDown = true;
-    }
 
     public void setSpeed(float speed)
     {
         speedY = speed;
     }
 
-    public void GoUp(bool direction)
+    public void GoDown(bool direction)
     {
         goDown = direction;
         goUp = !goDown;
+        Debug.Log("go down: " + goDown);
+        Debug.Log("go up: " + goUp);
     }
     
 
     public GameBackground getBackground()
     {
         return backGround.GetComponent<GameBackground>();
+    }
+
+    public bool getisgameOver()
+    {
+        return isgameOver;
+    }
+
+    public void setisgameOver(bool isgameover)
+    {
+        isgameOver = isgameover;
+    }
+
+    public void stopRope()
+    {
+        goUp = false;
+        goDown = false;
     }
 }

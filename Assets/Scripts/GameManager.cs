@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public Button mainMenu;
 
     Difficulties buttons;
-
+    Slider ropeSpeed;
     GameObject rope;
+    GameObject instantiatedRope;
+    RegularRope rr;
 
     [SerializeField]
     Button toggleAccolades;
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI succeessfulJumps;
 
     GameObject player;
+    GameObject tmpRope;
     GameObject gamebackGround;
     TextMeshProUGUI gameover;
 
@@ -36,9 +39,11 @@ public class GameManager : MonoBehaviour
         gamebackGround = GameObject.Find("game background");
         personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
         succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshProUGUI>();
+        ropeSpeed = GameObject.FindGameObjectWithTag("options").GetComponent<Slider>();
         playAgain.onClick.AddListener(Replay);
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
+        player = getPlayer();
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
 
@@ -46,15 +51,25 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         personalbestDisplay.text = "Personal Best: " + SaveData.current.profile.numofJumps;
-        Debug.Log(rope);
         if (GameObject.FindGameObjectWithTag("rope") && rope == null)
         {
             rope = GameObject.FindGameObjectWithTag("rope");
         }
         if (rope)
         {
-            Debug.Log(succeessfulJumps.text);
-            succeessfulJumps.text = "jumps: " + rope.GetComponent<RegularRope>().getcurrJumps();
+            rr = rope.GetComponent<RegularRope>();
+            succeessfulJumps.text = "jumps: " + rr.getcurrJumps();
+            //if (rr.getisgameOver())
+            //{
+            //    Debug.Log("game is over");
+            //    rr.setisgameOver(false);
+            //    rope.gameObject.transform.position = highestPoint.position;
+            //    //playAgain.gameObject.SetActive(true);
+            //    //mainMenu.gameObject.SetActive(true);
+            //    //toggleAccolades.gameObject.SetActive(true);
+            //    //ropeSpeed.gameObject.SetActive(true);
+            //    //gameover.text = "GAME OVER!";
+            //}
         }
         
     }
@@ -66,18 +81,14 @@ public class GameManager : MonoBehaviour
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         toggleAccolades.gameObject.SetActive(false);
-        rope = getRope();
-        Instantiate(rope, highestPoint.position, Quaternion.identity);
         gameover.GetComponent<TextMeshProUGUI>().text = "";
-        if (buttons.getrequestedDifficulty().Equals("edd"))
-            rope.GetComponent<RegularRope>().setmileStone(Random.Range(1, 5));
-        rope.GetComponent<RegularRope>().setSpeed(buttons.getSlider().value);
-        rope.GetComponent<RegularRope>().resetJumps();
-        rope.GetComponent<Transform>().position = highestPoint.position;
-        rope.GetComponent<RegularRope>().GoUp(true);
+        buttons.getRope().GetComponent<RegularRope>().GoDown(true);
+        rope.GetComponent<RegularRope>().setSpeed(ropeSpeed.value);
+        //if (buttons.getrequestedDifficulty().Equals("edd"))
+        //    rope.GetComponent<RegularRope>().setmileStone(Random.Range(1, 5));
         buttons.getSlider().gameObject.SetActive(false);
-        
         player.GetComponent<Player>().setisPlaying(true);
+        
     }
 
     public Button getaccoladesButton()
@@ -101,7 +112,7 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
-    public GameObject getRope()
+    public GameObject loadRope()
     {
         return Resources.Load<GameObject>("rope");
     }
@@ -114,5 +125,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI getGameOver()
     {
         return gameover;
+    }
+
+    public void setRope(GameObject nRope)
+    {
+        rope = nRope;
+    }
+
+    public Slider getropeSpeed()
+    {
+        return ropeSpeed;
     }
 }
