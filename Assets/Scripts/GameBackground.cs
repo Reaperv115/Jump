@@ -5,7 +5,7 @@ public class GameBackground : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     Sprite[] background;
-    RegularRope rope;
+    //RegularRope rope;
 
     
 

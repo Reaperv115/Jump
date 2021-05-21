@@ -8348,6 +8348,8 @@ MonoBehaviour:
   - {fileID: 663060889}
   - {fileID: 1098658156}
   - {fileID: 1986239821}
+  toggleAccolades: {fileID: 0}
+  rope2: {fileID: 0}
 --- !u!1 &1688862669
 GameObject:
   m_ObjectHideFlags: 0
@@ -10185,6 +10187,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2242034366065236784, guid: 496d358e0ece9124889ece1f7f3d27f3, type: 3}
+    - {fileID: 2076881281348301093, guid: 496d358e0ece9124889ece1f7f3d27f3, type: 3}
+    - {fileID: 2312810586467496292, guid: 496d358e0ece9124889ece1f7f3d27f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 496d358e0ece9124889ece1f7f3d27f3, type: 3}
 --- !u!1 &2242034367205325808 stripped
 GameObject:
