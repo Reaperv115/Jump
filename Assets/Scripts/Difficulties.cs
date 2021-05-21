@@ -24,8 +24,10 @@ public class Difficulties : MonoBehaviour
         difficultyButtons[2].onClick.AddListener(beginEDD);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         rope = GameObject.FindGameObjectWithTag("rope").GetComponent<Rope>();
+        Debug.Log(rope);
         ropeSpeed = GameObject.FindGameObjectWithTag("options").GetComponent<Slider>();
-        player = rope.returnPlayer();
+        player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(player);
     }
     public void beginRegular()
     {

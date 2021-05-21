@@ -18,7 +18,7 @@ public class Rope : MonoBehaviour
     TextMeshProUGUI gameover;
     TextMeshProUGUI personalbestDisplay;
 
-    TextMeshPro succeessfulJumps;
+    TextMeshProUGUI succeessfulJumps;
 
     public Button playAgain;
     public Button mainMenu;
@@ -46,11 +46,12 @@ public class Rope : MonoBehaviour
         // getting reference of gameobjects
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
         personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
-        succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshPro>();
+        Debug.Log(personalbestDisplay);
+        succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshProUGUI>();
+        Debug.Log(succeessfulJumps);
         playAgain = GameObject.Find("Play Again").GetComponent<Button>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
-        Debug.Log(buttons);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
