@@ -15,7 +15,7 @@ public class RopeSpeed : MonoBehaviour
     {
         ropeSpeed = GetComponent<Slider>();
         ropespeedDisplay = GameObject.Find("Rope Speed Display").GetComponent<TextMeshProUGUI>();
-        
+        Debug.Log(ropespeedDisplay);
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ public class GameBackground : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     Sprite[] background;
-    //RegularRope rope;
+    Rope rope;
 
     
 
@@ -17,7 +17,7 @@ public class GameBackground : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         background = Resources.LoadAll<Sprite>("backgrounds");
 
-        
+        rope = GameObject.FindGameObjectWithTag("rope").GetComponent<Rope>();
 
         spriteRenderer.sprite = background[0];
     }
@@ -26,21 +26,11 @@ public class GameBackground : MonoBehaviour
     void Update()
     {
 
-        //if (rope.getcurrJumps() == 15)
-        //    spriteRenderer.sprite = background[1];
-        //if (rope.getcurrJumps() == 30)
-        //    spriteRenderer.sprite = background[2];
+        if (rope.getcurrJumps() == 15)
+            spriteRenderer.sprite = background[1];
+        if (rope.getcurrJumps() == 30)
+            spriteRenderer.sprite = background[2];
     }
-
-    //public void Replay()
-    //{
-    //    SerializationManager.Save("Data", SaveData.current);
-    //    resetGame();
-    //    if (buttons.getrequestedDifficulty().Equals("edd"))
-    //        ddmileStone = Random.Range(1, 5);
-    //    Debug.Log(ddmileStone);
-
-    //}
 
     public void resetBackground() => spriteRenderer.sprite = background[0];
 }

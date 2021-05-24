@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9163156103029633714, guid: 496d358e0ece9124889ece1f7f3d27f3, type: 3}
         m_TargetAssemblyTypeName: Rope, Assembly-CSharp
         m_MethodName: Replay
         m_Mode: 1

@@ -19,18 +19,16 @@ public class DoubleDutchRope : MonoBehaviour
     float risingDist;
     float loweringDist;
     public bool goUp, goDown;
-    float speedX = 0.0f, speedY = 12.0f;
+    float speedX = 0.0f, speedY = 7.0f;
     // Start is called before the first frame update
     void Start()
     {
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        //initialRope = GameObject.Find("rope").GetComponent<RegularRope>();
-        //risingDist = Vector2.Distance(transform.position, highestPoint.position);
-        //loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+        initialRope = GameObject.Find("rope").GetComponent<Rope>();
+        risingDist = Vector2.Distance(transform.position, highestPoint.position);
+        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         //manager = GameObject.Find("background").GetComponent<GameManager>();
-        //speedY = initialRope.buttons.getSlider().value;
-        goUp = true; 
-        goDown = true;
+        speedY = initialRope.buttons.getSlider().value;
     }
 
     // Update is called once per frame
@@ -100,15 +98,17 @@ public class DoubleDutchRope : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.name.Equals("player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
+        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
+            Debug.Log("double dutch caught you");
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;
+            initialRope.stopRope();
+            initialRope.getplayagainButton().gameObject.SetActive(true);
+            initialRope.getmenuButton().gameObject.SetActive(true);
+            initialRope.getaccoladesButton().gameObject.SetActive(true);
             collision.GetComponent<Player>().setisPlaying(false);
-            //manager.getplayagainButton().gameObject.SetActive(true);
-            //manager.getmenuButton().gameObject.SetActive(true);
-            //manager.getaccoladesButton().gameObject.SetActive(true);
             Destroy(this.gameObject);
 
             if (initialRope.getcurrJumps() > SaveData.current.profile.numofJumps)
@@ -123,17 +123,23 @@ public class DoubleDutchRope : MonoBehaviour
     {
         resetJumps();
         GameObject.Find("sky").GetComponent<GameBackground>().resetBackground();
-        //manager.getplayagainButton().gameObject.SetActive(false);
-        //manager.getmenuButton().gameObject.SetActive(false);
-        //manager.getaccoladesButton().gameObject.SetActive(false);
+        initialRope.getplayagainButton().gameObject.SetActive(false);
+        initialRope.getmenuButton().gameObject.SetActive(false);
+        initialRope.getaccoladesButton().gameObject.SetActive(false);
         transform.position = highestPoint.position;
         goDown = true;
         gameover.text = "";
-        //initialRope.returnPlayer().GetComponent<Player>().setisPlaying(true);
+        initialRope.returnPlayer().GetComponent<Player>().setisPlaying(true);
     }
 
     public void setSpeed(float speed)
     {
         speedY = speed;
+    }
+
+    public void stopRope()
+    {
+        goUp = false;
+        goDown = false;
     }
 }

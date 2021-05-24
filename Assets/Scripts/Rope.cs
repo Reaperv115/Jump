@@ -46,17 +46,13 @@ public class Rope : MonoBehaviour
         // getting reference of gameobjects
         gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
         personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
-        Debug.Log(personalbestDisplay);
         succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshProUGUI>();
-        Debug.Log(succeessfulJumps);
-        playAgain = GameObject.Find("Play Again").GetComponent<Button>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<Button>();
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
-        toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         playAgain.onClick.AddListener(Replay);
+        mainMenu.onClick.AddListener(gotoMenu);
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         gameover.text = "";
@@ -78,7 +74,7 @@ public class Rope : MonoBehaviour
         //displaying jumps
         succeessfulJumps.text = "jumps: " + numcurrJumps;
 
-        
+
         switch (buttons.getrequestedDifficulty())
         {
             // regular jump rope
@@ -151,8 +147,10 @@ public class Rope : MonoBehaviour
                                 ++SaveData.current.profile.numSilver;
                             if (numcurrJumps == ddmileStone)
                             {
-                                tmpRope = Instantiate<GameObject>(rope2, highestPoint);
+                                tmpRope = Instantiate<GameObject>(rope2, highestPoint.position, Quaternion.identity);
                                 tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
+                                Debug.Log(buttons.getSlider().value);
+                                tmpRope.GetComponent<DoubleDutchRope>().setSpeed(buttons.getSlider().value);
                                 speedY = 7.0f;
                             }
                             if (numcurrJumps == 50)
@@ -196,7 +194,7 @@ public class Rope : MonoBehaviour
                                 ++SaveData.current.profile.numSilver;
                             if (numcurrJumps == ddmileStone)
                             {
-                                tmpRope = Instantiate<GameObject>(rope2, highestPoint);
+                                tmpRope = Instantiate<GameObject>(rope2, highestPoint.position, Quaternion.identity);
                                 tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
                                 speedY = 7.5f;
                             }
@@ -250,6 +248,7 @@ public class Rope : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
+            Debug.Log("regular rope caught you");
             gameover.text = "Game Over!";
             goUp = false;
             goDown = false;
@@ -289,5 +288,32 @@ public class Rope : MonoBehaviour
     public void setSpeed(float speed)
     {
         speedY = speed;
+    }
+
+    public void goingUp(bool isgoingUp)
+    {
+        goUp = isgoingUp;
+        goDown = !goUp;
+    }
+
+    public Button getaccoladesButton()
+    {
+        return toggleAccolades;
+    }
+
+    public Button getmenuButton()
+    {
+        return mainMenu;
+    }
+
+    public Button getplayagainButton()
+    {
+        return playAgain;
+    }
+
+    public void stopRope()
+    {
+        goUp = false;
+        goDown = false;
     }
 }
