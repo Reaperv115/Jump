@@ -741,6 +741,26 @@ PrefabInstance:
     - {fileID: 405029179231830084, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
     - {fileID: -2580831097742101752, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
+--- !u!1 &97669592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 405029179231830085, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
+  m_PrefabInstance: {fileID: 97669591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &97669593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97669592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e317a7d415e6774e98186760ca2e22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successfulJumps: {fileID: 127446092}
+  personalBest: {fileID: 1652497606}
+  gameOver: {fileID: 1094533810}
 --- !u!1 &127446090
 GameObject:
   m_ObjectHideFlags: 0

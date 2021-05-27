@@ -11,7 +11,7 @@ public class DoubleDutchRope : MonoBehaviour
     TextMeshProUGUI gameover;
     Rope initialRope;
 
-    //GameManager manager;
+    GameManager manager;
     int numcurrJumps = 0;
 
     Vector2 movement;
@@ -27,7 +27,7 @@ public class DoubleDutchRope : MonoBehaviour
         initialRope = GameObject.Find("rope").GetComponent<Rope>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        //manager = GameObject.Find("background").GetComponent<GameManager>();
+        manager = GameObject.Find("background").GetComponent<GameManager>();
         speedY = initialRope.buttons.getSlider().value;
     }
 
@@ -101,7 +101,7 @@ public class DoubleDutchRope : MonoBehaviour
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
             Debug.Log("double dutch caught you");
-            gameover.text = "Game Over!";
+            manager.getgameOver().text = "Game Over!";
             goUp = false;
             goDown = false;
             initialRope.stopRope();

@@ -15,10 +15,6 @@ public class Rope : MonoBehaviour
     [HideInInspector]
     public Difficulties buttons;
 
-    TextMeshProUGUI gameover;
-    TextMeshProUGUI personalbestDisplay;
-
-    TextMeshProUGUI succeessfulJumps;
 
     public Button playAgain;
     public Button mainMenu;
@@ -36,17 +32,15 @@ public class Rope : MonoBehaviour
     GameObject rope2;
     GameObject tmpRope;
 
-    
+    GameManager manager;
 
     public bool goUp, goDown;
+    bool isgameOver = false;
 
     // Start is called before the first frame update
     void Start()
     {
         // getting reference of gameobjects
-        gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
-        personalbestDisplay = GameObject.Find("Personal Best").GetComponent<TextMeshProUGUI>();
-        succeessfulJumps = GameObject.Find("Jumps").GetComponent<TextMeshProUGUI>();
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
@@ -55,9 +49,8 @@ public class Rope : MonoBehaviour
         mainMenu.onClick.AddListener(gotoMenu);
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
-        gameover.text = "";
 
-        
+        manager = GameObject.Find("background").GetComponent<GameManager>();
         
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
@@ -67,12 +60,6 @@ public class Rope : MonoBehaviour
     {
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-
-        // displaying your personal best score
-        personalbestDisplay.text = "Personal Best: " + SaveData.current.profile.numofJumps;
-
-        //displaying jumps
-        succeessfulJumps.text = "jumps: " + numcurrJumps;
 
 
         switch (buttons.getrequestedDifficulty())
@@ -249,7 +236,7 @@ public class Rope : MonoBehaviour
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
             Debug.Log("regular rope caught you");
-            gameover.text = "Game Over!";
+            isgameOver = true;
             goUp = false;
             goDown = false;
             playAgain.gameObject.SetActive(true);
@@ -278,7 +265,7 @@ public class Rope : MonoBehaviour
         goDown = true;
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
-        gameover.text = "";
+        manager.getgameOver().text = "";
         playerGO.GetComponent<Player>().setisPlaying(true);
         toggleAccolades.gameObject.SetActive(false);
         setSpeed(buttons.getSlider().value);
@@ -315,5 +302,10 @@ public class Rope : MonoBehaviour
     {
         goUp = false;
         goDown = false;
+    }
+
+    public bool getisGG()
+    {
+        return isgameOver;
     }
 }
