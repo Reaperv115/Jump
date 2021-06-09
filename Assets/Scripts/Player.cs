@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
             canJump = true;
             spriteRenderer.sprite = standingSprite;
         }
-        //Debug.Log(isPlaying);
+        //Debug.Log("Player: " + isPlaying);
         if (isPlaying)
         {
             //Debug.Log(canJump);

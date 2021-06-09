@@ -33,24 +33,28 @@ public class Rope : MonoBehaviour
     GameObject tmpRope;
 
     GameManager manager;
+    GameBackground background;
 
     public bool goUp, goDown;
-    bool isgameOver = false;
 
     // Start is called before the first frame update
     void Start()
     {
         // getting reference of gameobjects
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
+        Debug.Log(buttons);
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        playAgain.onClick.AddListener(Replay);
-        mainMenu.onClick.AddListener(gotoMenu);
-        playAgain.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
-
+        //playAgain.onClick.AddListener(Replay);
+        //mainMenu.onClick.AddListener(gotoMenu);
+        //playAgain.gameObject.SetActive(false);
+        //mainMenu.gameObject.SetActive(false);
+        goDown = true;
         manager = GameObject.Find("background").GetComponent<GameManager>();
+        Debug.Log(manager);
+        //background = GameObject.Find("background").GetComponent<GameBackground>();
+        //Debug.Log(background);
         
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
@@ -217,8 +221,8 @@ public class Rope : MonoBehaviour
     {
         SerializationManager.Save("Data", SaveData.current);
         resetGame();
-        if (buttons.getrequestedDifficulty().Equals("edd"))
-            ddmileStone = Random.Range(1, 5);
+        //if (buttons.getrequestedDifficulty().Equals("edd"))
+        //    ddmileStone = Random.Range(1, 5);
         Debug.Log(ddmileStone);
         
     }
@@ -235,21 +239,24 @@ public class Rope : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            Debug.Log("regular rope caught you");
-            isgameOver = true;
+            //Debug.Log("regular rope caught you");
+            resetJumps();
+            manager.setisgameOver(true);
+            manager.getplayAgain().gameObject.SetActive(true);
+            manager.getmainMenu().gameObject.SetActive(true);
+            manager.gettoggleAccolades().gameObject.SetActive(true);
+            manager.getgameOver().text = "Game Over!";
+            manager.getropespeedSlider().gameObject.SetActive(true);
             goUp = false;
             goDown = false;
-            playAgain.gameObject.SetActive(true);
-            mainMenu.gameObject.SetActive(true);
             collision.GetComponent<Player>().setisPlaying(false);
-            toggleAccolades.gameObject.SetActive(true);
             if (buttons.getrequestedDifficulty().Equals("dd") || buttons.getrequestedDifficulty().Equals("edd"))
                 Destroy(tmpRope);
 
             if (numcurrJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numcurrJumps;
 
-            buttons.getSlider().gameObject.SetActive(true);
+            Destroy(this.gameObject);
         }
     }
 
@@ -260,16 +267,11 @@ public class Rope : MonoBehaviour
     void resetGame()
     {
         resetJumps();
-        GameObject.Find("background").GetComponent<GameBackground>().resetBackground();
-        transform.position = highestPoint.position;
-        goDown = true;
-        playAgain.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
-        manager.getgameOver().text = "";
-        playerGO.GetComponent<Player>().setisPlaying(true);
-        toggleAccolades.gameObject.SetActive(false);
-        setSpeed(buttons.getSlider().value);
-        buttons.getSlider().gameObject.SetActive(false);
+        //GameObject.Find("background").GetComponent<GameBackground>().resetBackground();
+        //goDown = true;
+        //manager.getPlayer().GetComponent<Player>().setisPlaying(true);
+        //setSpeed(buttons.getSlider().value);
+        //buttons.getSlider().gameObject.SetActive(false);
     }
 
     public void setSpeed(float speed)
@@ -304,8 +306,4 @@ public class Rope : MonoBehaviour
         goDown = false;
     }
 
-    public bool getisGG()
-    {
-        return isgameOver;
-    }
 }

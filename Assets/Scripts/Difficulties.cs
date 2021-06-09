@@ -6,10 +6,9 @@ public class Difficulties : MonoBehaviour
     string selectedDifficulty;
     [SerializeField]
     Button[] difficultyButtons;
-    [SerializeField]
     Button toggleAccolades;
 
-    Transform ddstartPos;
+    Transform ropestartPos;
 
     GameObject rope;
     [SerializeField]
@@ -33,10 +32,12 @@ public class Difficulties : MonoBehaviour
         difficultyButtons[2].GetComponent<Button>();
         difficultyButtons[2].onClick.AddListener(beginEDD);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
-        rope = GameObject.FindGameObjectWithTag("rope");
-        //ropeSpeed = GameObject.FindGameObjectWithTag("options").GetComponent<Slider>();
-        //Debug.Log(ropeSpeed);
+        ropestartPos = GameObject.Find("rsp").GetComponent<Transform>();
+        Debug.Log(ropestartPos);
+        background = GameObject.Find("background");
+        rope = Resources.Load<GameObject>("rope");
         player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(player);
     }
 
     private void Update()
@@ -45,17 +46,16 @@ public class Difficulties : MonoBehaviour
     }
     public void beginRegular()
     {
+        tmpRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
         selectedDifficulty = "regular";
-        rope.GetComponent<Rope>().goingUp(true);
-        player = rope.GetComponent<Rope>().returnPlayer();
+        background.GetComponent<GameManager>().setisgameOver(false);
         player.GetComponent<Player>().setisPlaying(true);
-        toggleAccolades.gameObject.SetActive(false);
         for (int i = 0; i < difficultyButtons.Length; ++i)
         {
             difficultyButtons[i].gameObject.SetActive(false);
         }
 
-        rope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
+        tmpRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
 

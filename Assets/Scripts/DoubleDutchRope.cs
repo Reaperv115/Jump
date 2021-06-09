@@ -100,7 +100,7 @@ public class DoubleDutchRope : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            Debug.Log("double dutch caught you");
+            //Debug.Log("double dutch caught you");
             manager.getgameOver().text = "Game Over!";
             goUp = false;
             goDown = false;
