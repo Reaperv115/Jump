@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6707402933954964701}
   m_Layer: 10
   m_Name: dd rope
-  m_TagString: Untagged
+  m_TagString: ddrope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,5 +125,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highestPoint: {fileID: 1075699506203922669, guid: 4407a7aa2a646694f9ea169da9b18605, type: 3}
   lowestPoint: {fileID: 9190388074013499510, guid: 142ec433c021dd14489e32d417276f71, type: 3}
-  goUp: 0
-  goDown: 0

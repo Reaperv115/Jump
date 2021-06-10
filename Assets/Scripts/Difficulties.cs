@@ -9,16 +9,18 @@ public class Difficulties : MonoBehaviour
     Button toggleAccolades;
 
     Transform ropestartPos;
+    Transform ddropestartPos;
 
     GameObject rope;
+    GameObject tmpRope;
+    GameObject ddRope;
+    GameObject tmpddRope;
+
     [SerializeField]
     Slider ropeSpeed;
 
     GameObject player;
 
-    [SerializeField]
-    GameObject rope2;
-    GameObject tmpRope;
 
     GameObject background;
     //GameManager manager;
@@ -33,9 +35,11 @@ public class Difficulties : MonoBehaviour
         difficultyButtons[2].onClick.AddListener(beginEDD);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         ropestartPos = GameObject.Find("rsp").GetComponent<Transform>();
+        ddropestartPos = GameObject.Find("ddrsp").GetComponent<Transform>();
         Debug.Log(ropestartPos);
         background = GameObject.Find("background");
         rope = Resources.Load<GameObject>("rope");
+        ddRope = Resources.Load<GameObject>("dd rope");
         player = GameObject.FindGameObjectWithTag("Player");
         Debug.Log(player);
     }
@@ -47,8 +51,6 @@ public class Difficulties : MonoBehaviour
     public void beginRegular()
     {
         tmpRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        selectedDifficulty = "regular";
-        background.GetComponent<GameManager>().setisgameOver(false);
         player.GetComponent<Player>().setisPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
         {
@@ -61,21 +63,18 @@ public class Difficulties : MonoBehaviour
 
     public void beginDD()
     {
-        selectedDifficulty = "dd";
-        rope.GetComponent<Rope>().goingUp(true);
-        rope.GetComponent<Rope>().setmileStone(Random.Range(1, 5));
-        player = rope.GetComponent<Rope>().returnPlayer();
+        tmpRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
+        tmpRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
+        tmpddRope = Instantiate(ddRope, ddropestartPos.position, Quaternion.identity);
+        tmpddRope.GetComponent<DoubleDutchRope>().setSpeed(ropeSpeed.value);
         player.GetComponent<Player>().setisPlaying(true);
-        toggleAccolades.gameObject.SetActive(false);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
-        rope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
 
     public void beginEDD()
     {
-        selectedDifficulty = "edd";
         rope.GetComponent<Rope>().goingUp(true);
         rope.GetComponent<Rope>().setmileStone(Random.Range(1, 5));
         player = rope.GetComponent<Rope>().returnPlayer();

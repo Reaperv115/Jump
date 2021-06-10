@@ -25,15 +25,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform minHeight;
 
-    bool isgameOver;
-    bool deleteRope;
+    Transform ddropestartPos;
 
     GameObject ropeInst;
     GameObject rope;
+    GameObject ddropeInst;
+    GameObject ddrope;
+
     GameObject gbackGround;
     GameObject ropeSpeed;
 
     Rope ropeCS;
+    DoubleDutchRope ddropeCS;
+    BaseRope br;
 
     bool checkforRope;
     // Start is called before the first frame update
@@ -44,13 +48,13 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         gbackGround = GameObject.Find("background");
         ropeSpeed = GameObject.FindGameObjectWithTag("options");
+        ddropestartPos = GameObject.Find("ddrsp").GetComponent<Transform>();
         Debug.Log(player);
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         checkforRope = false;
         gameOver.text = "";
-        isgameOver = false;
-        deleteRope = false;
+        br = new BaseRope();
     }
 
     // Update is called once per frame
@@ -59,7 +63,7 @@ public class GameManager : MonoBehaviour
         
         personalBest.text = "Personal Best: " + SaveData.current.profile.numofJumps;
 
-        Debug.Log(rope);
+        //Debug.Log(rope);
         
         if (player.GetComponent<Player>().getisPlaying())
         {
@@ -72,10 +76,13 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("checking for rope");
             rope = GameObject.FindGameObjectWithTag("rope");
+            ddrope = GameObject.FindGameObjectWithTag("ddrope");
             if (rope)
             {
                 //Debug.Log("found rope and checking for the script");
                 ropeCS = rope.GetComponent<Rope>();
+                if (ddrope)
+                    ddropeCS = ddrope.GetComponent<DoubleDutchRope>();
                 if (ropeCS)
                 {
                     
@@ -87,7 +94,10 @@ public class GameManager : MonoBehaviour
 
         if (ropeCS != null)
         {
-            successfulJumps.text = "jumps: " + rope.GetComponent<Rope>().getcurrJumps();
+            if (ddropeCS != null)
+                successfulJumps.text = "jumps: " + (ropeCS.getcurrJumps() + ddropeCS.getcurrJumps());
+            else
+                successfulJumps.text = "jumps: " + ropeCS.getcurrJumps();
         }
 
     }
@@ -102,11 +112,13 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
-    public void resetRope()
+    public void resetGame()
     {
         SerializationManager.Save("Data", SaveData.current);
         rope = Resources.Load<GameObject>("rope");
         ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
+        ddrope = Resources.Load<GameObject>("dd rope");
+        ddropeInst = Instantiate(ddrope, ddropestartPos.position, Quaternion.identity);
         gbackGround.GetComponent<GameBackground>().resetBackground();
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
@@ -115,11 +127,6 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Player>().setisPlaying(true);
         gameOver.text = "";
         //rope.transform.position = maxHeight.position;
-    }
-
-    public void setisgameOver(bool gameOver)
-    {
-        isgameOver = gameOver;
     }
 
     public Button getplayAgain()

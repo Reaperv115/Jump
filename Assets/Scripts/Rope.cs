@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Rope : MonoBehaviour
+public class Rope : BaseRope
 {
     [SerializeField]
     Transform highestPoint;
@@ -35,8 +35,6 @@ public class Rope : MonoBehaviour
     GameManager manager;
     GameBackground background;
 
-    public bool goUp, goDown;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -65,142 +63,39 @@ public class Rope : MonoBehaviour
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
 
-
-        switch (buttons.getrequestedDifficulty())
+        if (goUp)
         {
-            // regular jump rope
-            case "regular":
-                {
-                    if (goUp)
-                    {
-                        movement = new Vector2(speedX, speedY);
-                        transform.Translate(movement * Time.deltaTime);
-                        risingDist = Vector2.Distance(transform.position, highestPoint.position);
-                        if (risingDist < 0.3f)
-                        {
-                            goDown = true;
-                            goUp = false;
-                        }
-                    }
-                    if (goDown)
-                    {
-                        movement = new Vector2(speedX, -speedY);
-                        transform.Translate(movement * Time.deltaTime);
-                        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-                        if (loweringDist < 0.3f)
-                        {
-                            goDown = false;
-                            goUp = true;
-                            ++numcurrJumps;
-
-                            if (numcurrJumps == 5)
-                                ++SaveData.current.profile.numBronze;
-                            if (numcurrJumps == 15)
-                                ++SaveData.current.profile.numSilver;
-                            if (numcurrJumps == 50)
-                                ++SaveData.current.profile.numGold;
-                            if (numcurrJumps == 75)
-                                ++SaveData.current.profile.numPlat;
-                            if (numcurrJumps == 100)
-                                ++SaveData.current.profile.numWhy;
-                        }
-                    }
-                    break;
-                }
-            // double dutch jump rope
-            case "dd":
-                {
-                    if (goUp)
-                    {
-                        movement = new Vector2(speedX, speedY);
-                        transform.Translate(movement * Time.deltaTime);
-                        risingDist = Vector2.Distance(transform.position, highestPoint.position);
-                        if (risingDist < 0.3f)
-                        {
-                            goDown = true;
-                            goUp = false;
-                        }
-                    }
-                    if (goDown)
-                    {
-                        movement = new Vector2(speedX, -speedY);
-                        transform.Translate(movement * Time.deltaTime);
-                        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-                        if (loweringDist < 0.3f)
-                        {
-                            goDown = false;
-                            goUp = true;
-                            ++numcurrJumps;
-
-                            if (numcurrJumps == 5)
-                                ++SaveData.current.profile.numBronze;
-                            if (numcurrJumps == 15)
-                                ++SaveData.current.profile.numSilver;
-                            if (numcurrJumps == ddmileStone)
-                            {
-                                tmpRope = Instantiate<GameObject>(rope2, highestPoint.position, Quaternion.identity);
-                                tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
-                                Debug.Log(buttons.getSlider().value);
-                                tmpRope.GetComponent<DoubleDutchRope>().setSpeed(buttons.getSlider().value);
-                                speedY = 7.0f;
-                            }
-                            if (numcurrJumps == 50)
-                                ++SaveData.current.profile.numGold;
-                            if (numcurrJumps == 75)
-                                ++SaveData.current.profile.numPlat;
-                            if (numcurrJumps == 100)
-                                ++SaveData.current.profile.numWhy;
-                        }
-                    }
-                    break;
-                }
-            // extreme double dutch jump rope
-            case "edd":
-                {
-                    if (goUp)
-                    {
-                        movement = new Vector2(speedX, speedY);
-                        transform.Translate(movement * Time.deltaTime);
-                        risingDist = Vector2.Distance(transform.position, highestPoint.position);
-                        if (risingDist < 0.3f)
-                        {
-                            goDown = true;
-                            goUp = false;
-                        }
-                    }
-                    if (goDown)
-                    {
-                        movement = new Vector2(speedX, -speedY);
-                        transform.Translate(movement * Time.deltaTime);
-                        loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-                        if (loweringDist < 0.3f)
-                        {
-                            goDown = false;
-                            goUp = true;
-                            ++numcurrJumps;
-
-                            if (numcurrJumps == 5)
-                                ++SaveData.current.profile.numBronze;
-                            if (numcurrJumps == 15)
-                                ++SaveData.current.profile.numSilver;
-                            if (numcurrJumps == ddmileStone)
-                            {
-                                tmpRope = Instantiate<GameObject>(rope2, highestPoint.position, Quaternion.identity);
-                                tmpRope.GetComponent<DoubleDutchRope>().goDown = true;
-                                speedY = 7.5f;
-                            }
-                            if (numcurrJumps == 50)
-                                ++SaveData.current.profile.numGold;
-                            if (numcurrJumps == 75)
-                                ++SaveData.current.profile.numPlat;
-                            if (numcurrJumps == 100)
-                                ++SaveData.current.profile.numWhy;
-                        }
-                    }
-                    break;
-                }
-            default:
-                break;
+            movement = new Vector2(speedX, speedY);
+            transform.Translate(movement * Time.deltaTime);
+            risingDist = Vector2.Distance(transform.position, highestPoint.position);
+            if (risingDist < 0.3f)
+            {
+                goDown = true;
+                goUp = false;
+            }
+        }
+        if (goDown)
+        {
+            movement = new Vector2(speedX, -speedY);
+            transform.Translate(movement * Time.deltaTime);
+            loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+            if (loweringDist < 0.3f)
+            {
+                goDown = false;
+                goUp = true;
+                ++numOfJumps;
+                Debug.Log("Rope: " + numOfJumps);
+                //if (numcurrJumps == 5)
+                //    ++SaveData.current.profile.numBronze;
+                //if (numcurrJumps == 15)
+                //    ++SaveData.current.profile.numSilver;
+                //if (numcurrJumps == 50)
+                //    ++SaveData.current.profile.numGold;
+                //if (numcurrJumps == 75)
+                //    ++SaveData.current.profile.numPlat;
+                //if (numcurrJumps == 100)
+                //    ++SaveData.current.profile.numWhy;
+            }
         }
 
     }
@@ -209,7 +104,7 @@ public class Rope : MonoBehaviour
 
     public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public int getcurrJumps() => numcurrJumps;
+    public int getcurrJumps() => numOfJumps;
 
     public void setmileStone(float milestone)
     {
@@ -220,10 +115,6 @@ public class Rope : MonoBehaviour
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);
-        resetGame();
-        //if (buttons.getrequestedDifficulty().Equals("edd"))
-        //    ddmileStone = Random.Range(1, 5);
-        Debug.Log(ddmileStone);
         
     }
 
@@ -239,9 +130,8 @@ public class Rope : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            //Debug.Log("regular rope caught you");
+            Debug.Log("regular rope caught you");
             resetJumps();
-            manager.setisgameOver(true);
             manager.getplayAgain().gameObject.SetActive(true);
             manager.getmainMenu().gameObject.SetActive(true);
             manager.gettoggleAccolades().gameObject.SetActive(true);
@@ -250,11 +140,9 @@ public class Rope : MonoBehaviour
             goUp = false;
             goDown = false;
             collision.GetComponent<Player>().setisPlaying(false);
-            if (buttons.getrequestedDifficulty().Equals("dd") || buttons.getrequestedDifficulty().Equals("edd"))
-                Destroy(tmpRope);
 
-            if (numcurrJumps > SaveData.current.profile.numofJumps)
-                SaveData.current.profile.numofJumps = numcurrJumps;
+            if (numOfJumps > SaveData.current.profile.numofJumps)
+                SaveData.current.profile.numofJumps = numOfJumps;
 
             Destroy(this.gameObject);
         }
@@ -263,16 +151,6 @@ public class Rope : MonoBehaviour
     public GameObject returnPlayer() => playerGO;
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
-
-    void resetGame()
-    {
-        resetJumps();
-        //GameObject.Find("background").GetComponent<GameBackground>().resetBackground();
-        //goDown = true;
-        //manager.getPlayer().GetComponent<Player>().setisPlaying(true);
-        //setSpeed(buttons.getSlider().value);
-        //buttons.getSlider().gameObject.SetActive(false);
-    }
 
     public void setSpeed(float speed)
     {

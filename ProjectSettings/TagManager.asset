@@ -7,6 +7,7 @@ TagManager:
   - accolade
   - rope
   - options
+  - ddrope
   layers:
   - Default
   - TransparentFX
