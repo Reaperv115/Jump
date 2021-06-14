@@ -114,11 +114,23 @@ public class GameManager : MonoBehaviour
 
     public void resetGame()
     {
+        if (GameObject.Find("Buttons").GetComponent<Difficulties>().getrequestedDifficulty().Equals("dd"))
+        {
+            rope = Resources.Load<GameObject>("rope");
+            ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
+            ropeInst.GetComponent<Rope>().setSpeed(ropeSpeed.GetComponent<Slider>().value);
+            ddrope = Resources.Load<GameObject>("dd rope");
+            ddropeInst = Instantiate(ddrope, ddropestartPos.position, Quaternion.identity);
+            ddropeInst.GetComponent<DoubleDutchRope>().setSpeed(ropeSpeed.GetComponent<Slider>().value);
+        }
+        else
+        {
+            rope = Resources.Load<GameObject>("rope");
+            ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
+            ropeInst.GetComponent<Rope>().setSpeed(ropeSpeed.GetComponent<Slider>().value);
+        }
+
         SerializationManager.Save("Data", SaveData.current);
-        rope = Resources.Load<GameObject>("rope");
-        ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
-        ddrope = Resources.Load<GameObject>("dd rope");
-        ddropeInst = Instantiate(ddrope, ddropestartPos.position, Quaternion.identity);
         gbackGround.GetComponent<GameBackground>().resetBackground();
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
@@ -126,7 +138,6 @@ public class GameManager : MonoBehaviour
         ropeSpeed.gameObject.SetActive(false);
         player.GetComponent<Player>().setisPlaying(true);
         gameOver.text = "";
-        //rope.transform.position = maxHeight.position;
     }
 
     public Button getplayAgain()

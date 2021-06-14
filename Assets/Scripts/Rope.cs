@@ -9,6 +9,8 @@ public class Rope : BaseRope
     Transform highestPoint;
     [SerializeField]
     Transform lowestPoint;
+    [SerializeField]
+    Transform ddropestartPos;
 
     GameObject playerGO;
 
@@ -30,7 +32,7 @@ public class Rope : BaseRope
 
     [SerializeField]
     GameObject rope2;
-    GameObject tmpRope;
+    GameObject ddRope;
 
     GameManager manager;
     GameBackground background;
@@ -40,19 +42,11 @@ public class Rope : BaseRope
     {
         // getting reference of gameobjects
         buttons = GameObject.Find("Buttons").GetComponent<Difficulties>();
-        Debug.Log(buttons);
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        //playAgain.onClick.AddListener(Replay);
-        //mainMenu.onClick.AddListener(gotoMenu);
-        //playAgain.gameObject.SetActive(false);
-        //mainMenu.gameObject.SetActive(false);
         goDown = true;
         manager = GameObject.Find("background").GetComponent<GameManager>();
-        Debug.Log(manager);
-        //background = GameObject.Find("background").GetComponent<GameBackground>();
-        //Debug.Log(background);
         
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
@@ -60,6 +54,7 @@ public class Rope : BaseRope
     // Update is called once per frame
     void Update()
     {
+
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
 
@@ -85,16 +80,16 @@ public class Rope : BaseRope
                 goUp = true;
                 ++numOfJumps;
                 Debug.Log("Rope: " + numOfJumps);
-                //if (numcurrJumps == 5)
-                //    ++SaveData.current.profile.numBronze;
-                //if (numcurrJumps == 15)
-                //    ++SaveData.current.profile.numSilver;
-                //if (numcurrJumps == 50)
-                //    ++SaveData.current.profile.numGold;
-                //if (numcurrJumps == 75)
-                //    ++SaveData.current.profile.numPlat;
-                //if (numcurrJumps == 100)
-                //    ++SaveData.current.profile.numWhy;
+                if (numOfJumps == 5)
+                    ++SaveData.current.profile.numBronze;
+                if (numOfJumps == 15)
+                    ++SaveData.current.profile.numSilver;
+                if (numOfJumps == 50)
+                    ++SaveData.current.profile.numGold;
+                if (numOfJumps == 75)
+                    ++SaveData.current.profile.numPlat;
+                if (numOfJumps == 100)
+                    ++SaveData.current.profile.numWhy;
             }
         }
 

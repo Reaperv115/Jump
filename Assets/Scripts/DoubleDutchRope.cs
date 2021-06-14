@@ -12,6 +12,7 @@ public class DoubleDutchRope : BaseRope
     Rope initialRope;
 
     GameObject gbackGround;
+    Difficulties difficulty;
 
     GameManager manager;
     int numcurrJumps = 0;
@@ -30,6 +31,7 @@ public class DoubleDutchRope : BaseRope
         manager = GameObject.Find("background").GetComponent<GameManager>();
         speedY = manager.getropespeedSlider().value;
         gbackGround = GameObject.Find("background");
+        difficulty = GameObject.Find("Buttons").GetComponent<Difficulties>();
         goUp = true;
     }
 
@@ -61,20 +63,17 @@ public class DoubleDutchRope : BaseRope
                 goUp = true;
                 ++numOfJumps;
                 Debug.Log("Double dutch: " + numOfJumps);
-                //int tmpJumps = initialRope.getcurrJumps();
-                //tmpJumps++;
-                //initialRope.setJumps(tmpJumps);
 
-                //if (numcurrJumps == 5)
-                //    ++SaveData.current.profile.numBronze;
-                //if (numcurrJumps == 15)
-                //    ++SaveData.current.profile.numSilver;
-                //if (numcurrJumps == 50)
-                //    ++SaveData.current.profile.numGold;
-                //if (numcurrJumps == 75)
-                //    ++SaveData.current.profile.numPlat;
-                //if (numcurrJumps == 100)
-                //    ++SaveData.current.profile.numWhy;
+                if (numOfJumps == 5)
+                    ++SaveData.current.profile.numBronze;
+                if (numOfJumps == 15)
+                    ++SaveData.current.profile.numSilver;
+                if (numOfJumps == 50)
+                    ++SaveData.current.profile.numGold;
+                if (numOfJumps == 75)
+                    ++SaveData.current.profile.numPlat;
+                if (numOfJumps == 100)
+                    ++SaveData.current.profile.numWhy;
             }
         }
 
@@ -113,8 +112,17 @@ public class DoubleDutchRope : BaseRope
             collision.GetComponent<Player>().setisPlaying(false);
             Destroy(this.gameObject);
 
-            if (numOfJumps > SaveData.current.profile.numofJumps)
-                SaveData.current.profile.numofJumps = numOfJumps;
+
+            if (difficulty.getrequestedDifficulty().Equals("edd"))
+            {
+                if (numOfJumps > SaveData.current.profile.numofJumps)
+                    SaveData.current.profile.numofeddJumps = numOfJumps;
+            }
+            else
+            {
+                if (numOfJumps > SaveData.current.profile.numofJumps)
+                    SaveData.current.profile.numofJumps = numOfJumps;
+            }
 
         }
     }

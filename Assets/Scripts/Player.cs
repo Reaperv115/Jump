@@ -96,6 +96,8 @@ public class Player : MonoBehaviour
             }
             
         }
+        if (scene.name.Equals("AboutGame"))
+            Destroy(this.gameObject);
         
 
         if (isGrounded())
