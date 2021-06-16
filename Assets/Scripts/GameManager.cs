@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
         gbackGround = GameObject.Find("background");
         ropeSpeed = GameObject.FindGameObjectWithTag("options");
         ddropestartPos = GameObject.Find("ddrsp").GetComponent<Transform>();
-        Debug.Log(player);
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         checkforRope = false;
@@ -62,31 +61,24 @@ public class GameManager : MonoBehaviour
     {
         
         personalBest.text = "Personal Best: " + SaveData.current.profile.numofJumps;
-
-        //Debug.Log(rope);
         
         if (player.GetComponent<Player>().getisPlaying())
         {
-            //Debug.Log("player is playing");
             toggleAccolades.gameObject.SetActive(false);
             checkforRope = true;
         }
 
         if (checkforRope)
         {
-            //Debug.Log("checking for rope");
             rope = GameObject.FindGameObjectWithTag("rope");
             ddrope = GameObject.FindGameObjectWithTag("ddrope");
             if (rope)
             {
-                //Debug.Log("found rope and checking for the script");
                 ropeCS = rope.GetComponent<Rope>();
                 if (ddrope)
                     ddropeCS = ddrope.GetComponent<DoubleDutchRope>();
                 if (ropeCS)
                 {
-                    
-                    //Debug.Log("got the rope component");
                     checkforRope = false;
                 }
             }

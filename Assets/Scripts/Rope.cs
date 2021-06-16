@@ -101,12 +101,6 @@ public class Rope : BaseRope
 
     public int getcurrJumps() => numOfJumps;
 
-    public void setmileStone(float milestone)
-    {
-        ddmileStone = milestone;
-        Debug.Log(ddmileStone);
-    }
-
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);

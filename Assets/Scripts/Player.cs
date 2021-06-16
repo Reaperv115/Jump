@@ -105,10 +105,8 @@ public class Player : MonoBehaviour
             canJump = true;
             spriteRenderer.sprite = standingSprite;
         }
-        //Debug.Log("Player: " + isPlaying);
         if (isPlaying)
         {
-            //Debug.Log(canJump);
             if (canJump)
             {
                 if (Input.touchCount > 0)

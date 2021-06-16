@@ -8,6 +8,7 @@ TagManager:
   - rope
   - options
   - ddrope
+  - baseex
   layers:
   - Default
   - TransparentFX

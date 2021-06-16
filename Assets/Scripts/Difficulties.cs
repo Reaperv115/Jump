@@ -31,22 +31,17 @@ public class Difficulties : MonoBehaviour
         difficultyButtons[0].onClick.AddListener(beginRegular);
         difficultyButtons[1].GetComponent<Button>();
         difficultyButtons[1].onClick.AddListener(beginDD);
-        //difficultyButtons[2].GetComponent<Button>();
-        //difficultyButtons[2].onClick.AddListener(beginEDD);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         ropestartPos = GameObject.Find("rsp").GetComponent<Transform>();
         ddropestartPos = GameObject.Find("ddrsp").GetComponent<Transform>();
-        Debug.Log(ropestartPos);
         background = GameObject.Find("background");
         rope = Resources.Load<GameObject>("rope");
         ddRope = Resources.Load<GameObject>("dd rope");
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player);
     }
 
     private void Update()
     {
-        //Debug.Log(ropeSpeed);
     }
     public void beginRegular()
     {
