@@ -118,15 +118,18 @@ public class Player : MonoBehaviour
                         float jumpVelocity = 15f;
                         rb2d.velocity = Vector2.up * jumpVelocity;
                         canJump = false;
-                        if (jumpingIndex == 3)
+                        if (standingSprite.name.Equals("ryan"))
                         {
-                            spriteRenderer.sprite = jumpingSprites[jumpingIndex];
-                            jumpingIndex = 0;
-                        }
-                        else
-                        {
-                            spriteRenderer.sprite = jumpingSprites[jumpingIndex];
-                            ++jumpingIndex;
+                            if (jumpingIndex == 3)
+                            {
+                                spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                                jumpingIndex = 0;
+                            }
+                            else
+                            {
+                                spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                                ++jumpingIndex;
+                            }
                         }
                     }
                 }
