@@ -8,10 +8,6 @@ public class DoubleDutchRope : BaseRope
     Transform highestPoint;
     [SerializeField]
     Transform lowestPoint;
-    TextMeshProUGUI gameover;
-    Rope initialRope;
-
-    GameObject gbackGround;
     Difficulties difficulty;
 
     GameManager manager;
@@ -25,12 +21,10 @@ public class DoubleDutchRope : BaseRope
     // Start is called before the first frame update
     void Start()
     {
-        gameover = GameObject.Find("Game Over").GetComponent<TextMeshProUGUI>();
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         manager = GameObject.Find("background").GetComponent<GameManager>();
         speedY = manager.getropespeedSlider().value;
-        gbackGround = GameObject.Find("background");
         difficulty = GameObject.Find("Buttons").GetComponent<Difficulties>();
         goUp = true;
     }

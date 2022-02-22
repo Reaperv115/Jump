@@ -26,16 +26,13 @@ public class Rope : BaseRope
     float loweringDist;
 
     int numcurrJumps = 0;
-    float ddmileStone = 0;
     float speedX = 0.0f, speedY = 12.0f;
     Vector2 movement;
 
     [SerializeField]
     GameObject rope2;
-    GameObject ddRope;
 
     GameManager manager;
-    GameBackground background;
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +76,6 @@ public class Rope : BaseRope
                 goDown = false;
                 goUp = true;
                 ++numOfJumps;
-                Debug.Log("Rope: " + numOfJumps);
                 if (numOfJumps == 5)
                     ++SaveData.current.profile.numBronze;
                 if (numOfJumps == 15)
@@ -88,7 +84,7 @@ public class Rope : BaseRope
                     ++SaveData.current.profile.numGold;
                 if (numOfJumps == 75)
                     ++SaveData.current.profile.numPlat;
-                if (numOfJumps == 100)
+                if (numOfJumps == 1000)
                     ++SaveData.current.profile.numWhy;
             }
         }
@@ -104,7 +100,6 @@ public class Rope : BaseRope
     public void Replay()
     {
         SerializationManager.Save("Data", SaveData.current);
-        
     }
 
     public void gotoMenu()

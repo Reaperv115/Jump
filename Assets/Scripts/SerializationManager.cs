@@ -9,13 +9,9 @@ public class SerializationManager
         BinaryFormatter formatter = getbinaryFormatter();
 
         if (!Directory.Exists(Application.persistentDataPath + "/saves"))
-        {
             Directory.CreateDirectory(Application.persistentDataPath + "/saves");
-        }
         else
-        {
             Debug.Log("directory exists");
-        }
 
         string path = Application.persistentDataPath + "/saves/" + saveName + ".saves";
 
@@ -28,9 +24,7 @@ public class SerializationManager
     public static object Load(string path)
     {
         if (!File.Exists(path))
-        {
             return null;
-        }
 
         BinaryFormatter formatter = getbinaryFormatter();
         FileStream file = File.Open(path, FileMode.Open);

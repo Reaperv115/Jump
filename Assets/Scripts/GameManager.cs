@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,14 +35,11 @@ public class GameManager : MonoBehaviour
 
     Rope ropeCS;
     DoubleDutchRope ddropeCS;
-    BaseRope br;
 
     bool checkforRope;
     // Start is called before the first frame update
     void Start()
     {
-        //rope = GameObject.FindGameObjectWithTag("rope");
-        //ropeCS = rope.GetComponent<Rope>();
         player = GameObject.FindGameObjectWithTag("Player");
         gbackGround = GameObject.Find("background");
         ropeSpeed = GameObject.FindGameObjectWithTag("options");
@@ -53,7 +48,6 @@ public class GameManager : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         checkforRope = false;
         gameOver.text = "";
-        br = new BaseRope();
     }
 
     // Update is called once per frame
@@ -78,9 +72,7 @@ public class GameManager : MonoBehaviour
                 if (ddrope)
                     ddropeCS = ddrope.GetComponent<DoubleDutchRope>();
                 if (ropeCS)
-                {
                     checkforRope = false;
-                }
             }
         }
 

@@ -23,7 +23,6 @@ public class Difficulties : MonoBehaviour
 
 
     GameObject background;
-    //GameManager manager;
 
     private void Start()
     {
@@ -38,10 +37,6 @@ public class Difficulties : MonoBehaviour
         rope = Resources.Load<GameObject>("rope");
         ddRope = Resources.Load<GameObject>("dd rope");
         player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void Update()
-    {
     }
     public void beginRegular()
     {
@@ -67,20 +62,6 @@ public class Difficulties : MonoBehaviour
         player.GetComponent<Player>().setisPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
-        ropeSpeed.gameObject.SetActive(false);
-    }
-
-    public void beginEDD()
-    {
-        selectedDifficulty = "edd";
-        tmpRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        player.GetComponent<Player>().setisPlaying(true);
-        for (int i = 0; i < difficultyButtons.Length; ++i)
-        {
-            difficultyButtons[i].gameObject.SetActive(false);
-        }
-
-        tmpRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
 

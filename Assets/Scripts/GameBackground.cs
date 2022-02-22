@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameBackground : MonoBehaviour
 {
@@ -27,10 +26,7 @@ public class GameBackground : MonoBehaviour
     void Update()
     {
         if (player.GetComponent<Player>().getisPlaying())
-        {
             checkforRope = true;
-            
-        }
 
         if (checkforRope)
             rope = GameObject.FindGameObjectWithTag("rope").GetComponent<Rope>();

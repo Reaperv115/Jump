@@ -14,11 +14,6 @@ public class DisplayDistractions : MonoBehaviour
     int[] distractionSizes = { 25, 35, 25 };
     Color[] distractionColors = { Color.red, Color.green, Color.black, Color.blue, Color.yellow, Color.cyan, Color.magenta };
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
