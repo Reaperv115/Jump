@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     DoubleDutchRope ddropeCS;
 
     bool checkforRope;
+
+    
+    float countdownTimer = 3f;
+    [SerializeField]
+    GameObject countdowntimerDisplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,9 +60,11 @@ public class GameManager : MonoBehaviour
     {
         
         personalBest.text = "Personal Best: " + SaveData.current.profile.numofJumps;
-        
+        Debug.Log(player.GetComponent<Player>().getisPlaying());
         if (player.GetComponent<Player>().getisPlaying())
         {
+            countdowntimerDisplay.GetComponent<TextMeshProUGUI>().text = "Begin Jumping in: " + countdownTimer.ToString();
+            Debug.Log(countdowntimerDisplay.GetComponent<TextMeshProUGUI>().text);
             toggleAccolades.gameObject.SetActive(false);
             checkforRope = true;
         }
@@ -139,5 +146,20 @@ public class GameManager : MonoBehaviour
     public Slider getropespeedSlider()
     {
         return ropeSpeed.GetComponent<Slider>();
+    }
+
+    public float GetCountDownTimer()
+    {
+        return countdownTimer;
+    }
+
+    public void SetCountDownTimer(float timer)
+    {
+        countdownTimer = timer;
+    }
+
+    public GameObject GetCountDownDisplay()
+    {
+        return countdowntimerDisplay;
     }
 }

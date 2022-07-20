@@ -11,6 +11,7 @@ public class Rope : BaseRope
     Transform lowestPoint;
     [SerializeField]
     Transform ddropestartPos;
+    
 
     GameObject playerGO;
 
@@ -33,7 +34,6 @@ public class Rope : BaseRope
     GameObject rope2;
 
     GameManager manager;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -55,38 +55,47 @@ public class Rope : BaseRope
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
 
-        if (goUp)
+        if (manager.GetCountDownTimer() <= 0.0f)
         {
-            movement = new Vector2(speedX, speedY);
-            transform.Translate(movement * Time.deltaTime);
-            risingDist = Vector2.Distance(transform.position, highestPoint.position);
-            if (risingDist < 0.3f)
+            manager.GetCountDownDisplay().GetComponent<TextMeshProUGUI>().text = "";
+            if (goUp)
             {
-                goDown = true;
-                goUp = false;
+                movement = new Vector2(speedX, speedY);
+                transform.Translate(movement * Time.deltaTime);
+                risingDist = Vector2.Distance(transform.position, highestPoint.position);
+                if (risingDist < 0.3f)
+                {
+                    goDown = true;
+                    goUp = false;
+                }
+            }
+            if (goDown)
+            {
+                movement = new Vector2(speedX, -speedY);
+                transform.Translate(movement * Time.deltaTime);
+                loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
+                if (loweringDist < 0.3f)
+                {
+                    goDown = false;
+                    goUp = true;
+                    ++numOfJumps;
+                    if (numOfJumps == 5)
+                        ++SaveData.current.profile.numBronze;
+                    if (numOfJumps == 15)
+                        ++SaveData.current.profile.numSilver;
+                    if (numOfJumps == 50)
+                        ++SaveData.current.profile.numGold;
+                    if (numOfJumps == 75)
+                        ++SaveData.current.profile.numPlat;
+                    if (numOfJumps == 1000)
+                        ++SaveData.current.profile.numWhy;
+                }
             }
         }
-        if (goDown)
+        else
         {
-            movement = new Vector2(speedX, -speedY);
-            transform.Translate(movement * Time.deltaTime);
-            loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-            if (loweringDist < 0.3f)
-            {
-                goDown = false;
-                goUp = true;
-                ++numOfJumps;
-                if (numOfJumps == 5)
-                    ++SaveData.current.profile.numBronze;
-                if (numOfJumps == 15)
-                    ++SaveData.current.profile.numSilver;
-                if (numOfJumps == 50)
-                    ++SaveData.current.profile.numGold;
-                if (numOfJumps == 75)
-                    ++SaveData.current.profile.numPlat;
-                if (numOfJumps == 1000)
-                    ++SaveData.current.profile.numWhy;
-            }
+            float tmp = manager.GetCountDownTimer();
+            manager.SetCountDownTimer(tmp -= Time.deltaTime);
         }
 
     }
@@ -115,6 +124,7 @@ public class Rope : BaseRope
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
             Debug.Log("regular rope caught you");
+            manager.SetCountDownTimer(3f);
             resetJumps();
             manager.getplayAgain().gameObject.SetActive(true);
             manager.getmainMenu().gameObject.SetActive(true);

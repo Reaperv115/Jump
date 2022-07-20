@@ -12,9 +12,9 @@ public class Difficulties : MonoBehaviour
     Transform ddropestartPos;
 
     GameObject rope;
-    GameObject tmpRope;
+    GameObject instantiatedRope;
     GameObject ddRope;
-    GameObject tmpddRope;
+    GameObject instantiatedddRope;
 
     [SerializeField]
     Slider ropeSpeed;
@@ -41,24 +41,24 @@ public class Difficulties : MonoBehaviour
     public void beginRegular()
     {
         selectedDifficulty = "regular";
-        tmpRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
+        instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
         player.GetComponent<Player>().setisPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
         {
             difficultyButtons[i].gameObject.SetActive(false);
         }
 
-        tmpRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
+        instantiatedRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
 
     public void beginDD()
     {
         selectedDifficulty = "dd";
-        tmpRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        tmpRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
-        tmpddRope = Instantiate(ddRope, ddropestartPos.position, Quaternion.identity);
-        tmpddRope.GetComponent<DoubleDutchRope>().setSpeed(ropeSpeed.value);
+        instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
+        instantiatedRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
+        instantiatedddRope = Instantiate(ddRope, ddropestartPos.position, Quaternion.identity);
+        instantiatedddRope.GetComponent<DoubleDutchRope>().setSpeed(ropeSpeed.value);
         player.GetComponent<Player>().setisPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
@@ -77,7 +77,7 @@ public class Difficulties : MonoBehaviour
 
     public GameObject getRope()
     {
-        return tmpRope;
+        return instantiatedRope;
     }
 
     public GameObject getddRope()
