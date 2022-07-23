@@ -64,3 +64,6 @@ TagManager:
   - name: rope
     uniqueID: 1024499325
     locked: 0
+  - name: distraction
+    uniqueID: 3975836677
+    locked: 0

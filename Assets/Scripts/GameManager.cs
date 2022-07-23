@@ -60,11 +60,10 @@ public class GameManager : MonoBehaviour
     {
         
         personalBest.text = "Personal Best: " + SaveData.current.profile.numofJumps;
-        Debug.Log(player.GetComponent<Player>().getisPlaying());
         if (player.GetComponent<Player>().getisPlaying())
         {
             countdowntimerDisplay.GetComponent<TextMeshProUGUI>().text = "Begin Jumping in: " + countdownTimer.ToString();
-            Debug.Log(countdowntimerDisplay.GetComponent<TextMeshProUGUI>().text);
+            //Debug.Log(countdowntimerDisplay.GetComponent<TextMeshProUGUI>().text);
             toggleAccolades.gameObject.SetActive(false);
             checkforRope = true;
         }
