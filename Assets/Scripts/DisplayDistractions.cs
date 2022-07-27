@@ -17,6 +17,11 @@ public class DisplayDistractions : MonoBehaviour
 
     GameObject spiderDistraction, instantiatedspiderDistraction;
 
+    float spawnY, destspawnY;
+    float spawnX, destspawnX;
+
+    Vector2 destination;
+
     private void Start()
     {
         spiderDistraction = Resources.Load<GameObject>("spider");
@@ -27,20 +32,34 @@ public class DisplayDistractions : MonoBehaviour
     {
         if (distractionTimer <= 0.0f)
         {
-            Invoke("Activate", 5.0f);
-            Invoke("Deactivate", 10.0f);
+            Activate();
+            destination = new Vector2(destspawnX, destspawnY);
             distractionTimer = 6.0f;
         }
         else
             distractionTimer -= Time.deltaTime;
+
+        if (instantiatedspiderDistraction)
+        {
+            Vector3 dir = instantiatedspiderDistraction.transform.position - new Vector3(destination.x, destination.y, 0);
+            instantiatedspiderDistraction.transform.position = Vector3.MoveTowards(instantiatedspiderDistraction.transform.position, destination, .1f);
+            if (Vector3.Distance(instantiatedspiderDistraction.transform.position, destination) < .2f)
+            {
+                Deactivate();
+            }
+        }
     }
 
     void Activate()
     {
         Debug.Log("activated");
-        float spawnY = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
-        float spawnX = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+        spawnY = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+        spawnX = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x;
+        destspawnX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x;
+        destspawnY = Random.Range(Camera.main.ScreenToViewportPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+
         instantiatedspiderDistraction = Instantiate(spiderDistraction, new Vector2(spawnX, spawnY), spiderDistraction.transform.rotation);
+        Debug.Log(instantiatedspiderDistraction.transform.position);
         //distractionSpot = Random.Range(0, distractionSpots.Count);
 
 

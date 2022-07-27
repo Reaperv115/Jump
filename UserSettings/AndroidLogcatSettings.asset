@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RFCRC14DRAL",
         "name": "com.GLITCGaming.Jump",
-        "processId": 20560,
+        "processId": 13159,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -34,44 +34,38 @@
         },
         {
             "deviceId": "RFCRC14DRAL",
-            "name": "com.teslacoilsw.launcher",
-            "processId": 7140,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 6751,
+            "processId": 7741,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 11059,
+            "processId": 9322,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 17478,
+            "processId": 10658,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 18280,
+            "processId": 11558,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 18892,
+            "processId": 12294,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 20560,
+            "processId": 13159,
             "exited": false
         }
     ],
