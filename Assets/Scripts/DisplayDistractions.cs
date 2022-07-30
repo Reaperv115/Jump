@@ -41,7 +41,6 @@ public class DisplayDistractions : MonoBehaviour
 
         if (instantiatedspiderDistraction)
         {
-            Vector3 dir = instantiatedspiderDistraction.transform.position - new Vector3(destination.x, destination.y, 0);
             instantiatedspiderDistraction.transform.position = Vector3.MoveTowards(instantiatedspiderDistraction.transform.position, destination, .1f);
             if (Vector3.Distance(instantiatedspiderDistraction.transform.position, destination) < .2f)
             {
