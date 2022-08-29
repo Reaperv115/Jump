@@ -3,37 +3,37 @@ using UnityEngine.UI;
 
 public class Difficulties : MonoBehaviour
 {
-    string selectedDifficulty;
+    // members you can change in the editor
     [SerializeField]
     Button[] difficultyButtons;
-    Button toggleAccolades;
-
-    Transform ropestartPos;
-    Transform ddropestartPos;
-
-    GameObject rope;
-    GameObject instantiatedRope;
-    GameObject ddRope;
-    GameObject instantiatedddRope;
-
     [SerializeField]
     Slider ropeSpeed;
 
+    // button to display accolades or not
+    Button toggleAccolades;
+
+    // starting positions for both regular
+    // and double dutch rope
+    Transform ropestartPos;
+    Transform ddropestartPos;
+
+    // rope gameobject
+    GameObject rope;
+    GameObject instantiatedRope;
+
+    // double dutch rope game object
+    GameObject ddRope;
+    GameObject instantiatedddRope;
+
     GameObject player;
 
-
-    GameObject background;
+    string selectedDifficulty;
 
     private void Start()
     {
-        difficultyButtons[0].GetComponent<Button>();
-        difficultyButtons[0].onClick.AddListener(beginRegular);
-        difficultyButtons[1].GetComponent<Button>();
-        difficultyButtons[1].onClick.AddListener(beginDD);
         toggleAccolades = GameObject.Find("Toggle Accolades").GetComponent<Button>();
         ropestartPos = GameObject.Find("rsp").GetComponent<Transform>();
         ddropestartPos = GameObject.Find("ddrsp").GetComponent<Transform>();
-        background = GameObject.Find("background");
         rope = Resources.Load<GameObject>("rope");
         ddRope = Resources.Load<GameObject>("dd rope");
         player = GameObject.FindGameObjectWithTag("Player");
@@ -44,10 +44,7 @@ public class Difficulties : MonoBehaviour
         instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
         player.GetComponent<Player>().setisPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
-        {
             difficultyButtons[i].gameObject.SetActive(false);
-        }
-
         instantiatedRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
@@ -65,28 +62,13 @@ public class Difficulties : MonoBehaviour
         ropeSpeed.gameObject.SetActive(false);
     }
 
-    public string getrequestedDifficulty()
-    {
-        return selectedDifficulty;
-    }
+    public string getrequestedDifficulty() { return selectedDifficulty; }
 
-    public Slider getSlider()
-    {
-        return ropeSpeed;
-    }
+    public Slider getSlider() { return ropeSpeed; }
 
-    public GameObject getRope()
-    {
-        return instantiatedRope;
-    }
+    public GameObject getRope() { return instantiatedRope; }
 
-    public GameObject getddRope()
-    {
-        return ddRope;
-    }
+    public GameObject getddRope() { return ddRope; }
 
-    public Button[] getdifficultyButtons()
-    {
-        return difficultyButtons;
-    }
+    public Button[] getdifficultyButtons() { return difficultyButtons; }
 }

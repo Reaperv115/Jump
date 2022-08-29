@@ -20,9 +20,6 @@ public class TitleColor : MonoBehaviour
             title[titleIndex].color = colors[colorIndex];
             colorTimer = 0.5f;
         }
-        else
-        {
-            colorTimer -= Time.deltaTime;
-        }
+        else colorTimer -= Time.deltaTime;
     }
 }

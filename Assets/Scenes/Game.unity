@@ -627,6 +627,18 @@ MonoBehaviour:
   maxHeight: {fileID: 98055371}
   minHeight: {fileID: 747406126}
   countdowntimerDisplay: {fileID: 1487793520}
+--- !u!114 &97669594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97669592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bae81a97adb9a74fb04fb1142ee8ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &98055371 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1075699506203922669, guid: 4407a7aa2a646694f9ea169da9b18605, type: 3}
@@ -2971,49 +2983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88750551ee97acf42bd450203ef1808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distractionSpots:
-  - {fileID: 1110261505}
-  - {fileID: 289329349}
-  - {fileID: 1712561595}
-  - {fileID: 985133701}
-  - {fileID: 1018392366}
-  - {fileID: 841981644}
-  - {fileID: 484607358}
-  - {fileID: 529483597}
-  - {fileID: 947421568}
-  - {fileID: 40764563}
-  - {fileID: 882359792}
-  - {fileID: 983627222}
-  - {fileID: 437665277}
-  - {fileID: 916721863}
-  - {fileID: 954257686}
-  - {fileID: 1334489341}
-  - {fileID: 736425878}
-  - {fileID: 676388684}
-  - {fileID: 899597176}
-  - {fileID: 1782060906}
-  - {fileID: 1492315807}
-  - {fileID: 1061199291}
-  - {fileID: 2060964122}
-  - {fileID: 568866079}
-  - {fileID: 314191192}
-  - {fileID: 1886669972}
-  - {fileID: 1617914250}
-  - {fileID: 58257972}
-  - {fileID: 135557754}
-  - {fileID: 498758064}
-  - {fileID: 72156333}
-  - {fileID: 1428431358}
-  - {fileID: 390446942}
-  - {fileID: 1114639660}
-  - {fileID: 485773031}
-  - {fileID: 506522713}
-  - {fileID: 1089247955}
-  - {fileID: 1022088132}
-  - {fileID: 431304808}
-  - {fileID: 2002308736}
-  - {fileID: 1919390183}
-  - {fileID: 323532294}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -6686,14 +6655,14 @@ RectTransform:
   m_GameObject: {fileID: 1487793520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0045971, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1752680722}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 370}
+  m_AnchoredPosition: {x: 0, y: 591}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487793522
@@ -6743,8 +6712,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7175,7 +7144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 549}
+  m_AnchoredPosition: {x: 4, y: 496}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1652497606

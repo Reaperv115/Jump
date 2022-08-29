@@ -4,17 +4,6 @@ using UnityEngine.UI;
 
 public class About : MonoBehaviour
 {
-    Button about;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        about = GetComponent<Button>();
-        about.onClick.AddListener(abouttheGame);
-    }
-
-    public void abouttheGame()
-    {
-        SceneManager.LoadScene("AboutGame");
-    }
+    // takes you to the 'About Game' screenw hen the AboutGame button is pressed
+    public void abouttheGame() { SceneManager.LoadScene("AboutGame"); }
 }

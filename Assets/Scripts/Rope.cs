@@ -11,29 +11,28 @@ public class Rope : BaseRope
     Transform lowestPoint;
     [SerializeField]
     Transform ddropestartPos;
-    
 
+    [SerializeField]
+    GameObject rope2;
     GameObject playerGO;
-
     [HideInInspector]
     public Difficulties buttons;
 
-
+    GameManager manager;
+    
     public Button playAgain;
     public Button mainMenu;
     public Button toggleAccolades;
+
+    Vector2 movement;
 
     float risingDist;
     float loweringDist;
 
     int numcurrJumps = 0;
     float speedX = 0.0f, speedY = 12.0f;
-    Vector2 movement;
 
-    [SerializeField]
-    GameObject rope2;
-
-    GameManager manager;
+    bool gameover;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +41,9 @@ public class Rope : BaseRope
         playerGO = GameObject.FindGameObjectWithTag("Player");
         risingDist = Vector2.Distance(transform.position, highestPoint.position);
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
-        goDown = true;
         manager = GameObject.Find("background").GetComponent<GameManager>();
+        gameover = false;
+        goDown = true;
         
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
     }
@@ -55,7 +55,7 @@ public class Rope : BaseRope
         // updating this for OnTriggerStay2D
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
 
-        if (manager.GetCountDownTimer() <= 0.0f)
+        if (manager.GetCountDownTimer() <= 0)
         {
             manager.GetCountDownDisplay().GetComponent<TextMeshProUGUI>().text = "";
             if (goUp)
@@ -92,48 +92,24 @@ public class Rope : BaseRope
                 }
             }
         }
-        else
-        {
-            float tmp = manager.GetCountDownTimer();
-            manager.SetCountDownTimer(tmp -= Time.deltaTime);
-        }
 
     }
-
-    public void resetJumps() => numcurrJumps = 0;
-
-    public int getJumps() => SaveData.current.profile.numofJumps;
-
-    public int getcurrJumps() => numOfJumps;
-
-    public void Replay()
-    {
-        SerializationManager.Save("Data", SaveData.current);
-    }
-
-    public void gotoMenu()
-    {
-        SerializationManager.Save("Data", SaveData.current);
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void setJumps(int numjumps) => numcurrJumps = numjumps;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
         {
-            Debug.Log("regular rope caught you");
-            manager.SetCountDownTimer(3f);
-            resetJumps();
             manager.getplayAgain().gameObject.SetActive(true);
             manager.getmainMenu().gameObject.SetActive(true);
             manager.gettoggleAccolades().gameObject.SetActive(true);
-            manager.getgameOver().text = "Game Over!";
             manager.getropespeedSlider().gameObject.SetActive(true);
+            collision.GetComponent<Player>().setisPlaying(false);
+            manager.getgameOver().text = "Game Over!";
+            manager.SetCountDownTimer(3);
+            resetJumps();
             goUp = false;
             goDown = false;
-            collision.GetComponent<Player>().setisPlaying(false);
+            gameover = true;
 
             if (numOfJumps > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = numOfJumps;
@@ -141,15 +117,12 @@ public class Rope : BaseRope
             Destroy(this.gameObject);
         }
     }
-
-    public GameObject returnPlayer() => playerGO;
-
-    private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
-
-    public void setSpeed(float speed)
+    public void gotoMenu()
     {
-        speedY = speed;
+        SerializationManager.Save("Data", SaveData.current);
+        SceneManager.LoadScene("MainMenu");
     }
+
 
     public void goingUp(bool isgoingUp)
     {
@@ -157,25 +130,31 @@ public class Rope : BaseRope
         goDown = !goUp;
     }
 
-    public Button getaccoladesButton()
-    {
-        return toggleAccolades;
-    }
-
-    public Button getmenuButton()
-    {
-        return mainMenu;
-    }
-
-    public Button getplayagainButton()
-    {
-        return playAgain;
-    }
 
     public void stopRope()
     {
         goUp = false;
         goDown = false;
     }
+    public void resetJumps() => numcurrJumps = 0;
+
+    public int getJumps() => SaveData.current.profile.numofJumps;
+
+    public int getcurrJumps() => numOfJumps;
+
+    public void Replay() { SerializationManager.Save("Data", SaveData.current); }
+    public void setJumps(int numjumps) => numcurrJumps = numjumps;
+    public GameObject returnPlayer() => playerGO;
+
+    private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
+
+    public void setSpeed(float speed) { speedY = speed; }
+    public Button getaccoladesButton() { return toggleAccolades; }
+
+    public Button getmenuButton() { return mainMenu; }
+
+    public Button getplayagainButton() { return playAgain; }
+
+    public bool IsGameOver() { return gameover; }
 
 }

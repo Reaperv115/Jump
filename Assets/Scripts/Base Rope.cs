@@ -5,8 +5,5 @@ public class BaseRope : MonoBehaviour
     protected int numOfJumps = 0;
     protected bool goUp, goDown;
 
-    public int getnumJumps()
-    {
-        return numOfJumps;
-    }
+    public int getnumJumps() { return numOfJumps; }
 }

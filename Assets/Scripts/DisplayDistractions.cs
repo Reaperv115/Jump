@@ -1,92 +1,55 @@
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class DisplayDistractions : MonoBehaviour
 {
 
-    [SerializeField]
-    List<GameObject> distractionSpots;
-    float distractionTimer = 6.0f;
-
-    int distractionSpot;
-
-    int[] distractionSizes = { 25, 35, 25 };
-    Color[] distractionColors = { Color.red, Color.green, Color.black, Color.blue, 
-                                Color.yellow, Color.cyan, Color.magenta };
-
     GameObject spiderDistraction, instantiatedspiderDistraction;
+    GameObject manager;
 
+    // the spot for the spider distraction to go
+    Vector2 destination;
+
+    float distractionTimer = 6.0f;
     float spawnY, destspawnY;
     float spawnX, destspawnX;
 
-    Vector2 destination;
 
     private void Start()
     {
         spiderDistraction = Resources.Load<GameObject>("spider");
+        manager = GameObject.Find("background");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (distractionTimer <= 0.0f)
-        {
-            Activate();
-            destination = new Vector2(destspawnX, destspawnY);
-            distractionTimer = 6.0f;
-        }
-        else
-            distractionTimer -= Time.deltaTime;
 
-        if (instantiatedspiderDistraction)
+        if (manager.GetComponent<GameManager>().getPlayer().GetComponent<Player>().getisPlaying())
         {
-            instantiatedspiderDistraction.transform.position = Vector3.MoveTowards(instantiatedspiderDistraction.transform.position, destination, .1f);
-            if (Vector3.Distance(instantiatedspiderDistraction.transform.position, destination) < .2f)
+            if (distractionTimer <= 0.0f)
             {
-                Deactivate();
+                Activate();
+                destination = new Vector2(destspawnX, destspawnY);
+                distractionTimer = 6.0f;
+            }
+            else distractionTimer -= Time.deltaTime;
+
+            if (instantiatedspiderDistraction)
+            {
+                instantiatedspiderDistraction.transform.position = Vector3.MoveTowards(instantiatedspiderDistraction.transform.position, destination, .1f);
+                if (Vector3.Distance(instantiatedspiderDistraction.transform.position, destination) < .2f) { Deactivate(); }
             }
         }
     }
 
     void Activate()
     {
-        Debug.Log("activated");
         spawnY = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
         spawnX = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x;
         destspawnX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x;
         destspawnY = Random.Range(Camera.main.ScreenToViewportPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
 
         instantiatedspiderDistraction = Instantiate(spiderDistraction, new Vector2(spawnX, spawnY), spiderDistraction.transform.rotation);
-        Debug.Log(instantiatedspiderDistraction.transform.position);
-        //distractionSpot = Random.Range(0, distractionSpots.Count);
-
-
-        //int bigandMean = Random.Range(1, 4);
-        //if ((bigandMean % 2).Equals(0))
-        //{
-        //    distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "IS THIS DISTRACTING?!?!";
-
-        //    int distractionColor = Random.Range(0, distractionColors.Length);
-        //    distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = distractionColors[distractionColor];
-
-        //    int distractionSize = Random.Range(0, distractionSizes.Length);
-        //    distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().fontSize = distractionSizes[distractionSize];
-        //}
-        //else
-        //{
-        //    distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "THIS IS A DISTRACTION!!!";
-
-        //    int distractionColor = Random.Range(0, distractionColors.Length);
-        //    distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().color = distractionColors[distractionColor];
-
-        //    int distractionSize = Random.Range(0, distractionSizes.Length);
-        //    distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().fontSize = distractionSizes[distractionSize];
-        //}
     }
-    void Deactivate()
-    {
-        Destroy(instantiatedspiderDistraction);
-        //distractionSpots[distractionSpot].GetComponent<TextMeshProUGUI>().text = "";
-    }
+    void Deactivate() { Destroy(instantiatedspiderDistraction); }
 }
