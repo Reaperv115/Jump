@@ -42,59 +42,60 @@ public class Player : MonoBehaviour
     void Update()
     {
         scene = SceneManager.GetActiveScene();
-        if (scene.name.Equals("MainMenu"))
-        {
-            if (!characterSelection)
-            {
-                characterSelection = GameObject.Find("character selection").GetComponent<TMP_Dropdown>();
-                switch (characterSelection.value)
-                {
+        standingSprite = playerSprites[0];
+        //if (scene.name.Equals("MainMenu"))
+        //{
+        //    if (!characterSelection)
+        //    {
+        //        characterSelection = GameObject.Find("character selection").GetComponent<TMP_Dropdown>();
+        //        switch (characterSelection.value)
+        //        {
 
-                    case 0:
-                        {
-                            standingSprite = playerSprites[0];
-                            break;
-                        }
-                    case 1:
-                        {
-                            standingSprite = playerSprites[1];
-                            break;
-                        }
-                    case 2:
-                        {
-                            standingSprite = playerSprites[2];
-                            break;
-                        }
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                switch (characterSelection.value)
-                {
+        //            case 0:
+        //                {
+        //                    standingSprite = playerSprites[0];
+        //                    break;
+        //                }
+        //            case 1:
+        //                {
+        //                    standingSprite = playerSprites[1];
+        //                    break;
+        //                }
+        //            case 2:
+        //                {
+        //                    standingSprite = playerSprites[2];
+        //                    break;
+        //                }
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        switch (characterSelection.value)
+        //        {
 
-                    case 0:
-                        {
-                            standingSprite = playerSprites[0];
-                            break;
-                        }
-                    case 1:
-                        {
-                            standingSprite = playerSprites[1];
-                            break;
-                        }
-                    case 2:
-                        {
-                            standingSprite = playerSprites[2];
-                            break;
-                        }
-                    default:
-                        break;
-                }
-            }
+        //            case 0:
+        //                {
+        //                    standingSprite = playerSprites[0];
+        //                    break;
+        //                }
+        //            case 1:
+        //                {
+        //                    standingSprite = playerSprites[1];
+        //                    break;
+        //                }
+        //            case 2:
+        //                {
+        //                    standingSprite = playerSprites[2];
+        //                    break;
+        //                }
+        //            default:
+        //                break;
+        //        }
+        //    }
             
-        }
+        //}
         if (scene.name.Equals("AboutGame"))
             Destroy(this.gameObject);
         
