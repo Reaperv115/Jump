@@ -38,37 +38,29 @@ public class Difficulties : MonoBehaviour
         ddRope = Resources.Load<GameObject>("dd rope");
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    public void beginRegular()
+    public void BeginRegular()
     {
         selectedDifficulty = "regular";
         instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        player.GetComponent<Player>().setisPlaying(true);
+        player.GetComponent<Player>().SetIsPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
-        instantiatedRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
+        instantiatedRope.GetComponent<Rope>().SetSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
 
-    public void beginDD()
+    public void BeginDD()
     {
         selectedDifficulty = "dd";
         instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        instantiatedRope.GetComponent<Rope>().setSpeed(ropeSpeed.value);
+        instantiatedRope.GetComponent<Rope>().SetSpeed(ropeSpeed.value);
         instantiatedddRope = Instantiate(ddRope, ddropestartPos.position, Quaternion.identity);
-        instantiatedddRope.GetComponent<DoubleDutchRope>().setSpeed(ropeSpeed.value);
-        player.GetComponent<Player>().setisPlaying(true);
+        instantiatedddRope.GetComponent<DoubleDutchRope>().SetSpeed(ropeSpeed.value);
+        player.GetComponent<Player>().SetIsPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
         ropeSpeed.gameObject.SetActive(false);
     }
 
-    public string getrequestedDifficulty() { return selectedDifficulty; }
-
-    public Slider getSlider() { return ropeSpeed; }
-
-    public GameObject getRope() { return instantiatedRope; }
-
-    public GameObject getddRope() { return ddRope; }
-
-    public Button[] getdifficultyButtons() { return difficultyButtons; }
+    public string GetRequestedDifficulty() { return selectedDifficulty; }
 }

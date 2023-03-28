@@ -23,7 +23,7 @@ public class DoubleDutchRope : BaseRope
         loweringDist = Vector2.Distance(transform.position, lowestPoint.position);
         manager = GameObject.Find("background").GetComponent<GameManager>();
         difficulty = GameObject.Find("Buttons").GetComponent<Difficulties>();
-        speedY = manager.getropespeedSlider().value;
+        speedY = manager.GetRopeSpeedSlider().value;
         goUp = true;
     }
 
@@ -76,14 +76,14 @@ public class DoubleDutchRope : BaseRope
         SerializationManager.Save("Data", SaveData.current);
     }
 
-    public void gotoMenu()
+    public void GoToMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
 
     }
 
-    public int getJumps() => SaveData.current.profile.numofJumps;
+    public int GetJumps() => SaveData.current.profile.numofJumps;
 
     public int GetCurrJumps() => numOfJumps;
 
@@ -91,11 +91,11 @@ public class DoubleDutchRope : BaseRope
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().IsGrounded())
         {
-            manager.getgameOver().text = "Game Over!";
-            manager.getplayAgain().gameObject.SetActive(true);
-            manager.getmainMenu().gameObject.SetActive(true);
-            manager.gettoggleAccolades().gameObject.SetActive(true);
-            collision.GetComponent<Player>().setisPlaying(false);
+            manager.GetGameOver().text = "Game Over!";
+            manager.GetPlayAgain().gameObject.SetActive(true);
+            manager.GetMainMenu().gameObject.SetActive(true);
+            manager.GetToggleAccolades().gameObject.SetActive(true);
+            collision.GetComponent<Player>().SetIsPlaying(false);
             Destroy(this.gameObject);
             goUp = false;
             goDown = false;
@@ -105,7 +105,7 @@ public class DoubleDutchRope : BaseRope
 
         }
     }
-    public void stopRope()
+    public void StopRope()
     {
         goUp = false;
         goDown = false;
@@ -113,6 +113,6 @@ public class DoubleDutchRope : BaseRope
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
-    public void setSpeed(float speed) { speedY = speed; }
+    public void SetSpeed(float speed) { speedY = speed; }
 
 }

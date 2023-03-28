@@ -157,9 +157,9 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;
     }
-    public void setisPlaying(bool playing) { isPlaying = playing; }
+    public void SetIsPlaying(bool playing) { isPlaying = playing; }
 
-    public bool returnhasPlayed() { return hasPlayed; }
-    public bool getisPlaying() { return isPlaying; }
+    public bool ReturnHasPlayed() { return hasPlayed; }
+    public bool GetIsPlaying() { return isPlaying; }
 
 }

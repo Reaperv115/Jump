@@ -3,5 +3,5 @@ using UnityEngine.SceneManagement;
 
 public class Begin : MonoBehaviour
 {
-    public void beginGame() => SceneManager.LoadScene("Game");
+    public void BeginGame() => SceneManager.LoadScene("Game");
 }

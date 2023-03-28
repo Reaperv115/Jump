@@ -24,7 +24,7 @@ public class DisplayDistractions : MonoBehaviour
     void Update()
     {
 
-        if (manager.GetComponent<GameManager>().getPlayer().GetComponent<Player>().getisPlaying())
+        if (manager.GetComponent<GameManager>().GetPlayer().GetComponent<Player>().GetIsPlaying())
         {
             if (distractionTimer <= 0.0f)
             {

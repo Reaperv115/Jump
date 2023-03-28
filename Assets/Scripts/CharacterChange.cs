@@ -12,7 +12,7 @@ public class CharacterChange : MonoBehaviour
     {
         if (GameObject.Find("player starting point"))
         {
-            if (GameObject.Find("player starting point").GetComponent<HasPlayed>().player.GetComponent<Player>().returnhasPlayed())
+            if (GameObject.Find("player starting point").GetComponent<HasPlayed>().player.GetComponent<Player>().ReturnHasPlayed())
             {
                 Destroy(GameObject.Find("player starting point"));
                 playerSprites = Resources.LoadAll<Sprite>("Players");

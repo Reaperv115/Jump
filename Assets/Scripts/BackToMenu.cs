@@ -3,5 +3,5 @@ using UnityEngine.SceneManagement;
 
 public class BackToMenu : MonoBehaviour
 {
-    public void toMenu() { SceneManager.LoadScene("MainMenu"); }
+    public void ToMenu() { SceneManager.LoadScene("MainMenu"); }
 }

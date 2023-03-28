@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         personalBest.text = "Personal Best: " + SaveData.current.profile.numofJumps;
 
         // initiate countdown timer for when the game will start
-        if (player.GetComponent<Player>().getisPlaying())
+        if (player.GetComponent<Player>().GetIsPlaying())
         {
             countdowntimerDisplay.GetComponent<TextMeshProUGUI>().text = "Begin Jumping in: " + (int)countdownTimer;
             toggleAccolades.gameObject.SetActive(false);
@@ -99,54 +99,49 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public TextMeshProUGUI getgameOver() { return gameOver; }
+    public TextMeshProUGUI GetGameOver() { return gameOver; }
 
-    public GameObject getPlayer() { return player; }
+    public GameObject GetPlayer() { return player; }
 
-    public void resetGame()
+    public void ResetGame()
     {
-        if (GameObject.Find("Buttons").GetComponent<Difficulties>().getrequestedDifficulty().Equals("dd"))
+        if (GameObject.Find("Buttons").GetComponent<Difficulties>().GetRequestedDifficulty().Equals("dd"))
         {
             rope = Resources.Load<GameObject>("rope");
             ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
-            ropeInst.GetComponent<Rope>().setSpeed(ropeSpeed.GetComponent<Slider>().value);
+            ropeInst.GetComponent<Rope>().SetSpeed(ropeSpeed.GetComponent<Slider>().value);
             ddrope = Resources.Load<GameObject>("dd rope");
             ddropeInst = Instantiate(ddrope, ddropestartPos.position, Quaternion.identity);
-            ddropeInst.GetComponent<DoubleDutchRope>().setSpeed(ropeSpeed.GetComponent<Slider>().value);
+            ddropeInst.GetComponent<DoubleDutchRope>().SetSpeed(ropeSpeed.GetComponent<Slider>().value);
         }
         else
         {
             rope = Resources.Load<GameObject>("rope");
             ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
-            ropeInst.GetComponent<Rope>().setSpeed(ropeSpeed.GetComponent<Slider>().value);
+            ropeInst.GetComponent<Rope>().SetSpeed(ropeSpeed.GetComponent<Slider>().value);
         }
 
         SerializationManager.Save("Data", SaveData.current);
-        gbackGround.GetComponent<GameBackground>().resetBackground();
+        gbackGround.GetComponent<GameBackground>().ResetBackground();
         playAgain.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         toggleAccolades.gameObject.SetActive(false);
         ropeSpeed.gameObject.SetActive(false);
-        player.GetComponent<Player>().setisPlaying(true);
+        player.GetComponent<Player>().SetIsPlaying(true);
         gameOver.text = "";
     }
 
-    public Button getplayAgain() { return playAgain;   }
-    public Button getmainMenu() { return mainMenu; }
+    public Button GetPlayAgain() { return playAgain;   }
+    public Button GetMainMenu() { return mainMenu; }
     
-    public Button gettoggleAccolades() { return toggleAccolades;  }
-    public Slider getropespeedSlider() { return ropeSpeed.GetComponent<Slider>(); }
+    public Button GetToggleAccolades() { return toggleAccolades;  }
+    public Slider GetRopeSpeedSlider() { return ropeSpeed.GetComponent<Slider>(); }
 
     public float GetCountDownTimer() { return countdownTimer; }
 
     public void SetCountDownTimer(int timer) { countdownTimer = timer; }
 
     public GameObject GetCountDownDisplay() { return countdowntimerDisplay; }
-
-    public GameObject GetPlayer()
-    {
-        return player;
-    }
 
     public GameObject GetRope()
     {

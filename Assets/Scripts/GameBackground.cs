@@ -25,7 +25,7 @@ public class GameBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<Player>().getisPlaying())
+        if (player.GetComponent<Player>().GetIsPlaying())
             checkforRope = true;
 
         if (checkforRope)
@@ -41,5 +41,5 @@ public class GameBackground : MonoBehaviour
         }
     }
 
-    public void resetBackground() => spriteRenderer.sprite = background[0];
+    public void ResetBackground() => spriteRenderer.sprite = background[0];
 }

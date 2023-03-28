@@ -6,7 +6,7 @@ public class SerializationManager
 {
    public static bool Save(string saveName, object saveData)
     {
-        BinaryFormatter formatter = getbinaryFormatter();
+        BinaryFormatter formatter = GetBinaryFormatter();
 
         if (!Directory.Exists(Application.persistentDataPath + "/saves"))
             Directory.CreateDirectory(Application.persistentDataPath + "/saves");
@@ -26,7 +26,7 @@ public class SerializationManager
         if (!File.Exists(path))
             return null;
 
-        BinaryFormatter formatter = getbinaryFormatter();
+        BinaryFormatter formatter = GetBinaryFormatter();
         FileStream file = File.Open(path, FileMode.Open);
 
         try
@@ -43,7 +43,7 @@ public class SerializationManager
         }
     }
 
-    public static BinaryFormatter getbinaryFormatter()
+    public static BinaryFormatter GetBinaryFormatter()
     {
         return new BinaryFormatter();
     }

@@ -98,12 +98,12 @@ public class Rope : BaseRope
     {
         if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().IsGrounded())
         {
-            manager.getplayAgain().gameObject.SetActive(true);
-            manager.getmainMenu().gameObject.SetActive(true);
-            manager.gettoggleAccolades().gameObject.SetActive(true);
-            manager.getropespeedSlider().gameObject.SetActive(true);
-            collision.GetComponent<Player>().setisPlaying(false);
-            manager.getgameOver().text = "Game Over!";
+            manager.GetPlayAgain().gameObject.SetActive(true);
+            manager.GetMainMenu().gameObject.SetActive(true);
+            manager.GetToggleAccolades().gameObject.SetActive(true);
+            manager.GetRopeSpeedSlider().gameObject.SetActive(true);
+            collision.GetComponent<Player>().SetIsPlaying(false);
+            manager.GetGameOver().text = "Game Over!";
             manager.SetCountDownTimer(3);
             goUp = false;
             goDown = false;
@@ -135,22 +135,12 @@ public class Rope : BaseRope
         goDown = false;
     }
 
-    public int GetJumps() => SaveData.current.profile.numofJumps;
-
     public int GetCurrJumps() => numOfJumps;
 
     public void Replay() { SerializationManager.Save("Data", SaveData.current); }
-    public GameObject returnPlayer() => playerGO;
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
-    public void setSpeed(float speed) { speedY = speed; }
-    public Button getaccoladesButton() { return toggleAccolades; }
-
-    public Button getmenuButton() { return mainMenu; }
-
-    public Button getplayagainButton() { return playAgain; }
-
-    public bool IsGameOver() { return gameover; }
+    public void SetSpeed(float speed) { speedY = speed; }
 
 }

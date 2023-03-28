@@ -8846,6 +8846,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1661572868}
+    - target: {fileID: 2125869751608396659, guid: 237ebd90eaa6e7d46bfbd24a34b9b443, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginRegular
+      objectReference: {fileID: 0}
     - target: {fileID: 2125869751608396668, guid: 237ebd90eaa6e7d46bfbd24a34b9b443, type: 3}
       propertyPath: m_Name
       value: Regular
@@ -8959,6 +8963,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1661572868}
+    - target: {fileID: 2170770757638164147, guid: ebbcaadc2e3307d4fb07db1d32e6843d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginDD
+      objectReference: {fileID: 0}
     - target: {fileID: 2170770757638164149, guid: ebbcaadc2e3307d4fb07db1d32e6843d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9349,7 +9357,7 @@ PrefabInstance:
       objectReference: {fileID: 97669593}
     - target: {fileID: 8605806665000823850, guid: 98cddf2b3fbed1a4f9ef063cae4e8e47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: resetGame
+      value: ResetGame
       objectReference: {fileID: 0}
     - target: {fileID: 8605806665000823850, guid: 98cddf2b3fbed1a4f9ef063cae4e8e47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

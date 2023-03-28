@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RFCRC14DRAL",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "RFCRC14DRAL",
+        "name": "com.GLITCGaming.Jump",
+        "processId": 18932,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -60,6 +60,12 @@
             "deviceId": "RFCRC14DRAL",
             "name": "com.teslacoilsw.launcher",
             "processId": 6928,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 18932,
             "exited": false
         }
     ],
