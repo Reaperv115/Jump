@@ -92,9 +92,9 @@ public class GameManager : MonoBehaviour
         if (ropeCS != null)
         {
             if (ddropeCS != null)
-                successfulJumps.text = "jumps: " + (ropeCS.getcurrJumps() + ddropeCS.getcurrJumps());
+                successfulJumps.text = "jumps: " + (ropeCS.GetCurrJumps() + ddropeCS.GetCurrJumps());
             else
-                successfulJumps.text = "jumps: " + ropeCS.getcurrJumps();
+                successfulJumps.text = "jumps: " + ropeCS.GetCurrJumps();
         }
 
     }

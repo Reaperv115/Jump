@@ -13,8 +13,6 @@ public class DoubleDutchRope : BaseRope
     GameManager manager;
     Vector2 movement;
 
-    int numcurrJumps = 0;
-
     float risingDist;
     float loweringDist;
     float speedX = 0.0f, speedY = 7.0f;
@@ -84,18 +82,16 @@ public class DoubleDutchRope : BaseRope
         SceneManager.LoadScene("MainMenu");
 
     }
-    public void resetJumps() => numcurrJumps = 0;
 
     public int getJumps() => SaveData.current.profile.numofJumps;
 
-    public int getcurrJumps() => numOfJumps;
+    public int GetCurrJumps() => numOfJumps;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
+        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().IsGrounded())
         {
             manager.getgameOver().text = "Game Over!";
-            resetJumps();
             manager.getplayAgain().gameObject.SetActive(true);
             manager.getmainMenu().gameObject.SetActive(true);
             manager.gettoggleAccolades().gameObject.SetActive(true);

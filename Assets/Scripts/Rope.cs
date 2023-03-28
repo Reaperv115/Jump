@@ -29,7 +29,6 @@ public class Rope : BaseRope
     float risingDist;
     float loweringDist;
 
-    int numcurrJumps = 0;
     float speedX = 0.0f, speedY = 12.0f;
 
     bool gameover;
@@ -97,7 +96,7 @@ public class Rope : BaseRope
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().isGrounded())
+        if (collision.transform.tag.Equals("Player") && loweringDist < .3f && collision.GetComponent<Player>().IsGrounded())
         {
             manager.getplayAgain().gameObject.SetActive(true);
             manager.getmainMenu().gameObject.SetActive(true);
@@ -106,7 +105,6 @@ public class Rope : BaseRope
             collision.GetComponent<Player>().setisPlaying(false);
             manager.getgameOver().text = "Game Over!";
             manager.SetCountDownTimer(3);
-            resetJumps();
             goUp = false;
             goDown = false;
             gameover = true;
@@ -117,33 +115,31 @@ public class Rope : BaseRope
             Destroy(this.gameObject);
         }
     }
-    public void gotoMenu()
+    public void GoToMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
     }
 
 
-    public void goingUp(bool isgoingUp)
+    public void GoingUp(bool isgoingUp)
     {
         goUp = isgoingUp;
         goDown = !goUp;
     }
 
 
-    public void stopRope()
+    public void StopRope()
     {
         goUp = false;
         goDown = false;
     }
-    public void resetJumps() => numcurrJumps = 0;
 
-    public int getJumps() => SaveData.current.profile.numofJumps;
+    public int GetJumps() => SaveData.current.profile.numofJumps;
 
-    public int getcurrJumps() => numOfJumps;
+    public int GetCurrJumps() => numOfJumps;
 
     public void Replay() { SerializationManager.Save("Data", SaveData.current); }
-    public void setJumps(int numjumps) => numcurrJumps = numjumps;
     public GameObject returnPlayer() => playerGO;
 
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);

@@ -21,8 +21,11 @@ public class Player : MonoBehaviour
     bool canJump = false;
     bool isPlaying = false;
     bool hasPlayed = false;
+    bool playimpactsoundEffect = false;
 
     Scene scene;
+
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
         jumpingSprites = Resources.LoadAll<Sprite>("jumping");
         playerSprites = Resources.LoadAll<Sprite>("Players");
         scene = SceneManager.GetActiveScene();
+        audioSource = GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
 
         if (scene.name.Equals("MainMenu"))
@@ -100,8 +104,15 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         
 
-        if (isGrounded())
+        if (IsGrounded())
         {
+            if (playimpactsoundEffect)
+            {
+                audioSource.Play();
+                playimpactsoundEffect = false;
+            }
+            else
+                audioSource.Stop();
             canJump = true;
             spriteRenderer.sprite = standingSprite;
         }
@@ -115,6 +126,7 @@ public class Player : MonoBehaviour
 
                     if (t.phase == TouchPhase.Began)
                     {
+                        playimpactsoundEffect = true;
                         float jumpVelocity = 15f;
                         rb2d.velocity = Vector2.up * jumpVelocity;
                         canJump = false;
@@ -140,7 +152,7 @@ public class Player : MonoBehaviour
     }
 
 
-    public bool isGrounded()
+    public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;

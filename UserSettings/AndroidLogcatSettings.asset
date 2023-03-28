@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RFCRC14DRAL",
     "m_SelectedPackage": {
-        "deviceId": "RFCRC14DRAL",
-        "name": "com.GLITCGaming.Jump",
-        "processId": 26516,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -34,50 +34,32 @@
         },
         {
             "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 22609,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 11662,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 13001,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 16029,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
             "name": "com.teslacoilsw.launcher",
-            "processId": 6270,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 10971,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 17254,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 18724,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 28932,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 30489,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 19956,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 26516,
+            "processId": 6928,
             "exited": false
         }
     ],
