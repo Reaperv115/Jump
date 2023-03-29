@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                 countdownTimer -= Time.deltaTime;
         }
 
-        // checking to see what ropes are avalable
+        // checking to see what ropes are available
         if (checkforRope)
         {
             rope = GameObject.FindGameObjectWithTag("rope");

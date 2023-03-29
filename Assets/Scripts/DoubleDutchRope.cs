@@ -71,21 +71,13 @@ public class DoubleDutchRope : BaseRope
     }
 
 
-    public void Replay()
-    {
-        SerializationManager.Save("Data", SaveData.current);
-    }
 
     public void GoToMenu()
     {
         SerializationManager.Save("Data", SaveData.current);
         SceneManager.LoadScene("MainMenu");
-
     }
 
-    public int GetJumps() => SaveData.current.profile.numofJumps;
-
-    public int GetCurrJumps() => numOfJumps;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -105,12 +97,9 @@ public class DoubleDutchRope : BaseRope
 
         }
     }
-    public void StopRope()
-    {
-        goUp = false;
-        goDown = false;
-    }
 
+    public int GetCurrJumps() => numOfJumps;
+    public void Replay() => SerializationManager.Save("Data", SaveData.current);
     private void OnApplicationQuit() => SerializationManager.Save("Data", SaveData.current);
 
     public void SetSpeed(float speed) { speedY = speed; }
