@@ -41,12 +41,20 @@ public class GameManager : MonoBehaviour
     bool checkforRope;
 
     
+
+    
     float countdownTimer = 3f;
     [SerializeField]
     GameObject countdowntimerDisplay;
+
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
+        
         player = GameObject.FindGameObjectWithTag("Player");
         gbackGround = GameObject.Find("background");
         ropeSpeed = GameObject.FindGameObjectWithTag("options");

@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "RFCRC14DRAL",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "RFCRC14DRAL",
+        "name": "com.GLITCGaming.Jump",
+        "processId": 19102,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -34,18 +34,6 @@
         },
         {
             "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 13001,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 16029,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
             "name": "com.teslacoilsw.launcher",
             "processId": 6928,
             "exited": false
@@ -53,14 +41,140 @@
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 18932,
+            "processId": 29401,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 18030,
+            "processId": 30105,
             "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 30734,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 31968,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.sec.android.app.launcher",
+            "processId": 4427,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.instagram.android",
+            "processId": 30971,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 670,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 1969,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 3473,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 4155,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 6025,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 6605,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 7351,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 7853,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 11760,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 12790,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 13373,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 14996,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 16206,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 16656,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 17192,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 18514,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 19102,
+            "exited": false
         }
     ],
     "m_Tags": {
