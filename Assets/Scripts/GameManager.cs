@@ -45,8 +45,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = Resources.Load<GameObject>("Players/playerGOs/player");
-        playerInst = Instantiate(player, playerPosition.position, player.transform.rotation);
+        if (player == null)
+        {
+            print("loading player");
+            player = Resources.Load<GameObject>("Players/playerGOs/player");
+            playerInst = Instantiate(player, playerPosition.position, player.transform.rotation);
+        }
+        else
+            print("already have a player");
         //gbackGround = GameObject.Find("background");
         //ropeSpeed = UIManager.Instance.GetRopeSpeedSlider();
         //playAgain.gameObject.SetActive(false);

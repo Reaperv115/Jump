@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +18,7 @@ public class UIManager : MonoBehaviour
     // MainMenu UI
     GameObject exitBtn, exitbtnInst;
     GameObject startBtn, startbtnInst;
-    GameObject characterselectionBtn, characterselectionBtnInst;
+    GameObject characterselectionDrpDwn, characterselectionDrpDwnInst;
     GameObject aboutgameBtn, aboutgameBtnInst;
 
     // Main Menu Button Positions
@@ -33,10 +34,9 @@ public class UIManager : MonoBehaviour
     GameObject canvas;
 
     Scene currScene, prevScene;
-    bool sceneChanged;
 
-    
 
+    int playercharacterChoice;
 
 
     private void Awake()
@@ -53,10 +53,11 @@ public class UIManager : MonoBehaviour
         // Main Menu UI
         exitBtn = Resources.Load<GameObject>("UI/Main Menu UI/ExitBtn");
         startBtn = Resources.Load<GameObject>("UI/Main Menu UI/StartBtn");
-        characterselectionBtn = Resources.Load<GameObject>("UI/Main Menu UI/character selection");
+        characterselectionDrpDwn = Resources.Load<GameObject>("UI/Main Menu UI/character selection");
+        playercharacterChoice = characterselectionDrpDwn.GetComponent<TMP_Dropdown>().value;
         aboutgameBtn = Resources.Load<GameObject>("UI/Main Menu UI/AboutGameBtn");
 
-        sceneChanged = true;
+        
         canvas = GameObject.Find("Canvas");
     }
     // Start is called before the first frame update
@@ -66,33 +67,28 @@ public class UIManager : MonoBehaviour
             Instance = this;
         else
             Debug.LogError("trying to create multiple instances of Ui Manager");
+        InstantiateMainMenuUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (sceneChanged)
+        if (GameManager.instance.HasSwitchedScenes())
         {
-            switch(currScene.name)
+            currScene = SceneManager.GetActiveScene();
+            switch (currScene.name)
             {
                 case "MainMenu":
                    InstantiateMainMenuUI();
                    DisableGameUI();
-                    sceneChanged = false;
+                   GameManager.instance.SwitchScenes(false);
                    break;
                 case "Game":
                     InstantiateGameUI();
                     DisableMainMenuUI();
-                    sceneChanged = false;
+                    GameManager.instance.SwitchScenes(false);
                     break;
             }
-        }
-
-        prevScene = currScene;
-        currScene = SceneManager.GetActiveScene();
-        if (currScene != prevScene)
-        {
-            sceneChanged = true;
         }
     }
 
@@ -117,17 +113,19 @@ public class UIManager : MonoBehaviour
     {
         exitbtnInst = Instantiate(exitBtn, exitBtnPosition.transform.position, exitBtn.transform.rotation, canvas.transform);
         startbtnInst = Instantiate(startBtn, startBtnPosition.transform.position, startBtn.transform.rotation, canvas.transform);
-        characterselectionBtnInst = Instantiate(characterselectionBtn, characterselectionBtnPosition.transform.position, characterselectionBtn.transform.rotation, canvas.transform);
+        characterselectionDrpDwnInst = Instantiate(characterselectionDrpDwn, characterselectionBtnPosition.transform.position, characterselectionDrpDwn.transform.rotation, canvas.transform);
         aboutgameBtnInst = Instantiate(aboutgameBtn, aboutgameBtnPosition.transform.position, aboutgameBtn.transform.rotation, canvas.transform);
     }
     void DisableMainMenuUI()
     {
         Destroy(exitbtnInst);
         Destroy(startbtnInst);
-        Destroy(characterselectionBtnInst);
+        playercharacterChoice = characterselectionDrpDwnInst.GetComponent<TMP_Dropdown>().value;
+        Destroy(characterselectionDrpDwnInst);
         Destroy(aboutgameBtnInst);
     }
 
-    public GameObject GetCharacterSelection() { return characterselectionBtnInst; }
+    public GameObject GetCharacterSelection() { return characterselectionDrpDwnInst; }
     public GameObject GetRopeSpeedSlider() { return ropespeedSliderInst; }
+    public int GetPlayerCharacterChoice() { return playercharacterChoice; }
 }

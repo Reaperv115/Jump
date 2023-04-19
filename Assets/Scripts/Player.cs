@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         scene = SceneManager.GetActiveScene();
-        standingSprite = playerSprites[0];
+        standingSprite = playerSprites[UIManager.Instance.GetPlayerCharacterChoice()];
         //if (scene.name.Equals("MainMenu"))
         //{
         //    if (!characterSelection)
