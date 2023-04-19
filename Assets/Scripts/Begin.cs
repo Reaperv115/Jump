@@ -1,7 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Begin : MonoBehaviour
 {
-    public void BeginGame() => SceneManager.LoadScene("Game");
+    private void Awake()
+    {
+        GetComponent<Button>().onClick.AddListener(LoadGameScene);
+    }
+
+    public void LoadGameScene()
+    {
+        SceneManager.LoadScene("Game");
+        GameManager.instance.SwitchScenes(true);
+    }
 }

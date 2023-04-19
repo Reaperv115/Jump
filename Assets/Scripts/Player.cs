@@ -38,9 +38,6 @@ public class Player : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         audioSource = GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
-
-        if (scene.name.Equals("MainMenu"))
-            characterSelection = GameObject.Find("character selection").GetComponent<TMP_Dropdown>();
     }
 
     void Update()
