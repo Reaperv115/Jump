@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI successfulJumps, personalBest, gameOver;
     [SerializeField]
     Button playAgain, mainMenu, toggleAccolades;
-    GameObject player, playerInst;
+    GameObject playerGO, playerGoInst;
     [SerializeField]
     Transform maxHeight, minHeight, playerPosition;
 
@@ -45,14 +45,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null)
-        {
-            print("loading player");
-            player = Resources.Load<GameObject>("Players/playerGOs/player");
-            playerInst = Instantiate(player, playerPosition.position, player.transform.rotation);
-        }
-        else
-            print("already have a player");
         //gbackGround = GameObject.Find("background");
         //ropeSpeed = UIManager.Instance.GetRopeSpeedSlider();
         //playAgain.gameObject.SetActive(false);
@@ -98,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI GetGameOver() { return gameOver; }
 
-    public GameObject GetPlayer() { return player; }
+    public GameObject GetPlayer() { return playerGO; }
 
     public void ResetGame()
     {
@@ -113,7 +105,7 @@ public class GameManager : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         //toggleAccolades.gameObject.SetActive(false);
         ropeSpeed.gameObject.SetActive(false);
-        player.GetComponent<Player>().SetIsPlaying(true);
+        playerGO.GetComponent<Player>().SetIsPlaying(true);
         gameOver.text = "";
     }
 

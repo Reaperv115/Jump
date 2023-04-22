@@ -120,12 +120,12 @@ public class UIManager : MonoBehaviour
     {
         Destroy(exitbtnInst);
         Destroy(startbtnInst);
-        playercharacterChoice = characterselectionDrpDwnInst.GetComponent<TMP_Dropdown>().value;
         Destroy(characterselectionDrpDwnInst);
         Destroy(aboutgameBtnInst);
     }
 
-    public GameObject GetCharacterSelection() { return characterselectionDrpDwnInst; }
     public GameObject GetRopeSpeedSlider() { return ropespeedSliderInst; }
     public int GetPlayerCharacterChoice() { return playercharacterChoice; }
+    public TMP_Dropdown GetCharacterSelectionDrpDwn() { return characterselectionDrpDwn.GetComponent<TMP_Dropdown>(); }
+    public void SetPlayerCharacterChoice(int choice) { playercharacterChoice = choice;}
 }

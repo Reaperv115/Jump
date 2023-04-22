@@ -32,75 +32,12 @@ public class Player : MonoBehaviour
     { 
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        jumpingSprites = Resources.LoadAll<Sprite>("jumping");
-        playerSprites = Resources.LoadAll<Sprite>("Players");
         scene = SceneManager.GetActiveScene();
         audioSource = GetComponent<AudioSource>();
-        DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
     {
-        scene = SceneManager.GetActiveScene();
-        standingSprite = playerSprites[UIManager.Instance.GetPlayerCharacterChoice()];
-        //if (scene.name.Equals("MainMenu"))
-        //{
-        //    if (!characterSelection)
-        //    {
-        //        characterSelection = GameObject.Find("character selection").GetComponent<TMP_Dropdown>();
-        //        switch (characterSelection.value)
-        //        {
-
-        //            case 0:
-        //                {
-        //                    standingSprite = playerSprites[0];
-        //                    break;
-        //                }
-        //            case 1:
-        //                {
-        //                    standingSprite = playerSprites[1];
-        //                    break;
-        //                }
-        //            case 2:
-        //                {
-        //                    standingSprite = playerSprites[2];
-        //                    break;
-        //                }
-        //            default:
-        //                break;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        switch (characterSelection.value)
-        //        {
-
-        //            case 0:
-        //                {
-        //                    standingSprite = playerSprites[0];
-        //                    break;
-        //                }
-        //            case 1:
-        //                {
-        //                    standingSprite = playerSprites[1];
-        //                    break;
-        //                }
-        //            case 2:
-        //                {
-        //                    standingSprite = playerSprites[2];
-        //                    break;
-        //                }
-        //            default:
-        //                break;
-        //        }
-        //    }
-            
-        //}
-        if (scene.name.Equals("AboutGame"))
-            Destroy(this.gameObject);
-        
-
         if (IsGrounded())
         {
             if (playimpactsoundEffect)
@@ -111,7 +48,6 @@ public class Player : MonoBehaviour
             else
                 audioSource.Stop();
             canJump = true;
-            spriteRenderer.sprite = standingSprite;
         }
         if (isPlaying)
         {
