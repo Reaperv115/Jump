@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GoBackToMenu : MonoBehaviour
@@ -11,6 +12,6 @@ public class GoBackToMenu : MonoBehaviour
 
     public void GoBacktoMenu()
     {
-        GameManager.instance.SwitchScenes(true);
+        SceneManager.LoadScene("MainMenu");
     }
 }

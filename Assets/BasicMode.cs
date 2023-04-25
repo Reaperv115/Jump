@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class BasicMode : MonoBehaviour
 {
-    [SerializeField]
-    Button yourchoiceModeBtn;
-    [SerializeField]
-    GameObject basicmodeOptions;
-    Button basicModeBtn;
     // Start is called before the first frame update
     void Awake()
     {

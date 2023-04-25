@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
     public void SetPlayerCharacterChoice(int choice) { playercharacterChoice = choice;}
 
     public GameObject GetBackToMainMenuBtn() { return backtomainmenuBtn; }
-    public GameObject GetBasicModeBtn() { return basicmodeBtn; }
+    public GameObject GetBasicModeBtn() { return basicmodeBtnInst; }
     public GameObject GetBasicModeOptions() { return basicmodeOptionsInst; }
     public GameObject GetYourChoiceBtn() { return yourchoicemodeBtnInst; }
 }

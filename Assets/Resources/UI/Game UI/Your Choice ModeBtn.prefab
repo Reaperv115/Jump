@@ -148,8 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9252a4685ee8cd049b04ac8e25b97624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourchoiceModeBtn: {fileID: 0}
-  basicmodeOptions: {fileID: 0}
 --- !u!1 &6868314490262554474
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +160,7 @@ GameObject:
   - component: {fileID: 1513041141424549780}
   - component: {fileID: 1171833773079125790}
   - component: {fileID: 632961122568562857}
+  - component: {fileID: 7081211133414683444}
   m_Layer: 5
   m_Name: Your Choice ModeBtn
   m_TagString: Untagged
@@ -272,3 +271,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7081211133414683444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868314490262554474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9024439dec68b5d4c9ab6183a6d6986e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

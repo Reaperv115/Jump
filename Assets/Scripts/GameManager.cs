@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject countdowntimerDisplay;
 
+    bool gamehasStarted = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -121,11 +123,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject GetCountDownDisplay() { return countdowntimerDisplay; }
 
-    public GameObject GetRope()
-    {
-        return rope;
-    }
-
     public bool HasSwitchedScenes() { return switchedScenes; }
     public void SwitchScenes(bool switchedscenes) { switchedScenes = switchedscenes; }
+    public bool GetGameHasStarted() { return gamehasStarted; }
+    public void SetGameHasStarted(bool gameStarted) { gamehasStarted = gameStarted; }
 }
