@@ -27,7 +27,6 @@ public class PlayerManager : MonoBehaviour
 
         playerSprites = Resources.LoadAll<Sprite>("Players");
         playerGOInst.GetComponent<SpriteRenderer>().sprite = playerSprites[0];
-        print(playerSprites.Length);
     }
 
     // Update is called once per frame

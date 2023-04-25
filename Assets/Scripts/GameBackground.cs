@@ -25,8 +25,8 @@ public class GameBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<Player>().GetIsPlaying())
-            checkforRope = true;
+        //if (player.GetComponent<Player>().GetIsPlaying())
+        //    checkforRope = true;
 
         if (checkforRope)
             rope = GameObject.FindGameObjectWithTag("rope").GetComponent<Rope>();

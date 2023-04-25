@@ -10,30 +10,21 @@ public class UIManager : MonoBehaviour
 
     // Game scene UI
     GameObject backtomainmenuBtn, backtomainmenuBtnInst;
-    GameObject regularmodeBtn, regularmodeBtnInst;
+    GameObject basicmodeBtn, basicmodeBtnInst, basicmodeOptions, basicmodeOptionsInst;
+    GameObject yourchoicemodeBtn, yourchoicemodeBtnInst;
     GameObject replayGameBtn, replaygameBtnInst;
     GameObject ropespeedSlider, ropespeedSliderInst;
     GameObject toggleAccoladesBtn, toggleAccoladesBtnInst;
-
-    // MainMenu UI
-    GameObject exitBtn, exitbtnInst;
-    GameObject startBtn, startbtnInst;
     GameObject characterselectionDrpDwn, characterselectionDrpDwnInst;
-    GameObject aboutgameBtn, aboutgameBtnInst;
 
-    // Main Menu Button Positions
     [SerializeField]
-    GameObject exitBtnPosition;
+    GameObject basicmodeBtnPosition, basicmodeoptionsBtnPosition, youchoicemodeBtnPosition, ropespeedSliderPosition;
     [SerializeField]
-    GameObject startBtnPosition;
-    [SerializeField]
-    GameObject characterselectionBtnPosition;
-    [SerializeField]
-    GameObject aboutgameBtnPosition;
+    GameObject backtomainmenuBtnPosition, replayBtnPosition, toggleaccoladesBtnPosition;
+
 
     GameObject canvas;
 
-    Scene currScene, prevScene;
 
 
     int playercharacterChoice;
@@ -41,23 +32,15 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        //Game UI
-        backtomainmenuBtn = Resources.Load<GameObject>("UI/Game UI/BAckToMainMenuBtn");
-        regularmodeBtn = Resources.Load<GameObject>("UI/Game UI/RegularModeBtn");
+        backtomainmenuBtn = Resources.Load<GameObject>("UI/Game UI/BackToMainMenuBtn");
         replayGameBtn = Resources.Load<GameObject>("UI/Game UI/ReplayGameBtn");
         ropespeedSlider = Resources.Load<GameObject>("UI/Game UI/RopeSpeedSlider");
         toggleAccoladesBtn = Resources.Load<GameObject>("UI/Game UI/ToggleAccoladesBtn");
-        
+        basicmodeBtn = Resources.Load<GameObject>("UI/Game UI/Basic ModeBtn");
+        yourchoicemodeBtn = Resources.Load<GameObject>("UI/Game UI/Your Choice ModeBtn");
+        basicmodeOptions = Resources.Load<GameObject>("UI/Game UI/Basic Mode Options");
 
 
-        // Main Menu UI
-        exitBtn = Resources.Load<GameObject>("UI/Main Menu UI/ExitBtn");
-        startBtn = Resources.Load<GameObject>("UI/Main Menu UI/StartBtn");
-        characterselectionDrpDwn = Resources.Load<GameObject>("UI/Main Menu UI/character selection");
-        playercharacterChoice = characterselectionDrpDwn.GetComponent<TMP_Dropdown>().value;
-        aboutgameBtn = Resources.Load<GameObject>("UI/Main Menu UI/AboutGameBtn");
-
-        
         canvas = GameObject.Find("Canvas");
     }
     // Start is called before the first frame update
@@ -67,65 +50,39 @@ public class UIManager : MonoBehaviour
             Instance = this;
         else
             Debug.LogError("trying to create multiple instances of Ui Manager");
-        InstantiateMainMenuUI();
+
+        InstantiateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.HasSwitchedScenes())
-        {
-            currScene = SceneManager.GetActiveScene();
-            switch (currScene.name)
-            {
-                case "MainMenu":
-                   InstantiateMainMenuUI();
-                   DisableGameUI();
-                   GameManager.instance.SwitchScenes(false);
-                   break;
-                case "Game":
-                    InstantiateGameUI();
-                    DisableMainMenuUI();
-                    GameManager.instance.SwitchScenes(false);
-                    break;
-            }
-        }
+        
+        
     }
 
-    void InstantiateGameUI()
+    void InstantiateUI()
     {
-        backtomainmenuBtnInst = Instantiate(backtomainmenuBtn, backtomainmenuBtn.transform.position, backtomainmenuBtn.transform.rotation, canvas.transform);
-        regularmodeBtnInst = Instantiate(regularmodeBtn, regularmodeBtn.transform.position, regularmodeBtn.transform.rotation, canvas.transform);
-        replaygameBtnInst = Instantiate(replayGameBtn, replayGameBtn.transform.position, replayGameBtn.transform.rotation, canvas.transform);
-        ropespeedSliderInst = Instantiate(ropespeedSlider, ropespeedSlider.transform.position, ropespeedSlider.transform.rotation, canvas.transform);
-        toggleAccoladesBtnInst = Instantiate(toggleAccoladesBtn, toggleAccoladesBtn.transform.position, toggleAccoladesBtn.transform.rotation, canvas.transform);
-    }
-    void DisableGameUI()
-    {
-        Destroy(backtomainmenuBtnInst);
-        Destroy(regularmodeBtnInst);
-        Destroy(replaygameBtnInst);
-        Destroy(ropespeedSliderInst);
-        Destroy(toggleAccoladesBtnInst);
+        backtomainmenuBtnInst = Instantiate(backtomainmenuBtn, backtomainmenuBtnPosition.transform.position, backtomainmenuBtn.transform.rotation, canvas.transform);
+        basicmodeOptionsInst = Instantiate(basicmodeOptions, basicmodeoptionsBtnPosition.transform.position, basicmodeOptions.transform.rotation, canvas.transform);
+        basicmodeOptionsInst.SetActive(false);
+        basicmodeBtnInst = Instantiate(basicmodeBtn, basicmodeBtnPosition.transform.position, basicmodeBtn.transform.rotation, canvas.transform);
+        yourchoicemodeBtnInst = Instantiate(yourchoicemodeBtn, youchoicemodeBtnPosition.transform.position, yourchoicemodeBtn.transform.rotation, canvas.transform);
+        replaygameBtnInst = Instantiate(replayGameBtn, replayBtnPosition.transform.position, replayGameBtn.transform.rotation, canvas.transform);
+        replaygameBtnInst.SetActive(false);
+        ropespeedSliderInst = Instantiate(ropespeedSlider, ropespeedSliderPosition.transform.position, ropespeedSlider.transform.rotation, canvas.transform);
+        ropespeedSliderInst.SetActive(false);
+        toggleAccoladesBtnInst = Instantiate(toggleAccoladesBtn, toggleaccoladesBtnPosition.transform.position, toggleAccoladesBtn.transform.rotation, canvas.transform);
     }
 
-    void InstantiateMainMenuUI()
-    {
-        exitbtnInst = Instantiate(exitBtn, exitBtnPosition.transform.position, exitBtn.transform.rotation, canvas.transform);
-        startbtnInst = Instantiate(startBtn, startBtnPosition.transform.position, startBtn.transform.rotation, canvas.transform);
-        characterselectionDrpDwnInst = Instantiate(characterselectionDrpDwn, characterselectionBtnPosition.transform.position, characterselectionDrpDwn.transform.rotation, canvas.transform);
-        aboutgameBtnInst = Instantiate(aboutgameBtn, aboutgameBtnPosition.transform.position, aboutgameBtn.transform.rotation, canvas.transform);
-    }
-    void DisableMainMenuUI()
-    {
-        Destroy(exitbtnInst);
-        Destroy(startbtnInst);
-        Destroy(characterselectionDrpDwnInst);
-        Destroy(aboutgameBtnInst);
-    }
 
     public GameObject GetRopeSpeedSlider() { return ropespeedSliderInst; }
     public int GetPlayerCharacterChoice() { return playercharacterChoice; }
     public TMP_Dropdown GetCharacterSelectionDrpDwn() { return characterselectionDrpDwn.GetComponent<TMP_Dropdown>(); }
     public void SetPlayerCharacterChoice(int choice) { playercharacterChoice = choice;}
+
+    public GameObject GetBackToMainMenuBtn() { return backtomainmenuBtn; }
+    public GameObject GetBasicModeBtn() { return basicmodeBtn; }
+    public GameObject GetBasicModeOptions() { return basicmodeOptionsInst; }
+    public GameObject GetYourChoiceBtn() { return yourchoicemodeBtnInst; }
 }

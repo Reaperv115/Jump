@@ -24,22 +24,22 @@ public class DisplayDistractions : MonoBehaviour
     void Update()
     {
 
-        if (manager.GetComponent<GameManager>().GetPlayer().GetComponent<Player>().GetIsPlaying())
-        {
-            if (distractionTimer <= 0.0f)
-            {
-                Activate();
-                destination = new Vector2(destspawnX, destspawnY);
-                distractionTimer = 6.0f;
-            }
-            else distractionTimer -= Time.deltaTime;
+        //if (manager.GetComponent<GameManager>().GetPlayer().GetComponent<Player>().GetIsPlaying())
+        //{
+        //    if (distractionTimer <= 0.0f)
+        //    {
+        //        Activate();
+        //        destination = new Vector2(destspawnX, destspawnY);
+        //        distractionTimer = 6.0f;
+        //    }
+        //    else distractionTimer -= Time.deltaTime;
 
-            if (instantiatedspiderDistraction)
-            {
-                instantiatedspiderDistraction.transform.position = Vector3.MoveTowards(instantiatedspiderDistraction.transform.position, destination, .1f);
-                if (Vector3.Distance(instantiatedspiderDistraction.transform.position, destination) < .2f) { Deactivate(); }
-            }
-        }
+        //    if (instantiatedspiderDistraction)
+        //    {
+        //        instantiatedspiderDistraction.transform.position = Vector3.MoveTowards(instantiatedspiderDistraction.transform.position, destination, .1f);
+        //        if (Vector3.Distance(instantiatedspiderDistraction.transform.position, destination) < .2f) { Deactivate(); }
+        //    }
+        //}
     }
 
     void Activate()

@@ -9,10 +9,6 @@ public class Player : MonoBehaviour
     BoxCollider2D bc2d;
     Rigidbody2D rb2d;
 
-    SpriteRenderer spriteRenderer;
-    Sprite[] jumpingSprites;
-    Sprite[] playerSprites;
-    Sprite standingSprite;
 
     TMP_Dropdown characterSelection;
 
@@ -63,19 +59,19 @@ public class Player : MonoBehaviour
                         float jumpVelocity = 15f;
                         rb2d.velocity = Vector2.up * jumpVelocity;
                         canJump = false;
-                        if (standingSprite.name.Equals("ryan"))
-                        {
-                            if (jumpingIndex == 3)
-                            {
-                                spriteRenderer.sprite = jumpingSprites[jumpingIndex];
-                                jumpingIndex = 0;
-                            }
-                            else
-                            {
-                                spriteRenderer.sprite = jumpingSprites[jumpingIndex];
-                                ++jumpingIndex;
-                            }
-                        }
+                        //if (standingSprite.name.Equals("ryan"))
+                        //{
+                        //    if (jumpingIndex == 3)
+                        //    {
+                        //        spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                        //        jumpingIndex = 0;
+                        //    }
+                        //    else
+                        //    {
+                        //        spriteRenderer.sprite = jumpingSprites[jumpingIndex];
+                        //        ++jumpingIndex;
+                        //    }
+                        //}
                     }
                 }
             }

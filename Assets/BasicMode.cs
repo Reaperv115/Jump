@@ -8,16 +8,18 @@ public class BasicMode : MonoBehaviour
     [SerializeField]
     Button yourchoiceModeBtn;
     [SerializeField]
-    GameObject basicmodeOptionsBtn;
+    GameObject basicmodeOptions;
+    Button basicModeBtn;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(BsicMode);
+        //GetComponent<Button>().onClick.AddListener(NormalMode);
     }
-    void BsicMode()
+    public void NormalMode()
     {
+        print("normal mode");
         gameObject.SetActive(false);
-        yourchoiceModeBtn.gameObject.SetActive(false);
-        basicmodeOptionsBtn.gameObject.SetActive(true);
+        UIManager.Instance.GetBasicModeOptions().SetActive(true);
+        UIManager.Instance.GetYourChoiceBtn().SetActive(false);
     }
 }

@@ -13,7 +13,6 @@ public class LoadGame : MonoBehaviour
     public void LoadGameScene()
     {
         SceneManager.LoadScene("Game");
-        GameManager.instance.SwitchScenes(true);
-        UIManager.Instance.SetPlayerCharacterChoice(UIManager.Instance.GetCharacterSelectionDrpDwn().value);
+        //UIManager.Instance.SetPlayerCharacterChoice(UIManager.Instance.GetCharacterSelectionDrpDwn().value);
     }
 }

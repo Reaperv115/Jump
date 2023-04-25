@@ -41,25 +41,25 @@
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 12192,
+            "processId": 11786,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 13260,
+            "processId": 12712,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 14443,
+            "processId": 18142,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 16952,
+            "name": "com.facebook.katana",
+            "processId": 29617,
             "exited": true
         }
     ],
