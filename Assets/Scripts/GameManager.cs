@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         rope = Resources.Load<GameObject>("rope");
         ropeInst = Instantiate(rope, maxHeight.position, Quaternion.identity);
-        ropeInst.GetComponent<Rope>().SetSpeed(ropeSpeed.GetComponent<Slider>().value);
+        //ropeInst.GetComponent<Rope>().SetSpeed(ropeSpeed.GetComponent<Slider>().value);
         
 
         SerializationManager.Save("Data", SaveData.current);
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         //toggleAccolades.gameObject.SetActive(false);
         ropeSpeed.gameObject.SetActive(false);
-        playerGO.GetComponent<Player>().SetIsPlaying(true);
+        //playerGO.GetComponent<Player>().SetIsPlaying(true);
         gameOver.text = "";
     }
 

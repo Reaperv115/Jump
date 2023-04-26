@@ -87,7 +87,6 @@ public class DoubleDutchRope : BaseRope
             manager.GetPlayAgain().gameObject.SetActive(true);
             manager.GetMainMenu().gameObject.SetActive(true);
             manager.GetToggleAccolades().gameObject.SetActive(true);
-            collision.GetComponent<Player>().SetIsPlaying(false);
             Destroy(this.gameObject);
             goUp = false;
             goDown = false;

@@ -33,11 +33,11 @@ public class GameBackground : MonoBehaviour
 
         if (rope)
         {
-            checkforRope = false;
-            if (rope.GetCurrJumps() == 15)
-                spriteRenderer.sprite = background[1];
-            if (rope.GetCurrJumps() == 30)
-                spriteRenderer.sprite = background[2];
+            //checkforRope = false;
+            //if (rope.GetCurrJumps() == 15)
+            //    spriteRenderer.sprite = background[1];
+            //if (rope.GetCurrJumps() == 30)
+            //    spriteRenderer.sprite = background[2];
         }
     }
 

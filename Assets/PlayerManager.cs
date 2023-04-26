@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     Scene scene;
 
     Sprite[] playerSprites;
+    Sprite[] jumpingSprites;
 
     [SerializeField]
     Transform playerPosition;
@@ -27,6 +28,8 @@ public class PlayerManager : MonoBehaviour
 
         playerSprites = Resources.LoadAll<Sprite>("Players");
         playerGOInst.GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+
+        jumpingSprites = Resources.LoadAll<Sprite>("jumping");
     }
 
     // Update is called once per frame
@@ -50,4 +53,9 @@ public class PlayerManager : MonoBehaviour
         
         
     }
+
+    public GameObject GetPlayerGO() { return playerGOInst; }
+    public Player GetPlayerRef() { return playerGOInst.GetComponent<Player>(); }
+    public Sprite[] GetPlayerSprites() { return playerSprites; }
+    public Sprite[] GetJumpingSprites() { return jumpingSprites; }
 }

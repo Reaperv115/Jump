@@ -42,10 +42,10 @@ public class Difficulties : MonoBehaviour
     {
         selectedDifficulty = "regular";
         instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        player.GetComponent<Player>().SetIsPlaying(true);
+        //player.GetComponent<Player>().SetIsPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
-        instantiatedRope.GetComponent<Rope>().SetSpeed(ropeSpeed.value);
+        //instantiatedRope.GetComponent<Rope>().SetSpeed(ropeSpeed.value);
         ropeSpeed.gameObject.SetActive(false);
     }
 
@@ -53,10 +53,10 @@ public class Difficulties : MonoBehaviour
     {
         selectedDifficulty = "dd";
         instantiatedRope = Instantiate(rope, ropestartPos.position, Quaternion.identity);
-        instantiatedRope.GetComponent<Rope>().SetSpeed(ropeSpeed.value);
+        //instantiatedRope.GetComponent<Rope>().SetSpeed(ropeSpeed.value);
         instantiatedddRope = Instantiate(ddRope, ddropestartPos.position, Quaternion.identity);
         instantiatedddRope.GetComponent<DoubleDutchRope>().SetSpeed(ropeSpeed.value);
-        player.GetComponent<Player>().SetIsPlaying(true);
+        //player.GetComponent<Player>().SetIsPlaying(true);
         for (int i = 0; i < difficultyButtons.Length; ++i)
             difficultyButtons[i].gameObject.SetActive(false);
         ropeSpeed.gameObject.SetActive(false);
