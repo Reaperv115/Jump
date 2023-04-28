@@ -18,6 +18,6 @@ public class RopeSpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ropespeedDisplay.text = "Speed of Rope: " + ropeSpeed.value.ToString();
+        ropespeedDisplay.text = "Speed of Rope: " + (int)ropeSpeed.value;
     }
 }

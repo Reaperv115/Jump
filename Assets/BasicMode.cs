@@ -4,9 +4,8 @@ using UnityEngine.UI;
 public class BasicMode : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(NormalMode);
     }
     public void NormalMode()
     {
