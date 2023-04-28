@@ -23,5 +23,7 @@ public class SlowRope : MonoBehaviour
         transform.parent.gameObject.SetActive(false);
         UIManager.Instance.GetBackToMainMenuBtn().SetActive(false);
         UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
+        GameManager.instance.SetGameHasStarted(true);
+        UIManager.Instance.GetCountdownTimer().SetActive(true);
     }
 }

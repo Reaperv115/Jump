@@ -22,5 +22,8 @@ public class MediumRope : MonoBehaviour
         RopeManager.instance.SetRopeSpeed(5f);
         transform.parent.gameObject.SetActive(false);
         UIManager.Instance.GetBackToMainMenuBtn().SetActive(false);
+        GameManager.instance.SetGameHasStarted(true);
+        UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
+        UIManager.Instance.GetCountdownTimer().SetActive(true);
     }
 }

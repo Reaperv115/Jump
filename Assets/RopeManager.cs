@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RopeManager : BaseRope
@@ -59,7 +60,21 @@ public class RopeManager : BaseRope
             direction = Vector3.up;
             ropeislowEnough = true;
         }
-        ropeInst.transform.Translate(direction * ropeSpeed * Time.deltaTime);
+
+        if (GameManager.instance.GetGameHasStarted())
+        {
+            if (GameManager.instance.GetGameCountDown() <= 0f)
+            {
+                ropeInst.transform.Translate(direction * ropeSpeed * Time.deltaTime);
+                UIManager.Instance.GetCountdownTimer().SetActive(false);
+            }
+            else
+            {
+                float count = GameManager.instance.GetGameCountDown();
+                GameManager.instance.SetGameCountDown(count -= Time.deltaTime);
+                UIManager.Instance.GetCountdownTimer().GetComponent<TextMeshProUGUI>().text = "Game Starts in: " + (int)GameManager.instance.GetGameCountDown();
+            }
+        }
 
         
     }

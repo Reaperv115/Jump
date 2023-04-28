@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +21,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject backtomainmenuBtnPosition, replayBtnPosition, toggleaccoladesBtnPosition;
 
+    GameObject countdownTimer;
+
 
     GameObject canvas;
 
@@ -43,6 +42,7 @@ public class UIManager : MonoBehaviour
         basicmodeOptions = Resources.Load<GameObject>("UI/Game UI/Basic Mode Options");
         personalBest = GameObject.Find("Personal Best");
         numjumpsthisTurnTxt = GameObject.Find("Jumps");
+        countdownTimer = GameObject.Find("Countdown Timer");
 
 
         canvas = GameObject.Find("Canvas");
@@ -55,7 +55,6 @@ public class UIManager : MonoBehaviour
         else
             Debug.LogError("trying to create multiple instances of Ui Manager");
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
-        print(SaveData.current.profile.numofJumps);
         InstantiateUI();
     }
 
@@ -94,4 +93,5 @@ public class UIManager : MonoBehaviour
 
     public GameObject GetReplayBtn() { return replaygameBtnInst; }
     public GameObject GetToggleAccoladesBtn() { return toggleAccoladesBtnInst; }
+    public GameObject GetCountdownTimer() { return countdownTimer; }
 }

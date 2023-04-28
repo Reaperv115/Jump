@@ -7,7 +7,6 @@ public class ExitGame : MonoBehaviour
     public void QuitGame() 
     {
         SerializationManager.Save("Data", SaveData.current);
-        print("OnApplicationQuit: " + SaveData.current.profile.numofJumps);
         Application.Quit();
     }
 }
