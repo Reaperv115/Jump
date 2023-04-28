@@ -15,6 +15,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     Transform playerPosition;
+
+    int numJumps;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,4 +60,6 @@ public class PlayerManager : MonoBehaviour
     public Player GetPlayerRef() { return playerGOInst.GetComponent<Player>(); }
     public Sprite[] GetPlayerSprites() { return playerSprites; }
     public Sprite[] GetJumpingSprites() { return jumpingSprites; }
+    public int GetNumofJumps() { return numJumps; }
+    public void SetNumofJumps(int numjumps) { numJumps = numjumps; }
 }

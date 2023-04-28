@@ -25,16 +25,20 @@ public class Player : MonoBehaviour
     bool playimpactsoundEffect = false;
 
     float jumpVelocity;
+    int numjumpsthisTurn;
+    
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         scene = SceneManager.GetActiveScene();
         audioSource = GetComponent<AudioSource>();
         jumpVelocity = 15;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        numjumpsthisTurn = 0;
     }
 
     void Update()
@@ -92,4 +96,6 @@ public class Player : MonoBehaviour
     public bool ReturnHasPlayed() { return hasPlayed; }
 
     public void SetPlayerJumpVelocity(int velocity) { jumpVelocity = velocity; }
+    public int GetNumJumpsThisTurn() { return numjumpsthisTurn; }
+    public void SetNumJumpsThisTurn(int numjumps) { numjumpsthisTurn = numjumps; }
 }

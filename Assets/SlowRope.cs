@@ -21,5 +21,7 @@ public class SlowRope : MonoBehaviour
     {
         RopeManager.instance.SetRopeSpeed(2f);
         transform.parent.gameObject.SetActive(false);
+        UIManager.Instance.GetBackToMainMenuBtn().SetActive(false);
+        UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
     }
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RopeManager : MonoBehaviour
+public class RopeManager : BaseRope
 {
     public static RopeManager instance;
 
     GameObject rope, ropeInst;
     [SerializeField]
     Transform ropestartingPosition;
-    float ropeSpeed;
+    
 
     Vector3 direction;
 
@@ -19,7 +19,6 @@ public class RopeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ropeSpeed = 0f;
         if (instance == null)
             instance = this;
         else
@@ -38,7 +37,20 @@ public class RopeManager : MonoBehaviour
     void Update()
     {
         if (ropeislowEnough && ropeInst.transform.position.y > minHeight.position.y)
+        {
             ropeislowEnough = false;
+            PlayerManager.Instance.SetNumofJumps(PlayerManager.Instance.GetNumofJumps() + 1);
+            if (PlayerManager.Instance.GetNumofJumps() == 5)
+                ++SaveData.current.profile.numBronze;
+            if (PlayerManager.Instance.GetNumofJumps() == 15)
+                ++SaveData.current.profile.numSilver;
+            if (PlayerManager.Instance.GetNumofJumps() == 50)
+                ++SaveData.current.profile.numGold;
+            if (PlayerManager.Instance.GetNumofJumps() == 75)
+                ++SaveData.current.profile.numPlat;
+            if (PlayerManager.Instance.GetNumofJumps() == 1000)
+                ++SaveData.current.profile.numWhy;
+        }
 
         if (ropeInst.transform.position.y > maxHeight.position.y)
             direction = Vector3.down;
@@ -49,17 +61,7 @@ public class RopeManager : MonoBehaviour
         }
         ropeInst.transform.Translate(direction * ropeSpeed * Time.deltaTime);
 
-        //++numOfJumps;
-        //if (numOfJumps == 5)
-        //    ++SaveData.current.profile.numBronze;
-        //if (numOfJumps == 15)
-        //    ++SaveData.current.profile.numSilver;
-        //if (numOfJumps == 50)
-        //    ++SaveData.current.profile.numGold;
-        //if (numOfJumps == 75)
-        //    ++SaveData.current.profile.numPlat;
-        //if (numOfJumps == 1000)
-        //    ++SaveData.current.profile.numWhy;
+        
     }
 
     public void SetRopeSpeed(float speed)

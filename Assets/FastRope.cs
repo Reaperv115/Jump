@@ -21,5 +21,6 @@ public class FastRope : MonoBehaviour
     {
         RopeManager.instance.SetRopeSpeed(10f);
         transform.parent.gameObject.SetActive(false);
+        UIManager.Instance.GetBackToMainMenuBtn().SetActive(false);
     }
 }

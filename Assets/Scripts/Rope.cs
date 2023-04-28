@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Rope : BaseRope
+public class Rope : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -12,9 +12,17 @@ public class Rope : BaseRope
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (RopeManager.instance.GetIsRopeLowEnough() && collision.transform.name.Equals("player(Clone)"))
+        if (RopeManager.instance.GetIsRopeLowEnough())
         {
-            print("rope tripped you");
+            RopeManager.instance.SetRopeSpeed(0f);
+            if (PlayerManager.Instance.GetNumofJumps() > SaveData.current.profile.numofJumps)
+            {
+                print("saving number of jumps");
+                SaveData.current.profile.numofJumps = PlayerManager.Instance.GetNumofJumps();
+            }
+            UIManager.Instance.GetReplayBtn().SetActive(true);
+            UIManager.Instance.GetBackToMainMenuBtn().SetActive(true);
+            UIManager.Instance.GetToggleAccoladesBtn().SetActive(true);
         }
     }
 
