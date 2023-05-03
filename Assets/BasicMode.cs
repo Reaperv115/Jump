@@ -11,6 +11,7 @@ public class BasicMode : MonoBehaviour
     {
         gameObject.SetActive(false);
         UIManager.Instance.GetBasicModeOptions().SetActive(true);
-        UIManager.Instance.GetYourChoiceBtn().SetActive(false);
+        UIManager.Instance.GetYourChoiceBtn().SetActive(true);
+        UIManager.Instance.GetRopeSpeedSlider().SetActive(false);
     }
 }

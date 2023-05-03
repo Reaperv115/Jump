@@ -329,16 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e317a7d415e6774e98186760ca2e22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  successfulJumps: {fileID: 0}
-  personalBest: {fileID: 0}
-  gameOver: {fileID: 0}
-  playAgain: {fileID: 0}
-  mainMenu: {fileID: 0}
-  toggleAccolades: {fileID: 0}
-  maxHeight: {fileID: 0}
-  minHeight: {fileID: 0}
-  playerPosition: {fileID: 695035794}
-  countdowntimerDisplay: {fileID: 0}
 --- !u!4 &415227576
 Transform:
   m_ObjectHideFlags: 0
@@ -647,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223436887035333168, guid: 7ad4b5523e008e445878655bbe56eace, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 225
+      value: 134
       objectReference: {fileID: 0}
     - target: {fileID: 6223436887035333168, guid: 7ad4b5523e008e445878655bbe56eace, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -888,7 +878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7801199656862553586, guid: f20f4c4b6c714514b8c86fa0b47cba87, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -401
+      value: -314
       objectReference: {fileID: 0}
     - target: {fileID: 7801199656862553586, guid: f20f4c4b6c714514b8c86fa0b47cba87, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1364,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3534803005523043237, guid: d763a0006952c134f8236b6ff2a95a20, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -225
+      value: -1286
       objectReference: {fileID: 0}
     - target: {fileID: 3534803005523043237, guid: d763a0006952c134f8236b6ff2a95a20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1780,7 +1770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6154784990402195459, guid: 9f6d832700b570241aea3caadb45fda3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -219
+      value: -1286
       objectReference: {fileID: 0}
     - target: {fileID: 6154784990402195459, guid: 9f6d832700b570241aea3caadb45fda3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1897,13 +1887,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1458686017}
   - {fileID: 604069066}
+  - {fileID: 1748581140}
   - {fileID: 1015887976}
   - {fileID: 1597472385}
   - {fileID: 908736046}
   - {fileID: 697500936}
-  - {fileID: 1748581140}
-  - {fileID: 1458686017}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

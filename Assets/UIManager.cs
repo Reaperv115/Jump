@@ -70,8 +70,9 @@ public class UIManager : MonoBehaviour
     {
         backtomainmenuBtnInst = Instantiate(backtomainmenuBtn, backtomainmenuBtnPosition.transform.position, backtomainmenuBtn.transform.rotation, canvas.transform);
         basicmodeOptionsInst = Instantiate(basicmodeOptions, basicmodeoptionsBtnPosition.transform.position, basicmodeOptions.transform.rotation, canvas.transform);
-        basicmodeOptionsInst.SetActive(false);
+        //basicmodeOptionsInst.SetActive(false);
         basicmodeBtnInst = Instantiate(basicmodeBtn, basicmodeBtnPosition.transform.position, basicmodeBtn.transform.rotation, canvas.transform);
+        basicmodeBtnInst.SetActive(false);
         yourchoicemodeBtnInst = Instantiate(yourchoicemodeBtn, youchoicemodeBtnPosition.transform.position, yourchoicemodeBtn.transform.rotation, canvas.transform);
         replaygameBtnInst = Instantiate(replayGameBtn, replayBtnPosition.transform.position, replayGameBtn.transform.rotation, canvas.transform);
         replaygameBtnInst.SetActive(false);

@@ -21,6 +21,7 @@ public class YourChoice : MonoBehaviour
     {
         gameObject.SetActive(false);
         UIManager.Instance.GetRopeSpeedSlider().gameObject.SetActive(true);
-        UIManager.Instance.GetBasicModeBtn().gameObject.SetActive(false);
+        UIManager.Instance.GetBasicModeBtn().gameObject.SetActive(true);
+        UIManager.Instance.GetBasicModeOptions().SetActive(false);
     }
 }
