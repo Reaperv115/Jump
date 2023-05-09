@@ -25,5 +25,6 @@ public class FastRope : MonoBehaviour
         UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
         GameManager.instance.SetGameHasStarted(true);
         UIManager.Instance.GetCountdownTimer().SetActive(true);
+        UIManager.Instance.GetYourChoiceBtn().SetActive(false);
     }
 }

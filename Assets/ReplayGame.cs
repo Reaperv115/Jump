@@ -15,7 +15,7 @@ public class ReplayGame : MonoBehaviour
     void ReloadGame()
     {
         SerializationManager.Save("Data", SaveData.current);
-        UIManager.Instance.GetBasicModeBtn().SetActive(true);
+        UIManager.Instance.GetBasicModeOptions().SetActive(true);
         UIManager.Instance.GetYourChoiceBtn().SetActive(true);
         PlayerManager.Instance.SetNumofJumps(0);
         gameObject.SetActive(false);

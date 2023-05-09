@@ -27,5 +27,6 @@ public class BeginGamePlayerChoice : MonoBehaviour
         UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
         GameManager.instance.SetGameHasStarted(true);
         UIManager.Instance.GetCountdownTimer().SetActive(true);
+        UIManager.Instance.GetBasicModeBtn().SetActive(false);
     }
 }

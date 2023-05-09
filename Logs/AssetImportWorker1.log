@@ -15,7 +15,7 @@ C:/Dev/Jumpy
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-61508
+50046
 Successfully changed project path to: C:/Dev/Jumpy
 C:/Dev/Jumpy
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,3 +47,7 @@ C:/Dev/Jumpy
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [12872] Host "[IP] 192.168.1.32 [Port] 0 [Flags] 2 [Guid] 2386050360 [EditorId] 2386050360 [Version] 1048832 [Id] WindowsEditor(7,TheRhine) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [12872] Host "[IP] 192.168.1.32 [Port] 0 [Flags] 2 [Guid] 2386050360 [EditorId] 2386050360 [Version] 1048832 [Id] WindowsEditor(7,TheRhine) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+

@@ -25,5 +25,6 @@ public class MediumRope : MonoBehaviour
         GameManager.instance.SetGameHasStarted(true);
         UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
         UIManager.Instance.GetCountdownTimer().SetActive(true);
+        UIManager.Instance.GetYourChoiceBtn().SetActive(false);
     }
 }

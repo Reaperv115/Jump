@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RFCRC14DRAL",
         "name": "com.GLITCGaming.Jump",
-        "processId": 11059,
+        "processId": 22066,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -41,109 +41,31 @@
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 16212,
+            "processId": 27170,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 17208,
+            "processId": 28452,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 18404,
+            "processId": 29570,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 19045,
+            "processId": 20094,
             "exited": true
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 20289,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 21639,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 22110,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 22749,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 23576,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 24203,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 24947,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 25367,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 27234,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 32397,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 11781,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 7283,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 10147,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 11059,
+            "processId": 22066,
             "exited": false
         }
     ],

@@ -43,17 +43,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (IsGrounded())
+        if (GameManager.instance.GetGameHasStarted())
         {
-            spriteRenderer.sprite = PlayerManager.Instance.GetPlayerSprites()[0];
-            if (playimpactsoundEffect)
+            if (IsGrounded())
             {
-                audioSource.Play();
-                playimpactsoundEffect = false;
+                spriteRenderer.sprite = PlayerManager.Instance.GetPlayerSprites()[0];
+                if (playimpactsoundEffect)
+                {
+                    audioSource.Play();
+                    playimpactsoundEffect = false;
+                }
+                else
+                    audioSource.Stop();
+                canJump = true;
             }
-            else
-                audioSource.Stop();
-            canJump = true;
         }
         if (!canJump)
         {
