@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RFCRC14DRAL",
         "name": "com.GLITCGaming.Jump",
-        "processId": 22066,
+        "processId": 24456,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -41,12 +41,6 @@
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 27170,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
             "processId": 28452,
             "exited": true
         },
@@ -66,6 +60,12 @@
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
             "processId": 22066,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 24456,
             "exited": false
         }
     ],
