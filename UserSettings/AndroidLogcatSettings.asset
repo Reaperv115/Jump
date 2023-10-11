@@ -1,12 +1,12 @@
 {
-    "m_SelectedDeviceId": "RFCRC14DRAL",
+    "m_SelectedDeviceId": "192.168.1.16:5555",
     "m_SelectedPackage": {
-        "deviceId": "RFCRC14DRAL",
-        "name": "com.GLITCGaming.Jump",
-        "processId": 24456,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
-    "m_SelectedPriority": 0,
+    "m_SelectedPriority": 1,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "RF8M40JKDYE",
@@ -34,39 +34,63 @@
         },
         {
             "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 10166,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 25045,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 26217,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
             "name": "com.teslacoilsw.launcher",
-            "processId": 7999,
+            "processId": 7568,
             "exited": false
         },
         {
             "deviceId": "RFCRC14DRAL",
             "name": "com.GLITCGaming.Jump",
-            "processId": 28452,
+            "processId": 6180,
             "exited": true
         },
         {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 29570,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 20094,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 22066,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 24456,
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.teslacoilsw.launcher",
+            "processId": 7568,
             "exited": false
+        },
+        {
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.instagram.android",
+            "processId": 3059,
+            "exited": true
+        },
+        {
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 19108,
+            "exited": true
+        },
+        {
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 21366,
+            "exited": true
+        },
+        {
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.GLITCGaming.Jump",
+            "processId": 22551,
+            "exited": true
         }
     ],
     "m_Tags": {
@@ -77,7 +101,7 @@
             },
             {
                 "m_Name": "No Filter",
-                "m_Selected": true
+                "m_Selected": false
             },
             {
                 "m_Name": "",
@@ -93,7 +117,7 @@
             },
             {
                 "m_Name": "Unity",
-                "m_Selected": false
+                "m_Selected": true
             },
             {
                 "m_Name": "CRASH",

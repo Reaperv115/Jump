@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 405029179231830090}
   - component: {fileID: 405029179231830091}
-  - component: {fileID: 738775629686259432}
   m_Layer: 0
   m_Name: menu background
   m_TagString: Untagged
@@ -28,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.02, y: -0.05, z: 0}
   m_LocalScale: {x: 9.878582, y: 9.998366, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,18 +81,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &738775629686259432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405029179231830085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c463310b4ab7d42883032aeb0508f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -1,0 +1,5 @@
+C:/Dev/C-Sharp/Jumpy/.utmp/RelWithDebInfo/b3zg1e5g/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Dev/C-Sharp/Jumpy/.utmp/RelWithDebInfo/b3zg1e5g/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Dev/C-Sharp/Jumpy/.utmp/RelWithDebInfo/b3zg1e5g/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Dev/C-Sharp/Jumpy/.utmp/RelWithDebInfo/b3zg1e5g/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Dev/C-Sharp/Jumpy/.utmp/RelWithDebInfo/b3zg1e5g/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Why : MonoBehaviour
 {
+    GameObject accoladesDisplay;
     TextMeshProUGUI whyCount;
 
     SpriteRenderer spriteRenderer;
@@ -13,7 +14,8 @@ public class Why : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        whyCount = GameObject.Find("why count").GetComponent<TextMeshProUGUI>();
+        accoladesDisplay = GameObject.Find("Accolade Displays");
+        whyCount = accoladesDisplay.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         spriteRenderer = GetComponent<SpriteRenderer>();   
     }
 

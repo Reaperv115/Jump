@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         countDown = 3f;
     }
 
+    
+
     public bool HasSwitchedScenes() { return switchedScenes; }
     public void SwitchScenes(bool switchedscenes) { switchedScenes = switchedscenes; }
     public bool GetGameHasStarted() { return gamehasStarted; }

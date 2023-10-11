@@ -12,7 +12,7 @@ public class LoadGame : MonoBehaviour
 
     public void LoadGameScene()
     {
+        UIManager.Instance.SetIsInstantiated(false);
         SceneManager.LoadScene("Game");
-        //UIManager.Instance.SetPlayerCharacterChoice(UIManager.Instance.GetCharacterSelectionDrpDwn().value);
     }
 }

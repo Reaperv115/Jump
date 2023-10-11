@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class Platinum : MonoBehaviour
 {
+    GameObject displayAccolades;
     TextMeshProUGUI platCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        platCount = GameObject.Find("platinum count").GetComponent<TextMeshProUGUI>();
+        displayAccolades = GameObject.Find("Accolade Displays");
+        platCount = displayAccolades.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        platCount.text = "Count: " + SaveData.current.profile.numPlat.ToString();
+        platCount.text = "Count: " + SaveData.current.profile.numBronze.ToString();
     }
 }

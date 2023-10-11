@@ -8,4 +8,5 @@ public class PlayerProfile
     public int numGold;
     public int numPlat;
     public int numWhy;
+    public int numGetLit;
 }

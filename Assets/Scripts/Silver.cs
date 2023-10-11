@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class Silver : MonoBehaviour
 {
+    GameObject displayAccolades;
     TextMeshProUGUI silverCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        silverCount = GameObject.Find("silver count").GetComponent<TextMeshProUGUI>();
+        displayAccolades = GameObject.Find("Accolade Displays");
+        silverCount = displayAccolades.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        silverCount.text = "Count: " + SaveData.current.profile.numSilver.ToString();
+        silverCount.text = "Count: " + SaveData.current.profile.numBronze.ToString();
     }
 }

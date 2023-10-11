@@ -1,0 +1,5 @@
+# ninja log v5
+1	298	7186496981282382	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	52a0ac8d51e2a62c
+300	497	7186496982673670	C:/Dev/C-Sharp/Jumpy/Library/PramData/AndroidApplicationController/Cache/com.GLITCGaming.Jump/gradle-project/unityLibrary/build/intermediates/cxx/Debug/183z1j2d/obj/arm64-v8a/libswappywrapper.so	d7de7a0d1db8756e
+4	236	7186519274498314	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	52a0ac8d51e2a62c
+237	444	7186519275918201	C:/Dev/C-Sharp/Jumpy/Library/PramData/AndroidApplicationController/Cache/com.GLITCGaming.Jump/gradle-project/unityLibrary/build/intermediates/cxx/Debug/183z1j2d/obj/arm64-v8a/libswappywrapper.so	d7de7a0d1db8756e

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb2d;
 
 
-    TMP_Dropdown characterSelection;
+    public TMP_Dropdown characterSelection;
 
     Scene scene;
 
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(this);
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         scene = SceneManager.GetActiveScene();
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         {
             if (IsGrounded())
             {
-                spriteRenderer.sprite = PlayerManager.Instance.GetPlayerSprites()[0];
+                //spriteRenderer.sprite = PlayerManager.Instance.GetPlayerSprites()[0];
                 if (playimpactsoundEffect)
                 {
                     audioSource.Play();
@@ -62,29 +62,30 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (Input.touchCount > 0)
+        if (Input.touchCount < 0)
         {
-            Touch t = Input.GetTouch(0);
+            return;
+        }
+        Touch t = Input.GetTouch(0);
 
-            if (t.phase == TouchPhase.Began)
-            {
-                playimpactsoundEffect = true;
-                rb2d.velocity = Vector2.up * jumpVelocity;
-                canJump = false;
-                if (PlayerManager.Instance.GetPlayerSprites()[0].name.Equals("ryan"))
-                {
-                    if (jumpingIndex == 3)
-                    {
-                        spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[jumpingIndex];
-                        jumpingIndex = 0;
-                    }
-                    else
-                    {
-                        spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[jumpingIndex];
-                        ++jumpingIndex;
-                    }
-                }
-            }
+        if (t.phase == TouchPhase.Began)
+        {
+            playimpactsoundEffect = true;
+            rb2d.velocity = Vector2.up * jumpVelocity;
+            canJump = false;
+            //if (PlayerManager.Instance.GetPlayerSprites()[0].name.Equals("ryan"))
+            //{
+            //    if (jumpingIndex == 3)
+            //    {
+            //        spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[jumpingIndex];
+            //        jumpingIndex = 0;
+            //    }
+            //    else
+            //    {
+            //        spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[jumpingIndex];
+            //        ++jumpingIndex;
+            //    }
+            //}
         }
 
     }

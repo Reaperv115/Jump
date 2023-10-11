@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Bronze : MonoBehaviour
 {
+    GameObject displayAccolades;
     TextMeshProUGUI bronzeCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        bronzeCount = GameObject.Find("bronze count").GetComponent<TextMeshProUGUI>();
+        displayAccolades = GameObject.Find("Accolade Displays");
+        bronzeCount = displayAccolades.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
