@@ -10,12 +10,12 @@ public class FourTwentySixtyNine : MonoBehaviour
     void Start()
     {
         displayAccolades = GameObject.Find("Accolade Displays");
-        FTSNCount = displayAccolades.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        FTSNCount = displayAccolades.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        FTSNCount.text = "Count: " + SaveData.current.profile.numBronze.ToString();
+        FTSNCount.text = "Count: " + SaveData.current.profile.numGetLit.ToString();
     }
 }

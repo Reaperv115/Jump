@@ -24,7 +24,7 @@ public class DisplayDistractions : MonoBehaviour
     void Update()
     {
 
-        if (GameManager.instance.GetGameHasStarted())
+        if (GameManager.instance.gamehasStarted)
         {
             if (distractionTimer <= 0.0f)
             {

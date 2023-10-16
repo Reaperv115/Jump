@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,64 +40,46 @@ public class UIManager : MonoBehaviour
             Debug.LogError("trying to create multiple instances of UI Manager");
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
 
-
-        gameCanvas = Resources.Load<GameObject>("UI/Game UI/Canvas");
-        countdownTimer = FindCanvasObject(0, gameCanvas, "Countdown");
+        scene = SceneManager.GetActiveScene();
+        if (scene.name.Equals("Game"))
+            gameCanvas = GameObject.Find("Canvas");
+        else
+            mainmenuCanvas = GameObject.Find("Canvas");
     }
 
     // Update is called once per frame
     void Update()
     {
-        scene = SceneManager.GetActiveScene();
-        switch (scene.name)
-        {
-            case "MainMenu":
-                if (instantiated.Equals(false))
-                {
-                    InstantiateMainMenuUI();
-                    instantiated = true;
-                }
-                break;
-            case "Game":
-                if (instantiated.Equals(false))
-                {
-                    InstantiateGameUI();
-                    instantiated = true;
-                }
-                break;
-            default:
-                break;
-        }
-        //if (instantiated && scene.name.Equals("Game"))
+        //scene = SceneManager.GetActiveScene();
+        //switch (scene.name)
         //{
-        //    personalBest.GetComponent<TextMeshProUGUI>().text = "Personal Best: " + SaveData.current.profile.numofJumps;
-        //    numjumpsthisTurnTxt.GetComponent<TextMeshProUGUI>().text = "Jumps: " + PlayerManager.Instance.GetNumofJumps();
+        //    case "MainMenu":
+        //        if (instantiated.Equals(false))
+        //        {
+        //            InstantiateMainMenuUI();
+        //            instantiated = true;
+        //        }
+        //        break;
+        //    case "Game":
+        //        if (instantiated.Equals(false))
+        //        {
+        //            InstantiateGameUI();
+        //            instantiated = true;
+        //        }
+        //        if (GameManager.instance.gamehasStarted)
+        //        {
+        //            countdownTimer = FindCanvasObject(0, gameCanvas, "Countdown");
+                    
+        //            countdownTimer.GetComponent<TextMeshProUGUI>().text = "Game Will Start In: " + GameManager.instance.pregamecountDown.ToString();
+        //            GameManager.instance.pregamecountDown -= Time.deltaTime;
+
+        //        }
+        //        break;
+        //    default:
+        //        break;
         //}
+        
 
-    }
-
-    
-
-    void InstantiateGameUI()
-    {
-
-        gamecanvasInst = Instantiate(gameCanvas, gameCanvas.transform.position, gameCanvas.transform.rotation);
-        GameObject replayBtn = gamecanvasInst.transform.GetChild(1).transform.GetChild(0).gameObject;
-        replayBtn.SetActive(false);
-        GameObject basicmodeOptns = gamecanvasInst.transform.GetChild(1).transform.GetChild(4).gameObject;
-        basicmodeOptns.transform.GetChild(0).gameObject.SetActive(false);
-        basicmodeOptns.transform.GetChild(1).gameObject.SetActive(false);
-        basicmodeOptns.transform.GetChild(2).gameObject.SetActive(false);
-        GameObject ropespeedSlider = gamecanvasInst.transform.GetChild(1).transform.GetChild(5).gameObject;
-        ropespeedSlider.SetActive(false);
-        //personalBest = GetPersonalBestDisplay();
-        //numjumpsthisTurnTxt = GetJumpsDisplay();
-    }
-
-    void InstantiateMainMenuUI()
-    {
-        mainmenuCanvas = Resources.Load<GameObject>("UI/Main Menu UI/Canvas");
-        Instantiate(mainmenuCanvas, mainmenuCanvas.transform.position, mainmenuCanvas.transform.rotation);
     }
 
 
@@ -126,6 +109,21 @@ public class UIManager : MonoBehaviour
     public GameObject GetJumpsDisplay()
     {
         return FindCanvasObject(gameCanvas, "Jumps");
+    }
+
+    public GameObject GetBackToMenuButton()
+    {
+        return FindCanvasObject(gameCanvas, "Back");
+    }
+
+    public GameObject GetToggleAccoladesButton()
+    {
+        return FindCanvasObject(gameCanvas, "Accolades");
+    }
+
+    public GameObject GetCountDownTimer()
+    {
+        return FindCanvasObject(1, gameCanvas, "Countdown");
     }
 
     private GameObject FindCanvasObject(GameObject canv, string obj)

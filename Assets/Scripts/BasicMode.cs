@@ -11,11 +11,9 @@ public class BasicMode : MonoBehaviour
     public void NormalMode()
     {
         gameObject.SetActive(false);
-        var options = UIManager.Instance.GetBasicModeOptions();
-        options.transform.GetChild(0).gameObject.SetActive(true);
-        options.transform.GetChild(1).gameObject.SetActive(true);
-        options.transform.GetChild(2).gameObject.SetActive(true);
-        var choice = UIManager.Instance.GetYourChoiceButton();
+        var options = GameObject.Find("Buttons").transform.GetChild(4).gameObject;
+        options.SetActive(true);
+        var choice = GameObject.Find("Buttons").transform.GetChild(2).gameObject;
         choice.SetActive(false);
     }
 }

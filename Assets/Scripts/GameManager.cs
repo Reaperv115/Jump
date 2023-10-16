@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,9 +7,10 @@ public class GameManager : MonoBehaviour
     
     private bool switchedScenes;
 
-    bool gamehasStarted = false;
-
-    float countDown;
+    [HideInInspector]
+    public float pregamecountDown;
+    [HideInInspector]
+    public bool gamehasStarted;
 
     private void Awake()
     {
@@ -16,15 +18,16 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             print("Trying to create multiple instances of GameManager");
-        countDown = 3f;
+        gamehasStarted = false;
+        pregamecountDown = 0f;
     }
 
-    
+    private void Update()
+    {
+    }
+
+
 
     public bool HasSwitchedScenes() { return switchedScenes; }
     public void SwitchScenes(bool switchedscenes) { switchedScenes = switchedscenes; }
-    public bool GetGameHasStarted() { return gamehasStarted; }
-    public void SetGameHasStarted(bool gamestarted) { gamehasStarted = gamestarted; }
-    public float GetGameCountDown() { return countDown;}
-    public void SetGameCountDown(float countdown) { countDown = countdown; }
 }

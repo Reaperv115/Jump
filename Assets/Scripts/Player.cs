@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.GetGameHasStarted())
+        if (GameManager.instance.gamehasStarted)
         {
             if (IsGrounded())
             {
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (Input.touchCount < 0)
+        if (Input.touchCount <= 0)
         {
             return;
         }

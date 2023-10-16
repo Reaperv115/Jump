@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     Transform playerPosition;
-    string filePath = "Assets/Players";
 
     int numJumps;
     [HideInInspector]
@@ -26,11 +25,9 @@ public class PlayerManager : MonoBehaviour
         else
             Debug.LogError("Trying to create multiple instances of player manager");
         standingSprites = Resources.LoadAll<Sprite>("Players/Standing");
-        Debug.Log("num standing sprites: " + standingSprites.Length);
 
         playerGO = Resources.Load<GameObject>("playerGos/player");
         playerGOInst = Instantiate(playerGO, playerPosition.position, playerGO.transform.rotation);
-        print(playerGOInst);
     }
 
     // Update is called once per frame

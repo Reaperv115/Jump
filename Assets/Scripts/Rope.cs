@@ -17,8 +17,7 @@ public class Rope : MonoBehaviour
             //UIManager.Instance.GetReplayBtn().SetActive(true);
             //UIManager.Instance.GetBackToMainMenuBtn().SetActive(true);
             //UIManager.Instance.GetToggleAccoladesBtn().SetActive(true);
-            GameManager.instance.SetGameCountDown(3f);
-            GameManager.instance.SetGameHasStarted(false);
+            GameManager.instance.gamehasStarted = false;
         }
     }
 
