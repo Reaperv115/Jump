@@ -14,10 +14,11 @@ public class Rope : MonoBehaviour
             RopeManager.instance.SetRopeSpeed(0f);
             if (PlayerManager.Instance.GetNumofJumps() > SaveData.current.profile.numofJumps)
                 SaveData.current.profile.numofJumps = PlayerManager.Instance.GetNumofJumps();
-            //UIManager.Instance.GetReplayBtn().SetActive(true);
-            //UIManager.Instance.GetBackToMainMenuBtn().SetActive(true);
-            //UIManager.Instance.GetToggleAccoladesBtn().SetActive(true);
+            UIManager.Instance.GetReplayButton().SetActive(true);
+            UIManager.Instance.GetBackToMainMenuButton().SetActive(true);
+            UIManager.Instance.GetToggleAccoladesButton().SetActive(true);
             GameManager.instance.gamehasStarted = false;
+            Destroy(PlayerManager.Instance.gameObject);
         }
     }
 

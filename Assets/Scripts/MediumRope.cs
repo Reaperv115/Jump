@@ -25,6 +25,7 @@ public class MediumRope : MonoBehaviour
         {
             canv.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
         }
-        RopeManager.instance.SetRopeSpeed(5f);
+        RopeManager.instance.SetRopeSpeed(10f);
+        GameManager.instance.gamehasStarted = true;
     }
 }

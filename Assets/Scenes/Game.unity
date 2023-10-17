@@ -197,15 +197,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405029179231830091, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
       propertyPath: m_Color.b
-      value: 0.9433962
+      value: 0.9622642
       objectReference: {fileID: 0}
     - target: {fileID: 405029179231830091, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
       propertyPath: m_Color.g
-      value: 0.04918868
+      value: 0.9479281
       objectReference: {fileID: 0}
     - target: {fileID: 405029179231830091, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
       propertyPath: m_Color.r
-      value: 0.0391598
+      value: 0.9477394
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 405029179231830084, guid: 721df11e9f664b248aa7c9de439fa333, type: 3}
@@ -1210,6 +1210,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7341137391425297187, guid: 8ce6a1ac11215f04fb9b49ca80dab054, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1178169791}
+    - target: {fileID: 7341137391425297187, guid: 8ce6a1ac11215f04fb9b49ca80dab054, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoBacktoMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341137391425297187, guid: 8ce6a1ac11215f04fb9b49ca80dab054, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GoBackToMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7622779213327134702, guid: 8ce6a1ac11215f04fb9b49ca80dab054, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1261,6 +1273,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc278c8d7c7357a45b2af2d5e04169f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1178169791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6998072520015617621, guid: 8ce6a1ac11215f04fb9b49ca80dab054, type: 3}
+  m_PrefabInstance: {fileID: 773171386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f338c2b84dbff48923d92f8bc3b5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1392579055

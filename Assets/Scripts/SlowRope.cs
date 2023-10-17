@@ -22,6 +22,5 @@ public class SlowRope : MonoBehaviour
         RopeManager.instance.SetRopeSpeed(2f);
         transform.parent.gameObject.SetActive(false);
         GameManager.instance.gamehasStarted = true;
-        UIManager.Instance.GameHasStarted();
     }
 }

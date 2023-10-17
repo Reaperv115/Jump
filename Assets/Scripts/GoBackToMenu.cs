@@ -1,3 +1,4 @@
+using System.Net.WebSockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,8 +13,11 @@ public class GoBackToMenu : MonoBehaviour
 
     public void GoBacktoMenu()
     {
-        GameObject player = GameObject.Find("player");
-        Destroy(player);
+        var obj = GameObject.Find("player(Clone)");
+        if (obj)
+            Destroy(obj);
+        if (PlayerManager.Instance != null)
+            Destroy(PlayerManager.Instance);
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -17,7 +17,6 @@ public class GameUI : MonoBehaviour
     {
         countdownTimer = GameObject.Find("Text").transform.GetChild(3).gameObject;
         personalBest = GameObject.Find("Text").transform.GetChild(1).gameObject;
-        print(personalBest);
         numjumpscurrTurn = GameObject.Find("Text").transform.GetChild(2).gameObject;
         player = PlayerManager.Instance.GetPlayerGO();
     }
@@ -26,7 +25,7 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         personalBest.GetComponent<TextMeshProUGUI>().text = "Personal Best: " + SaveData.current.profile.numofJumps;
-        numjumpscurrTurn.GetComponent<TextMeshProUGUI>().text = "Jumps: " + player.GetComponent<Player>().GetNumJumpsThisTurn();
+        numjumpscurrTurn.GetComponent<TextMeshProUGUI>().text = "Jumps: " + PlayerManager.Instance.GetNumofJumps();
         if (GameManager.instance.pregamecountDown > 0f)
         {
             countdownTimer.GetComponent<TextMeshProUGUI>().text = "Game Will Begin In: " + (int)GameManager.instance.pregamecountDown;

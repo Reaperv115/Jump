@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
     GameObject playerGO, playerGOInst;
-    Scene scene;
+    bool gameLoaded = false;
 
     Sprite[] jumpingSprites;
     Sprite[] standingSprites;
@@ -26,16 +26,23 @@ public class PlayerManager : MonoBehaviour
             Debug.LogError("Trying to create multiple instances of player manager");
         standingSprites = Resources.LoadAll<Sprite>("Players/Standing");
 
-        playerGO = Resources.Load<GameObject>("playerGos/player");
+        playerGO = Resources.Load<GameObject>("Players/playerGOs/player");
+        print(playerGO);
         playerGOInst = Instantiate(playerGO, playerPosition.position, playerGO.transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerGOInst.GetComponent<SpriteRenderer>().sprite = standingSprites[selectedPlayer];
+        if (playerGOInst)
+            playerGOInst.GetComponent<SpriteRenderer>().sprite = standingSprites[selectedPlayer];
 
 
+        if (gameLoaded)
+        {
+            LoadJumpingSprites(selectedPlayer);
+            gameLoaded = false;
+        }
     }
 
     
@@ -48,9 +55,28 @@ public class PlayerManager : MonoBehaviour
     {
         return standingSprites;
     }
+    public Sprite[] GetJumpingSprites()
+    {
+        return jumpingSprites;
+    }
 
     public void LoadJumpingSprites(int playerIndex)
     {
-
+        switch (playerIndex) 
+        {
+            case 0:
+                jumpingSprites = Resources.LoadAll<Sprite>("Players/Alexis/jumping");
+                break;
+            case 1:
+                jumpingSprites = Resources.LoadAll<Sprite>("Players/Ryan/jumping");
+                break;
+            case 2:
+                jumpingSprites = Resources.LoadAll<Sprite>("Players/Tyler/jumping");
+                break;
+        }
+    }
+    public void SetGameLoaded(bool gameloaded)
+    {
+        gameLoaded = gameloaded;
     }
 }

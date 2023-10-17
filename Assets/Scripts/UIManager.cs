@@ -14,8 +14,7 @@ public class UIManager : MonoBehaviour
     GameObject personalBest;
     GameObject numjumpsthisTurnTxt;
 
-    GameObject gameCanvas, gamecanvasInst;
-    GameObject mainmenuCanvas;
+    GameObject canvas;
 
     GameObject countdownTimer;
 
@@ -40,90 +39,72 @@ public class UIManager : MonoBehaviour
             Debug.LogError("trying to create multiple instances of UI Manager");
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
 
-        scene = SceneManager.GetActiveScene();
-        if (scene.name.Equals("Game"))
-            gameCanvas = GameObject.Find("Canvas");
-        else
-            mainmenuCanvas = GameObject.Find("Canvas");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //scene = SceneManager.GetActiveScene();
-        //switch (scene.name)
-        //{
-        //    case "MainMenu":
-        //        if (instantiated.Equals(false))
-        //        {
-        //            InstantiateMainMenuUI();
-        //            instantiated = true;
-        //        }
-        //        break;
-        //    case "Game":
-        //        if (instantiated.Equals(false))
-        //        {
-        //            InstantiateGameUI();
-        //            instantiated = true;
-        //        }
-        //        if (GameManager.instance.gamehasStarted)
-        //        {
-        //            countdownTimer = FindCanvasObject(0, gameCanvas, "Countdown");
-                    
-        //            countdownTimer.GetComponent<TextMeshProUGUI>().text = "Game Will Start In: " + GameManager.instance.pregamecountDown.ToString();
-        //            GameManager.instance.pregamecountDown -= Time.deltaTime;
 
-        //        }
-        //        break;
-        //    default:
-        //        break;
-        //}
-        
+        scene = SceneManager.GetActiveScene();
+        if (scene.name.Equals("Game"))
+            canvas = GameObject.Find("Canvas");
+        else
+            canvas = GameObject.Find("Canvas");
 
     }
 
 
     public GameObject GetBasicModeOptions() 
     {
-        GameObject basicmodeOptions = FindCanvasObject(gamecanvasInst, "Options");
+        GameObject basicmodeOptions = FindCanvasObject(canvas, "Options");
         return basicmodeOptions;
     }
     public GameObject GetYourChoiceButton()
     {
-        GameObject yourchoiceButton = FindCanvasObject(gamecanvasInst, "Choice");
+        GameObject yourchoiceButton = FindCanvasObject(canvas, "Choice");
         return yourchoiceButton;
     }
     public GameObject GetRopeSpeedSlider()
     {
-        return FindCanvasObject(gamecanvasInst, "Slider");
+        return FindCanvasObject(canvas, "Slider");
     }
 
     public GameObject GetBasicModeBtn()
     {
-        return FindCanvasObject(gamecanvasInst, "Basic");
+        return FindCanvasObject(canvas, "Basic");
     }
     public GameObject GetPersonalBestDisplay()
     {
-        return FindCanvasObject(gameCanvas, "Best");
+        return FindCanvasObject(canvas, "Best");
     }
     public GameObject GetJumpsDisplay()
     {
-        return FindCanvasObject(gameCanvas, "Jumps");
+        return FindCanvasObject(canvas, "Jumps");
     }
 
     public GameObject GetBackToMenuButton()
     {
-        return FindCanvasObject(gameCanvas, "Back");
+        return FindCanvasObject(canvas, "Back");
     }
 
     public GameObject GetToggleAccoladesButton()
     {
-        return FindCanvasObject(gameCanvas, "Accolades");
+        return FindCanvasObject(canvas, "Accolades");
     }
 
     public GameObject GetCountDownTimer()
     {
-        return FindCanvasObject(1, gameCanvas, "Countdown");
+        return FindCanvasObject(1, canvas, "Countdown");
+    }
+
+    public GameObject GetReplayButton()
+    {
+        return FindCanvasObject(canvas, "Replay");
+    }
+    public GameObject GetBackToMainMenuButton()
+    {
+        return FindCanvasObject(canvas, "Back");
     }
 
     private GameObject FindCanvasObject(GameObject canv, string obj)
@@ -147,15 +128,6 @@ public class UIManager : MonoBehaviour
                 i = canv.transform.GetChild(childIndex).transform.childCount;
             }
         return canv.transform.GetChild(childIndex).transform.GetChild(val).gameObject;
-    }
-
-    public void GameHasStarted()
-    {
-        for (int i = 0; i < gamecanvasInst.transform.GetChild(1).transform.childCount; ++i)
-        {
-            if (gamecanvasInst.transform.GetChild(1).transform.GetChild(i).gameObject.activeSelf)
-                gamecanvasInst.transform.GetChild(1).transform.GetChild(i).gameObject.SetActive(false);
-        }
     }
     public GameObject GetCountdownTimer() { return countdownTimer; }
 

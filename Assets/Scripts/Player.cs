@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this.gameObject);
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
         scene = SceneManager.GetActiveScene();
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         {
             if (IsGrounded())
             {
-                //spriteRenderer.sprite = PlayerManager.Instance.GetPlayerSprites()[0];
+                spriteRenderer.sprite = PlayerManager.Instance.GetStandingSprites()[PlayerManager.Instance.selectedPlayer];
                 if (playimpactsoundEffect)
                 {
                     audioSource.Play();
@@ -58,34 +58,23 @@ public class Player : MonoBehaviour
                 canJump = true;
             }
         }
-        if (!canJump)
+        if (canJump)
         {
-            return;
-        }
-        if (Input.touchCount <= 0)
-        {
-            return;
-        }
-        Touch t = Input.GetTouch(0);
 
-        if (t.phase == TouchPhase.Began)
-        {
-            playimpactsoundEffect = true;
-            rb2d.velocity = Vector2.up * jumpVelocity;
-            canJump = false;
-            //if (PlayerManager.Instance.GetPlayerSprites()[0].name.Equals("ryan"))
-            //{
-            //    if (jumpingIndex == 3)
-            //    {
-            //        spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[jumpingIndex];
-            //        jumpingIndex = 0;
-            //    }
-            //    else
-            //    {
-            //        spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[jumpingIndex];
-            //        ++jumpingIndex;
-            //    }
-            //}
+
+            if (Input.touchCount > 0)
+            {
+                Touch t = Input.GetTouch(0);
+
+                if (t.phase == TouchPhase.Began)
+                {
+                    playimpactsoundEffect = true;
+                    rb2d.velocity = Vector2.up * jumpVelocity;
+                    canJump = false;
+                    int num = Random.Range(0, PlayerManager.Instance.GetJumpingSprites().Length);
+                    spriteRenderer.sprite = PlayerManager.Instance.GetJumpingSprites()[num];
+                }
+            }
         }
 
     }

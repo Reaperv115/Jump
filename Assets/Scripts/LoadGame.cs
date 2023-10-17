@@ -12,6 +12,7 @@ public class LoadGame : MonoBehaviour
 
     public void LoadGameScene()
     {
+        PlayerManager.Instance.SetGameLoaded(true);
         SceneManager.LoadScene("Game");
     }
 }
