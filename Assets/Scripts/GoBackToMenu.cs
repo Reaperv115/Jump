@@ -14,8 +14,7 @@ public class GoBackToMenu : MonoBehaviour
     public void GoBacktoMenu()
     {
         var obj = GameObject.Find("player(Clone)");
-        if (obj)
-            Destroy(obj);
+        Destroy(obj);
         if (PlayerManager.Instance != null)
             Destroy(PlayerManager.Instance);
         SceneManager.LoadScene("MainMenu");

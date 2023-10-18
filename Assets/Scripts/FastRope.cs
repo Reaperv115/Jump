@@ -19,11 +19,13 @@ public class FastRope : MonoBehaviour
 
     void BeginFastRope()
     {
-        RopeManager.instance.SetRopeSpeed(10f);
-        transform.parent.gameObject.SetActive(false);
-        UIManager.Instance.GetBackToMenuButton().SetActive(false);
+        GameManager.instance.pregamecountDown = 3f;
+        var canv = GameObject.Find("Canvas");
+        for (int i = 0; i < canv.transform.GetChild(1).childCount; i++)
+        {
+            canv.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+        }
+        RopeManager.instance.SetRopeSpeed(15f);
         GameManager.instance.gamehasStarted = true;
-        UIManager.Instance.GetToggleAccoladesButton().SetActive(false);
-        UIManager.Instance.GetYourChoiceButton().SetActive(false);
     }
 }

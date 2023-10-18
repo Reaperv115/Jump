@@ -18,7 +18,7 @@ public class Rope : MonoBehaviour
             UIManager.Instance.GetBackToMainMenuButton().SetActive(true);
             UIManager.Instance.GetToggleAccoladesButton().SetActive(true);
             GameManager.instance.gamehasStarted = false;
-            Destroy(PlayerManager.Instance.gameObject);
+            
         }
     }
 

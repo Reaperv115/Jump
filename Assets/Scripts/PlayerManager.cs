@@ -48,6 +48,10 @@ public class PlayerManager : MonoBehaviour
     
 
     public GameObject GetPlayerGO() { return playerGOInst; }
+    public void SetPlayerGO(GameObject gO)
+    {
+        playerGOInst= gO;
+    }
     public Player GetPlayerRef() { return playerGOInst.GetComponent<Player>(); }
     public int GetNumofJumps() { return numJumps; }
     public void SetNumofJumps(int numjumps) { numJumps = numjumps; }

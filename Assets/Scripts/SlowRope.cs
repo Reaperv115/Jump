@@ -19,8 +19,13 @@ public class SlowRope : MonoBehaviour
 
     void BeginSlowRope()
     {
-        RopeManager.instance.SetRopeSpeed(2f);
-        transform.parent.gameObject.SetActive(false);
+        GameManager.instance.pregamecountDown = 3f;
+        var canv = GameObject.Find("Canvas");
+        for (int i = 0; i < canv.transform.GetChild(1).childCount; i++)
+        {
+            canv.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+        }
+        RopeManager.instance.SetRopeSpeed(5f);
         GameManager.instance.gamehasStarted = true;
     }
 }
