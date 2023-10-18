@@ -21,12 +21,12 @@ public class BeginGamePlayerChoice : MonoBehaviour
 
     void BeginGameWithCustomChoice()
     {
-        //RopeManager.instance.SetRopeSpeed(sliderParent.GetComponent<Slider>().value);
-        //transform.parent.gameObject.SetActive(false);
-        //UIManager.Instance.GetBackToMainMenuBtn().SetActive(false);
-        //UIManager.Instance.GetToggleAccoladesBtn().SetActive(false);
-        //GameManager.instance.SetGameHasStarted(true);
-        //UIManager.Instance.GetCountdownTimer().SetActive(true);
-        //UIManager.Instance.GetBasicModeBtn().SetActive(false);
+        RopeManager.instance.SetRopeSpeed(sliderParent.GetComponent<Slider>().value);
+        transform.parent.gameObject.SetActive(false);
+        UIManager.Instance.GetBackToMenuButton().SetActive(false);
+        UIManager.Instance.GetToggleAccoladesButton().SetActive(false);
+        GameManager.instance.gamehasStarted = true;
+        GameManager.instance.pregamecountDown = 3f;
+        UIManager.Instance.GetBasicModeBtn().SetActive(false);
     }
 }

@@ -20,5 +20,6 @@ public class ReplayGame : MonoBehaviour
         UIManager.Instance.GetYourChoiceButton().SetActive(true);
         PlayerManager.Instance.SetNumofJumps(0);
         gameObject.SetActive(false);
+        backGround.GetComponent<GameBackground>().ResetBackground();
     }
 }
