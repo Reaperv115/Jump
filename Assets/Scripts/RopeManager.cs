@@ -50,18 +50,6 @@ public class RopeManager : BaseRope
                 case 42069: ++SaveData.current.profile.numGetLit; break;
                 default: break;
             }
-            if (PlayerManager.Instance.GetNumofJumps() == 5)
-                ++SaveData.current.profile.numBronze;
-            if (PlayerManager.Instance.GetNumofJumps() == 15)
-                ++SaveData.current.profile.numSilver;
-            if (PlayerManager.Instance.GetNumofJumps() == 50)
-                ++SaveData.current.profile.numGold;
-            if (PlayerManager.Instance.GetNumofJumps() == 75)
-                ++SaveData.current.profile.numPlat;
-            if (PlayerManager.Instance.GetNumofJumps() == 1000)
-                ++SaveData.current.profile.numWhy;
-            if (PlayerManager.Instance.GetNumofJumps() == 42069)
-                ++SaveData.current.profile.numGetLit;
         }
 
         if (ropeInst.transform.position.y > maxHeight.position.y)
