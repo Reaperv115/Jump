@@ -45,7 +45,15 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //bring up End-Of-Game UI
+        if (PlayerManager.Instance.GetPlayerRef().GetGotCaught())
+        {
+            GetReplayButton().SetActive(true);
+            GetBackToMainMenuButton().SetActive(true);
+            GetToggleAccoladesButton().SetActive(true);
+        }
 
+        // get the active canvas based on the scene
         scene = SceneManager.GetActiveScene();
         if (scene.name.Equals("Game"))
             canvas = GameObject.Find("Canvas");
@@ -70,7 +78,7 @@ public class UIManager : MonoBehaviour
         return FindCanvasObject(canvas, "Slider");
     }
 
-    public GameObject GetBasicModeBtn()
+    public GameObject GetBasicModeButton()
     {
         return FindCanvasObject(canvas, "Basic");
     }

@@ -12,14 +12,16 @@ public class ReplayGame : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(ReloadGame);
     }
 
-    void ReloadGame()
+    public void ReloadGame()
     {
 
+        this.gameObject.SetActive(false);
+        print(this.gameObject.activeSelf);
         SerializationManager.Save("Data", SaveData.current);
-        UIManager.Instance.GetBasicModeBtn().SetActive(true);
+        UIManager.Instance.GetBasicModeButton().SetActive(true);
         UIManager.Instance.GetYourChoiceButton().SetActive(true);
         PlayerManager.Instance.SetNumofJumps(0);
-        gameObject.SetActive(false);
         backGround.GetComponent<GameBackground>().ResetBackground();
+        PlayerManager.Instance.GetPlayerRef().SetGotCaught(false);
     }
 }

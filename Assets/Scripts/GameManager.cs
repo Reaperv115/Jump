@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // if player gets caught by rope, stop the game
+        if (PlayerManager.Instance.GetPlayerRef().GetGotCaught())
+            gamehasStarted = false;
     }
 
 

@@ -5,39 +5,45 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    // layermask used in
+    // IsGrounded check
     [SerializeField]
     LayerMask layermask;
+
+    // different components
+    //found on the player GO
     BoxCollider2D bc2d;
     Rigidbody2D rb2d;
-
-
-    public TMP_Dropdown characterSelection;
-
-    Scene scene;
-
     AudioSource audioSource;
     SpriteRenderer spriteRenderer;
 
-    int jumpingIndex = 0;
-
+    // bools for controlling game flow
     bool canJump = false;
-    bool hasPlayed = false;
     bool playimpactsoundEffect = false;
+    bool gotCaught = false;
 
+    // how high to jump
     float jumpVelocity;
+
+    // how many jumps this turn
     int numjumpsthisTurn;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        // ensuring the object isn't destroyed
+        // when switching scenes
         DontDestroyOnLoad(this.gameObject);
+
+        // getting various components of the player
         rb2d = GetComponent<Rigidbody2D>();
         bc2d = GetComponent<BoxCollider2D>();
-        scene = SceneManager.GetActiveScene();
         audioSource = GetComponent<AudioSource>();
-        jumpVelocity = 15;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        
+        jumpVelocity = 15;
         numjumpsthisTurn = 0;
     }
 
@@ -60,8 +66,6 @@ public class Player : MonoBehaviour
         }
         if (canJump)
         {
-
-
             if (Input.touchCount > 0)
             {
                 Touch t = Input.GetTouch(0);
@@ -79,16 +83,16 @@ public class Player : MonoBehaviour
 
     }
 
-
+    // check to see if the player is "grounded"
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;
     }
 
-    public bool ReturnHasPlayed() { return hasPlayed; }
-
     public void SetPlayerJumpVelocity(int velocity) { jumpVelocity = velocity; }
     public int GetNumJumpsThisTurn() { return numjumpsthisTurn; }
     public void SetNumJumpsThisTurn(int numjumps) { numjumpsthisTurn = numjumps; }
+    public bool GetGotCaught() { return gotCaught; }
+    public void SetGotCaught(bool caught) { gotCaught = caught; }
 }

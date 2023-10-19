@@ -10,8 +10,6 @@ public class SerializationManager
 
         if (!Directory.Exists(Application.persistentDataPath + "/saves"))
             Directory.CreateDirectory(Application.persistentDataPath + "/saves");
-        else
-            Debug.Log("directory exists");
 
         string path = Application.persistentDataPath + "/saves/" + saveName + ".saves";
 

@@ -27,13 +27,16 @@ public class PlayerManager : MonoBehaviour
         standingSprites = Resources.LoadAll<Sprite>("Players/Standing");
 
         playerGO = Resources.Load<GameObject>("Players/playerGOs/player");
-        print(playerGO);
         playerGOInst = Instantiate(playerGO, playerPosition.position, playerGO.transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerGOInst.GetComponent<Player>().GetGotCaught())
+            if (numJumps > SaveData.current.profile.numofJumps)
+                SaveData.current.profile.numofJumps = numJumps;
+
         if (playerGOInst)
             playerGOInst.GetComponent<SpriteRenderer>().sprite = standingSprites[selectedPlayer];
 
