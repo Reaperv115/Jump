@@ -18,6 +18,7 @@ public class RopeSpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // displaying what speed the rope would be moving at if player began the game
         ropespeedDisplay.text = "Speed of Rope: " + (int)ropeSpeed.value;
     }
 }

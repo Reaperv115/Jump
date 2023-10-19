@@ -11,20 +11,13 @@ public class SlowRope : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(BeginSlowRope);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void BeginSlowRope()
     {
+        // begin the game with a slow rope
         GameManager.instance.pregamecountDown = 3f;
         var canv = GameObject.Find("Canvas");
         for (int i = 0; i < canv.transform.GetChild(1).childCount; i++)
-        {
             canv.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
-        }
         RopeManager.instance.SetRopeSpeed(5f);
         GameManager.instance.gamehasStarted = true;
     }

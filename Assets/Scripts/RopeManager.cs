@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class RopeManager : BaseRope
@@ -15,7 +12,14 @@ public class RopeManager : BaseRope
 
     Transform minHeight, maxHeight;
 
+    // bool for checking
+    // if the player should
+    // be able to get caught
+    // by rope
     bool ropeislowEnough;
+
+    // should a point be added
+    // to player's score
     bool scorePoint;
     // Start is called before the first frame update
     void Start()
@@ -25,10 +29,15 @@ public class RopeManager : BaseRope
         else
             Debug.LogError("trying to create multiple instances of rope manager");
 
+        // loading and instantiating rope gameobject
         rope = Resources.Load<GameObject>("rope");
         ropeInst = Instantiate(rope, ropestartingPosition.position, rope.transform.rotation);
+
+        // finding the min and max height for the rope
         minHeight = GameObject.Find("min height").GetComponent<Transform>();
         maxHeight = GameObject.Find("max height").GetComponent<Transform>();
+
+        // initial direction for the rope
         direction = Vector3.up;
 
         ropeislowEnough = false;

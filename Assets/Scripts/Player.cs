@@ -43,35 +43,47 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         
-        jumpVelocity = 15;
+        jumpVelocity = 15f;
         numjumpsthisTurn = 0;
     }
 
     void Update()
     {
+        // if the game has started
         if (GameManager.instance.gamehasStarted)
         {
+            // if the player is grounded
             if (IsGrounded())
             {
+                // show standing sprite
                 spriteRenderer.sprite = PlayerManager.Instance.GetStandingSprites()[PlayerManager.Instance.selectedPlayer];
                 if (playimpactsoundEffect)
                 {
+                    // play impact sound effect
+                    // since player just landed
                     audioSource.Play();
                     playimpactsoundEffect = false;
                 }
                 else
                     audioSource.Stop();
+                // player has fully hit the ground
+                // so they can jump again
                 canJump = true;
             }
         }
+        // if the player can jump
         if (canJump)
         {
+            // if the touch count is more than 0
             if (Input.touchCount > 0)
             {
+                // get the first touch
                 Touch t = Input.GetTouch(0);
 
+                // if the touch just began
                 if (t.phase == TouchPhase.Began)
                 {
+                    // jump and choose a random jump sprite to briefly display
                     playimpactsoundEffect = true;
                     rb2d.velocity = Vector2.up * jumpVelocity;
                     canJump = false;
@@ -89,8 +101,6 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;
     }
-
-    public void SetPlayerJumpVelocity(int velocity) { jumpVelocity = velocity; }
     public int GetNumJumpsThisTurn() { return numjumpsthisTurn; }
     public void SetNumJumpsThisTurn(int numjumps) { numjumpsthisTurn = numjumps; }
     public bool GetGotCaught() { return gotCaught; }

@@ -13,14 +13,9 @@ public class BeginGamePlayerChoice : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(BeginGameWithCustomChoice);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void BeginGameWithCustomChoice()
     {
+        // begin the game with the players choice of speed
         RopeManager.instance.SetRopeSpeed(sliderParent.GetComponent<Slider>().value);
         transform.parent.gameObject.SetActive(false);
         UIManager.Instance.GetBackToMenuButton().SetActive(false);

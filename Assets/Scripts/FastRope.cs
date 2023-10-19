@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,20 +9,13 @@ public class FastRope : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(BeginFastRope);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void BeginFastRope()
     {
+        // begin the game with a fast rope
         GameManager.instance.pregamecountDown = 3f;
         var canv = GameObject.Find("Canvas");
         for (int i = 0; i < canv.transform.GetChild(1).childCount; i++)
-        {
             canv.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
-        }
         RopeManager.instance.SetRopeSpeed(15f);
         GameManager.instance.gamehasStarted = true;
     }

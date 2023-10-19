@@ -1,35 +1,13 @@
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Threading;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-
-    GameObject personalBest;
-    GameObject numjumpsthisTurnTxt;
-
     GameObject canvas;
 
-    GameObject countdownTimer;
-
-    bool instantiated = false;
-
     Scene scene;
-
-    int playercharacterChoice;
-    GameObject[] gamecanvasBtns;
-
-
-    private void Awake()
-    {
-        
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +16,6 @@ public class UIManager : MonoBehaviour
         else
             Debug.LogError("trying to create multiple instances of UI Manager");
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
-
-        
     }
 
     // Update is called once per frame
@@ -49,7 +25,7 @@ public class UIManager : MonoBehaviour
         if (PlayerManager.Instance.GetPlayerRef().GetGotCaught())
         {
             GetReplayButton().SetActive(true);
-            GetBackToMainMenuButton().SetActive(true);
+            GetBackToMenuButton().SetActive(true);
             GetToggleAccoladesButton().SetActive(true);
         }
 
@@ -62,59 +38,24 @@ public class UIManager : MonoBehaviour
 
     }
 
+    // getting game canvas UI elements
+    public GameObject GetBasicModeOptions()      { return FindCanvasObject(canvas, "Options");     }
+    public GameObject GetYourChoiceButton()      { return FindCanvasObject(canvas, "Choice");      }
+    public GameObject GetRopeSpeedSlider()       { return FindCanvasObject(canvas, "Slider");      }
 
-    public GameObject GetBasicModeOptions() 
-    {
-        GameObject basicmodeOptions = FindCanvasObject(canvas, "Options");
-        return basicmodeOptions;
-    }
-    public GameObject GetYourChoiceButton()
-    {
-        GameObject yourchoiceButton = FindCanvasObject(canvas, "Choice");
-        return yourchoiceButton;
-    }
-    public GameObject GetRopeSpeedSlider()
-    {
-        return FindCanvasObject(canvas, "Slider");
-    }
+    public GameObject GetBasicModeButton()       { return FindCanvasObject(canvas, "Basic");       }
+    public GameObject GetPersonalBestDisplay()   { return FindCanvasObject(canvas, "Best");        }
+    public GameObject GetJumpsDisplay()          { return FindCanvasObject(canvas, "Jumps");       }
 
-    public GameObject GetBasicModeButton()
-    {
-        return FindCanvasObject(canvas, "Basic");
-    }
-    public GameObject GetPersonalBestDisplay()
-    {
-        return FindCanvasObject(canvas, "Best");
-    }
-    public GameObject GetJumpsDisplay()
-    {
-        return FindCanvasObject(canvas, "Jumps");
-    }
+    public GameObject GetBackToMenuButton()      { return FindCanvasObject(canvas, "Back");        }
 
-    public GameObject GetBackToMenuButton()
-    {
-        return FindCanvasObject(canvas, "Back");
-    }
+    public GameObject GetToggleAccoladesButton() { return FindCanvasObject(canvas, "Accolades");   }
 
-    public GameObject GetToggleAccoladesButton()
-    {
-        return FindCanvasObject(canvas, "Accolades");
-    }
+    public GameObject GetCountDownTimer()        { return FindCanvasObject(1, canvas, "Countdown");}
 
-    public GameObject GetCountDownTimer()
-    {
-        return FindCanvasObject(1, canvas, "Countdown");
-    }
+    public GameObject GetReplayButton()          { return FindCanvasObject(canvas, "Replay");      }
 
-    public GameObject GetReplayButton()
-    {
-        return FindCanvasObject(canvas, "Replay");
-    }
-    public GameObject GetBackToMainMenuButton()
-    {
-        return FindCanvasObject(canvas, "Back");
-    }
-
+    // functions to find objects inside the canvas
     private GameObject FindCanvasObject(GameObject canv, string obj)
     {
         int i, val = 0;
@@ -137,9 +78,4 @@ public class UIManager : MonoBehaviour
             }
         return canv.transform.GetChild(childIndex).transform.GetChild(val).gameObject;
     }
-    public GameObject GetCountdownTimer() { return countdownTimer; }
-
-    public void SetPlayerCharacterChoice(int choice) { playercharacterChoice = choice; }
-    public int GetPlayerCharacterChoice() { return playercharacterChoice; }
-    public void SetIsInstantiated(bool isinstantiated) { instantiated = isinstantiated; }
 }

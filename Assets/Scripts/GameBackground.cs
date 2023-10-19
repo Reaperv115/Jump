@@ -9,8 +9,13 @@ public class GameBackground : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // getting the sprite renderer component of the background
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //loading all background sprites
         background = Resources.LoadAll<Sprite>("backgrounds");
+
+        // setting the initial background display
         spriteRenderer.sprite = background[0];
 
     }
@@ -18,15 +23,14 @@ public class GameBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // change the game background depending on how far the player gas made it
         if (PlayerManager.Instance.GetNumofJumps().Equals(15))
             spriteRenderer.sprite = background[1];
         if (PlayerManager.Instance.GetNumofJumps().Equals(30))
             spriteRenderer.sprite = background[2];
 
     }
-    public void ResetBackground()
-    {
-        spriteRenderer.sprite = background[0];
-    }
+    // reset the game background
+    public void ResetBackground() { spriteRenderer.sprite = background[0]; }
 
 }

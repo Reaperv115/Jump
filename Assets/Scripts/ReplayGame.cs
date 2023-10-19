@@ -14,7 +14,7 @@ public class ReplayGame : MonoBehaviour
 
     public void ReloadGame()
     {
-
+        // reset the game
         this.gameObject.SetActive(false);
         print(this.gameObject.activeSelf);
         SerializationManager.Save("Data", SaveData.current);

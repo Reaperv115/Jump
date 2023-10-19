@@ -1,4 +1,3 @@
-using System.Net.WebSockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +12,10 @@ public class GoBackToMenu : MonoBehaviour
 
     public void GoBacktoMenu()
     {
+        // saving progress first, then
+        // destroying player and playermanager instances
+        // they will be remade when loading the main menu scene
+        SerializationManager.Save("Data", SaveData.current);
         var obj = GameObject.Find("player(Clone)");
         Destroy(obj);
         if (PlayerManager.Instance != null)
