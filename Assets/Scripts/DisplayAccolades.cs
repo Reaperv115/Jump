@@ -13,5 +13,6 @@ public class DisplayAccolades : MonoBehaviour
         accolades[2].GetComponent<TextMeshProUGUI>().text = "Count: " + SaveData.current.profile.numGold;
         accolades[3].GetComponent<TextMeshProUGUI>().text = "Count: " + SaveData.current.profile.numPlat;
         accolades[4].GetComponent<TextMeshProUGUI>().text = "Count: " + SaveData.current.profile.numWhy;
+        accolades[5].GetComponent<TextMeshProUGUI>().text = "Count: " + SaveData.current.profile.numGetLit;
     }
 }

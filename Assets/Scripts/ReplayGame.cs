@@ -18,6 +18,7 @@ public class ReplayGame : MonoBehaviour
         this.gameObject.SetActive(false);
         print(this.gameObject.activeSelf);
         SerializationManager.Save("Data", SaveData.current);
+        RopeManager.instance.ResetRope();
         UIManager.Instance.GetBasicModeButton().SetActive(true);
         UIManager.Instance.GetYourChoiceButton().SetActive(true);
         PlayerManager.Instance.SetNumofJumps(0);

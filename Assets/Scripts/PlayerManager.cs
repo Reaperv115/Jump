@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     int numJumps;
     [HideInInspector]
     public int selectedPlayer;
+    [HideInInspector]
+    public int selectedjumpingSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class PlayerManager : MonoBehaviour
         // load all standing sprites
         standingSprites = Resources.LoadAll<Sprite>("Players/Standing");
 
-        // load and instantiate the playerr gameobject
+        // load and instantiate the player gameobject
         playerGO = Resources.Load<GameObject>("Players/playerGOs/player");
         playerGOInst = Instantiate(playerGO, playerPosition.position, playerGO.transform.rotation);
     }

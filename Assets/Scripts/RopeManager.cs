@@ -38,7 +38,7 @@ public class RopeManager : BaseRope
         maxHeight = GameObject.Find("max height").GetComponent<Transform>();
 
         // initial direction for the rope
-        direction = Vector3.up;
+        direction = Vector3.down;
 
         ropeislowEnough = false;
         scorePoint = false;
@@ -86,7 +86,7 @@ public class RopeManager : BaseRope
     }
     private void FixedUpdate()
     {
-        // moving the rope
+        //moving the rope
         if (GameManager.instance.pregamecountDown <= 0f)
             ropeInst.transform.Translate(direction * ropeSpeed * Time.deltaTime);
     }
@@ -94,4 +94,8 @@ public class RopeManager : BaseRope
     public void SetRopeSpeed(float speed) { ropeSpeed = speed; }
 
     public bool GetIsRopeLowEnough() { return ropeislowEnough; }
+    public void ResetRope()
+    {
+        ropeInst.transform.position = ropestartingPosition.position;
+    }
 }

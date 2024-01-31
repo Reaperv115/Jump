@@ -64,12 +64,6 @@
         },
         {
             "deviceId": "192.168.1.16:5555",
-            "name": "com.teslacoilsw.launcher",
-            "processId": 7568,
-            "exited": false
-        },
-        {
-            "deviceId": "192.168.1.16:5555",
             "name": "com.instagram.android",
             "processId": 3059,
             "exited": true
@@ -91,6 +85,12 @@
             "name": "com.GLITCGaming.Jump",
             "processId": 22551,
             "exited": true
+        },
+        {
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.teslacoilsw.launcher",
+            "processId": 7901,
+            "exited": false
         }
     ],
     "m_Tags": {
