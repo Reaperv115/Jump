@@ -1,98 +1,13 @@
 {
     "m_SelectedDeviceId": "192.168.1.16:5555",
-    "m_SelectedPackage": {
+    "m_SelectedProcess": {
         "deviceId": "",
         "name": "",
         "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 1,
-    "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "RF8M40JKDYE",
-            "name": "com.teslacoilsw.launcher",
-            "processId": 18532,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M40JKDYE",
-            "name": "com.GLITCGaming.Jumpy",
-            "processId": 25130,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M40JKDYE",
-            "name": "com.GLITCGaming.Jumpy",
-            "processId": 6130,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M40JKDYE",
-            "name": "com.GLITCGaming.Jumpy",
-            "processId": 18074,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 10166,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 25045,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 26217,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.teslacoilsw.launcher",
-            "processId": 7568,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCRC14DRAL",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 6180,
-            "exited": true
-        },
-        {
-            "deviceId": "192.168.1.16:5555",
-            "name": "com.instagram.android",
-            "processId": 3059,
-            "exited": true
-        },
-        {
-            "deviceId": "192.168.1.16:5555",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 19108,
-            "exited": true
-        },
-        {
-            "deviceId": "192.168.1.16:5555",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 21366,
-            "exited": true
-        },
-        {
-            "deviceId": "192.168.1.16:5555",
-            "name": "com.GLITCGaming.Jump",
-            "processId": 22551,
-            "exited": true
-        },
-        {
-            "deviceId": "192.168.1.16:5555",
-            "name": "com.teslacoilsw.launcher",
-            "processId": 7901,
-            "exited": false
-        }
-    ],
+    "m_KnownProcessesForSerialization": [],
     "m_Tags": {
         "m_Entries": [
             {
@@ -125,8 +40,11 @@
             }
         ]
     },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,
@@ -141,7 +59,7 @@
             true
         ],
         "MemoryGroup": 2,
-        "Behavior": 0
+        "AutoCapture": true
     },
     "m_FilterOptions": {
         "m_Filter": "",
@@ -159,5 +77,17 @@
         "BitRateK": 20000,
         "DisplayIdEnabled": false,
         "DisplayId": ""
-    }
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
 }

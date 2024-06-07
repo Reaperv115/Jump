@@ -8,7 +8,7 @@ public class RopeManager : BaseRope
     [SerializeField]
     Transform ropestartingPosition;
 
-    Vector3 direction;
+    Vector2 direction;
 
     Transform minHeight, maxHeight;
 
@@ -38,7 +38,7 @@ public class RopeManager : BaseRope
         maxHeight = GameObject.Find("max height").GetComponent<Transform>();
 
         // initial direction for the rope
-        direction = Vector3.down;
+        direction = Vector2.down;
 
         ropeislowEnough = false;
         scorePoint = false;
@@ -50,7 +50,6 @@ public class RopeManager : BaseRope
         // stopping the rope when the player gets caught
         if (PlayerManager.Instance.GetPlayerRef().GetGotCaught()) ropeSpeed = 0f;
 
-        // incrementing score
         if (scorePoint)
         {
             PlayerManager.Instance.SetNumofJumps(PlayerManager.Instance.GetNumofJumps() + 1);
@@ -66,29 +65,65 @@ public class RopeManager : BaseRope
             }
             scorePoint = false;
         }
+        
         // the rope is no longer "low enough" for the player to get
         // tripped up on it
-        if (ropeInst.transform.position.y > minHeight.position.y)
-            ropeislowEnough = false;
+        //if (ropeInst.transform.position.y > minHeight.position.y)
+        //    ropeislowEnough = false;
 
         // checking to see if the rope needs to go up or down
-        if (ropeInst.transform.position.y >= maxHeight.position.y)
-        {
-            direction = Vector3.down;
-            scorePoint = true;
-        }
-        else if (ropeInst.transform.position.y <= minHeight.position.y)
-        {
-            direction = Vector3.up;
-            ropeislowEnough = true;
-        }
+        //if (ropeInst.transform.position.y >= maxHeight.position.y)
+        //{
+        //    // changing ropes direction
+        //    direction = Vector3.down;
+        //}
+
+        //if (ropeInst.transform.position.y <= minHeight.position.y)
+        //{
+        //    direction = Vector3.up;
+        //    scorePoint = true;
+        //    ropeislowEnough = true;
+        //}
         //
     }
     private void FixedUpdate()
     {
         //moving the rope
+        //if (GameManager.instance.pregamecountDown <= 0f)
+        //    ropeInst.transform.Translate(direction * ropeSpeed * Time.deltaTime);
+
         if (GameManager.instance.pregamecountDown <= 0f)
-            ropeInst.transform.Translate(direction * ropeSpeed * Time.deltaTime);
+        {
+            
+            if (direction == Vector2.up)
+            {
+                if (Vector2.Distance(ropeInst.transform.position, maxHeight.position) <= 0f)
+                {
+                    direction *= -1;
+                }
+                else
+                {
+                    ropeislowEnough = false;
+                    float step = ropeSpeed * Time.deltaTime;
+                    ropeInst.transform.position = Vector2.MoveTowards(ropeInst.transform.position, maxHeight.position, step);
+                }
+            }
+            else
+            {
+                if (Vector2.Distance(ropeInst.transform.position, minHeight.position) <= 0f)
+                {
+                    ropeislowEnough = true;
+                    direction = Vector2.up;
+                    scorePoint = true;
+                }
+                else
+                {
+                    float step = ropeSpeed * Time.deltaTime;
+                    ropeInst.transform.position = Vector2.MoveTowards(ropeInst.transform.position, minHeight.position, step);
+                }
+            }
+            
+        }
     }
 
     public void SetRopeSpeed(float speed) { ropeSpeed = speed; }
@@ -97,5 +132,6 @@ public class RopeManager : BaseRope
     public void ResetRope()
     {
         ropeInst.transform.position = ropestartingPosition.position;
+        direction = Vector3.down;
     }
 }
