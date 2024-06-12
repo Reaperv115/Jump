@@ -9,7 +9,7 @@ public class Gold : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayAccolades = GameObject.Find("Accolade Displays");
+        displayAccolades = GameObject.Find("Accolades");
         goldCount = displayAccolades.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 

@@ -16,7 +16,6 @@ public class ReplayGame : MonoBehaviour
     {
         // reset the game
         this.gameObject.SetActive(false);
-        print(this.gameObject.activeSelf);
         SerializationManager.Save("Data", SaveData.current);
         RopeManager.instance.ResetRope();
         UIManager.Instance.GetBasicModeButton().SetActive(true);

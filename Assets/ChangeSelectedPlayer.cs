@@ -25,6 +25,5 @@ public class ChangeSelectedPlayer : MonoBehaviour
     public void OnPlayerChanged(TMP_Dropdown dropDown)
     {
         PlayerManager.Instance.selectedPlayer = dropDown.value;
-        //print(PlayerManager.Instance.GetPlayerGO().GetComponent<Player>().selectedCharacter);
     }
 }

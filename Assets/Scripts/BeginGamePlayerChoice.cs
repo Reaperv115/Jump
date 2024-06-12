@@ -16,7 +16,6 @@ public class BeginGamePlayerChoice : MonoBehaviour
     void BeginGameWithCustomChoice()
     {
         // begin the game with the players choice of speed
-        RopeManager.instance.SetRopeSpeed(sliderParent.GetComponent<Slider>().value);
         transform.parent.gameObject.SetActive(false);
         UIManager.Instance.GetBackToMenuButton().SetActive(false);
         UIManager.Instance.GetToggleAccoladesButton().SetActive(false);

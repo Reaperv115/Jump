@@ -26,5 +26,8 @@ public class GameManager : MonoBehaviour
         // if player gets caught by rope, stop the game
         if (PlayerManager.Instance.GetPlayerRef().GetGotCaught())
             gamehasStarted = false;
+
+            if (pregamecountDown > 0f)
+                pregamecountDown -= Time.deltaTime;
     }
 }

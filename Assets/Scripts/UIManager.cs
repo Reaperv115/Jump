@@ -29,12 +29,10 @@ public class UIManager : MonoBehaviour
             GetToggleAccoladesButton().SetActive(true);
         }
 
+        // WTF am i doing here
         // get the active canvas based on the scene
-        scene = SceneManager.GetActiveScene();
-        if (scene.name.Equals("Game"))
-            canvas = GameObject.Find("Canvas");
-        else
-            canvas = GameObject.Find("Canvas");
+        
+        canvas = GameObject.Find("Canvas");
 
     }
 

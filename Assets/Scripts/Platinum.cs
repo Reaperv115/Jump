@@ -9,7 +9,7 @@ public class Platinum : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayAccolades = GameObject.Find("Accolade Displays");
+        displayAccolades = GameObject.Find("Accolades");
         platCount = displayAccolades.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 

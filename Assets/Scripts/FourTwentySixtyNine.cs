@@ -9,7 +9,7 @@ public class FourTwentySixtyNine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayAccolades = GameObject.Find("Accolade Displays");
+        displayAccolades = GameObject.Find("Accolades");
         FTSNCount = displayAccolades.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
     }
 

@@ -14,7 +14,7 @@ public class Why : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        accoladesDisplay = GameObject.Find("Accolade Displays");
+        accoladesDisplay = GameObject.Find("Accolades");
         whyCount = accoladesDisplay.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         spriteRenderer = GetComponent<SpriteRenderer>();   
     }
