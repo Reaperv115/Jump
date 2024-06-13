@@ -14,9 +14,10 @@ public class GameUI : MonoBehaviour
     void Start()
     {
         // searching the Text gameobject of the canvas to find relevant text objects
-        countdownTimer = GameObject.Find("Text").transform.GetChild(3).gameObject;
         personalBest = GameObject.Find("Text").transform.GetChild(1).gameObject;
         numjumpscurrTurn = GameObject.Find("Text").transform.GetChild(2).gameObject;
+        countdownTimer = GameObject.Find("Text").transform.GetChild(3).gameObject;
+        print(personalBest);
 
         // getting a reference to the player gameobject
         player = PlayerManager.Instance.GetPlayerGO();
@@ -26,7 +27,7 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         // displaying relevant information
-        personalBest.GetComponent<TextMeshProUGUI>().text = "Personal Best: " + SaveData.current.profile.numofJumps;
+        personalBest.GetComponent<TextMeshProUGUI>().text = "Personal Best: " + SaveData.current.profile.personalbestnumofJumps;
         numjumpscurrTurn.GetComponent<TextMeshProUGUI>().text = "Jumps: " + PlayerManager.Instance.GetNumofJumps();
         if (GameManager.instance.pregamecountDown > 0f)
         {

@@ -25,7 +25,6 @@ public class Rope : BaseRope
             }
             b_scorePoint = false;
         }
-        print(!PlayerManager.Instance.GetPlayerRef().GetGotCaught());
             if (!PlayerManager.Instance.GetPlayerRef().GetGotCaught())
             {
                 switch (RopeManager.instance.GetMode())

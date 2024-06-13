@@ -1,7 +1,7 @@
 [System.Serializable]
 public class PlayerProfile
 {
-    public int numofJumps;
+    public int personalbestnumofJumps;
     public int numBronze;
     public int numSilver;
     public int numGold;

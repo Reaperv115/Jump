@@ -6,7 +6,7 @@ public class BaseRope : MonoBehaviour
 
     protected int i_numOfJumps = 0;
     protected bool b_goUp, b_goDown, b_ropeislowEnough, b_modeCheck;
-    protected float f_ropeSpeed, f_easy = 3f, f_medium = 10f, f_hard = 15f, f_impossible = 35f;
+    protected float f_ropeSpeed, f_easy = 5f, f_medium = 10f, f_hard = 15f, f_impossible = 35f;
     
 
     public float GetEasySpeed()
