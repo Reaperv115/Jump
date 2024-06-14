@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     float jumpVelocity;
 
     // how many jumps this turn
-    int numjumpsthisTurn;
+    int numJumps, personalbestnumJumps;
     
 
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
         
         jumpVelocity = 15f;
-        numjumpsthisTurn = 0;
+        numJumps = 0;
     }
 
     void Update()
@@ -93,8 +93,10 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;
     }
-    public int GetNumJumpsThisTurn() { return numjumpsthisTurn; }
-    public void SetNumJumpsThisTurn(int numjumps) { numjumpsthisTurn = numjumps; }
+    public int GetNumJumps() { return numJumps; }
+    public int GetPersonalBestNumJumps() {return personalbestnumJumps;}
+    public void SetNumJumpsThisTurn(int numjumps) { numJumps = numjumps; }
+    public void SetNumPersonalBestJumps(int personalbest) { personalbestnumJumps = personalbest; }
     public bool GetGotCaught() { return gotCaught; }
     public void SetGotCaught(bool caught) { gotCaught = caught; }
 }

@@ -15,13 +15,13 @@ public class Rope : BaseRope
             PlayerManager.Instance.SetNumofJumps(PlayerManager.Instance.GetNumofJumps() + 1);
             switch (PlayerManager.Instance.GetNumofJumps())
             {
-                case 5: ++SaveData.current.profile.numBronze; break;
-                case 15: ++SaveData.current.profile.numSilver; break;
-                case 50: ++SaveData.current.profile.numGold; break;
-                case 75: ++SaveData.current.profile.numPlat; break;
-                case 1000: ++SaveData.current.profile.numWhy; break;
-                case 42069: ++SaveData.current.profile.numGetLit; break;
-                default: break;
+                case 5:     ++SaveData.current.profile.numBronze;    break;
+                case 15:    ++SaveData.current.profile.numSilver;    break;
+                case 50:    ++SaveData.current.profile.numGold;      break;
+                case 75:    ++SaveData.current.profile.numPlat;      break;
+                case 1000:  ++SaveData.current.profile.numWhy;       break;
+                case 42069: ++SaveData.current.profile.numGetLit;    break;
+                default:                                             break;
             }
             b_scorePoint = false;
         }

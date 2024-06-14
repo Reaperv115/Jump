@@ -7,7 +7,14 @@
         "exited": false
     },
     "m_SelectedPriority": 1,
-    "m_KnownProcessesForSerialization": [],
+    "m_KnownProcessesForSerialization": [
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.android.settings",
+            "processId": 8342,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {

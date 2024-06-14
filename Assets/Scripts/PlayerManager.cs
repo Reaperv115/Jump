@@ -5,6 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
     GameObject playerGO, playerGOInst;
+    Player playerRef;
     bool gameLoaded = false;
 
     Sprite[] jumpingSprites;
@@ -33,6 +34,7 @@ public class PlayerManager : MonoBehaviour
         // load and instantiate the player gameobject
         playerGO = Resources.Load<GameObject>("Players/playerGOs/player");
         playerGOInst = Instantiate(playerGO, playerPosition.position, playerGO.transform.rotation);
+        playerRef = playerGOInst.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -41,8 +43,8 @@ public class PlayerManager : MonoBehaviour
         // if the player got caught by the rope, save the num of jumps
         // if it's greater than the previous record
         if (playerGOInst.GetComponent<Player>().GetGotCaught())
-            if (numJumps > SaveData.current.profile.personalbestnumofJumps)
-                SaveData.current.profile.personalbestnumofJumps = numJumps;
+            if (playerGOInst.GetComponent<Player>().GetPersonalBestNumJumps() > SaveData.current.profile.personalbestnumofJumps)
+                SaveData.current.profile.personalbestnumofJumps = playerRef.GetNumJumps();
         
         // if there's a valid player gameobject, show the character sprite
         if (playerGOInst)

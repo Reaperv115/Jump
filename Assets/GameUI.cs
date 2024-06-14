@@ -26,9 +26,7 @@ public class GameUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // displaying relevant information
-        personalBest.GetComponent<TextMeshProUGUI>().text = "Personal Best: " + SaveData.current.profile.personalbestnumofJumps;
-        numjumpscurrTurn.GetComponent<TextMeshProUGUI>().text = "Jumps: " + PlayerManager.Instance.GetNumofJumps();
+       
         if (GameManager.instance.pregamecountDown > 0f)
         {
             countdownTimer.GetComponent<TextMeshProUGUI>().text = "Game Will Begin In: " + (int)GameManager.instance.pregamecountDown;
