@@ -34,19 +34,22 @@ public class Rope : BaseRope
                             f_ropeSpeed = f_easy;
                             break;
                         }
-                        case "Medium":
-                        {
-                            float f_minSpeed = f_easy;
-                            float f_maxSpeed = Random.Range(f_minSpeed, f_medium);
-                            f_ropeSpeed = f_maxSpeed * Time.deltaTime;
-                            break;
-                        }
+                    case "Medium":
+                    {
+                        float f_minSpeed = f_easy;
+                        float f_maxSpeed = Random.Range(f_minSpeed, f_medium);
+                        f_ropeSpeed = f_maxSpeed * Time.deltaTime;
+                        break;
+                    }
+                    case "Defeat":
+                    {
+                        f_ropeSpeed = 0f;
+                        break;
+                    }
                     default:
                         break;
                 } 
             }
-            else
-                f_ropeSpeed = 0f;
 
             if (GameManager.instance.pregamecountDown <= 0f)
             {
@@ -83,11 +86,13 @@ public class Rope : BaseRope
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // checking to see if the player got caught by the rope
-        if (RopeManager.instance.GetIsRopeLowEnough())
+        if (b_ropeislowEnough)
         {
+            print(collision.gameObject.name);
             PlayerManager.Instance.GetPlayerRef().SetGotCaught(true);
+            GameManager.instance.EndRound();
         }
+        
     }
 
 }

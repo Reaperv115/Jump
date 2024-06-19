@@ -27,7 +27,15 @@ public class GameManager : MonoBehaviour
         if (PlayerManager.Instance.GetPlayerRef().GetGotCaught())
             gamehasStarted = false;
 
-            if (pregamecountDown > 0f)
-                pregamecountDown -= Time.deltaTime;
+            
+
+        if (pregamecountDown > 0f && gamehasStarted)
+            pregamecountDown -= Time.deltaTime;
+    }
+
+    public void EndRound()
+    {
+        RopeManager.instance.SetMode("Defeat");
+        pregamecountDown = 3f;
     }
 }

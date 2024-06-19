@@ -17,7 +17,6 @@ public class GameUI : MonoBehaviour
         personalBest = GameObject.Find("Text").transform.GetChild(1).gameObject;
         numjumpscurrTurn = GameObject.Find("Text").transform.GetChild(2).gameObject;
         countdownTimer = GameObject.Find("Text").transform.GetChild(3).gameObject;
-        print(personalBest);
 
         // getting a reference to the player gameobject
         player = PlayerManager.Instance.GetPlayerGO();

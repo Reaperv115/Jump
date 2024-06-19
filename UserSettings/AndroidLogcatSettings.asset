@@ -12,6 +12,18 @@
             "deviceId": "RFCRC14DRAL",
             "name": "com.android.settings",
             "processId": 8342,
+            "exited": true
+        },
+        {
+            "deviceId": "RFCRC14DRAL",
+            "name": "com.teslacoilsw.launcher",
+            "processId": 7738,
+            "exited": false
+        },
+        {
+            "deviceId": "192.168.1.16:5555",
+            "name": "com.teslacoilsw.launcher",
+            "processId": 7738,
             "exited": false
         }
     ],

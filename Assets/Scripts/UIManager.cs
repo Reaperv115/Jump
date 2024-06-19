@@ -5,9 +5,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    GameObject canvas;
+    GameObject go_canvas, go_prevCanvas;
 
-    Scene scene;
+    Scene s_scene, s_prevScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour
         else
             Debug.LogError("trying to create multiple instances of UI Manager");
         SaveData.current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/Data.saves");
+        go_canvas = GameObject.Find("Canvas");
+        s_scene = SceneManager.GetActiveScene();
+        s_prevScene = s_scene;
     }
 
     // Update is called once per frame
@@ -29,29 +32,34 @@ public class UIManager : MonoBehaviour
             GetToggleAccoladesButton().SetActive(true);
         }
 
-        // WTF am i doing here
         // get the active canvas based on the scene
+        s_scene = SceneManager.GetActiveScene();
+        if (s_scene != s_prevScene)
+        {
+            go_canvas = GameObject.Find("Canvas");
+            go_prevCanvas = go_canvas;
+            s_prevScene = s_scene;
+        }
         
-        canvas = GameObject.Find("Canvas");
 
     }
 
     // getting game canvas UI elements
-    public GameObject GetBasicModeOptions()      { return FindCanvasObject(canvas, "Options");     }
-    public GameObject GetYourChoiceButton()      { return FindCanvasObject(canvas, "Choice");      }
-    public GameObject GetRopeSpeedSlider()       { return FindCanvasObject(canvas, "Slider");      }
+    public GameObject GetBasicModeOptions()      { return FindCanvasObject(go_canvas, "Options");     }
+    public GameObject GetYourChoiceButton()      { return FindCanvasObject(go_canvas, "Choice");      }
+    public GameObject GetRopeSpeedSlider()       { return FindCanvasObject(go_canvas, "Slider");      }
 
-    public GameObject GetBasicModeButton()       { return FindCanvasObject(canvas, "Basic");       }
-    public GameObject GetPersonalBestDisplay()   { return FindCanvasObject(canvas, "Best");        }
-    public GameObject GetJumpsDisplay()          { return FindCanvasObject(canvas, "Jumps");       }
+    public GameObject GetBasicModeButton()       { return FindCanvasObject(go_canvas, "Basic");       }
+    public GameObject GetPersonalBestDisplay()   { return FindCanvasObject(go_canvas, "Best");        }
+    public GameObject GetJumpsDisplay()          { return FindCanvasObject(go_canvas, "Jumps");       }
 
-    public GameObject GetBackToMenuButton()      { return FindCanvasObject(canvas, "Back");        }
+    public GameObject GetBackToMenuButton()      { return FindCanvasObject(go_canvas, "Back");        }
 
-    public GameObject GetToggleAccoladesButton() { return FindCanvasObject(canvas, "Accolades");   }
+    public GameObject GetToggleAccoladesButton() { return FindCanvasObject(go_canvas, "Accolades");   }
 
-    public GameObject GetCountDownTimer()        { return FindCanvasObject(1, canvas, "Countdown");}
+    public GameObject GetCountDownTimer()        { return FindCanvasObject(1, go_canvas, "Countdown");}
 
-    public GameObject GetReplayButton()          { return FindCanvasObject(canvas, "Replay");      }
+    public GameObject GetReplayButton()          { return FindCanvasObject(go_canvas, "Replay");      }
 
     // functions to find objects inside the canvas
     private GameObject FindCanvasObject(GameObject canv, string obj)

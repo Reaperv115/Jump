@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BeginGamePlayerChoice : MonoBehaviour
+public class BeginGameSliderValue : MonoBehaviour
 {
     GameObject sliderParent;
     // Start is called before the first frame update
