@@ -43,8 +43,8 @@ public class PlayerManager : MonoBehaviour
         // if the player got caught by the rope, save the num of jumps
         // if it's greater than the previous record
         if (playerGOInst.GetComponent<Player>().GetGotCaught())
-            if (playerGOInst.GetComponent<Player>().GetPersonalBestNumJumps() > SaveData.current.profile.personalbestnumofJumps)
-                SaveData.current.profile.personalbestnumofJumps = playerRef.GetNumJumps();
+            if (playerRef.GetNumJumpsthisTurn() > SaveData.current.profile.personalbestnumofJumps)
+                SaveData.current.profile.personalbestnumofJumps = playerRef.GetNumJumpsthisTurn();
         
         // if there's a valid player gameobject, show the character sprite
         if (playerGOInst)

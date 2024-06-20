@@ -93,9 +93,9 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(bc2d.bounds.center, bc2d.bounds.size, 0f, Vector2.down, .1f, layermask);
         return hit.collider != null;
     }
-    public int GetNumJumps() { return numJumps; }
-    public int GetPersonalBestNumJumps() {return personalbestnumJumps;}
+    public int GetNumJumpsthisTurn() { return numJumps; }
     public void SetNumJumpsThisTurn(int numjumps) { numJumps = numjumps; }
+    public int GetPersonalBestNumJumps() {return personalbestnumJumps;}
     public void SetNumPersonalBestJumps(int personalbest) { personalbestnumJumps = personalbest; }
     public bool GetGotCaught() { return gotCaught; }
     public void SetGotCaught(bool caught) { gotCaught = caught; }

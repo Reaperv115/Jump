@@ -36,6 +36,5 @@ public class GameManager : MonoBehaviour
     public void EndRound()
     {
         RopeManager.instance.SetMode("Defeat");
-        pregamecountDown = 3f;
     }
 }

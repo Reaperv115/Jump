@@ -12,7 +12,7 @@ public class Rope : BaseRope
     {
         if (b_scorePoint)
         {
-            PlayerManager.Instance.SetNumofJumps(PlayerManager.Instance.GetNumofJumps() + 1);
+            PlayerManager.Instance.GetPlayerRef().SetNumJumpsThisTurn(PlayerManager.Instance.GetPlayerRef().GetNumJumpsthisTurn() + 1);
             switch (PlayerManager.Instance.GetNumofJumps())
             {
                 case 5:     ++SaveData.current.profile.numBronze;    break;
@@ -25,62 +25,58 @@ public class Rope : BaseRope
             }
             b_scorePoint = false;
         }
-            if (!PlayerManager.Instance.GetPlayerRef().GetGotCaught())
+        switch (RopeManager.instance.GetMode())
+        {
+            case "Easy":
             {
-                switch (RopeManager.instance.GetMode())
-                {
-                    case "Easy":
-                        {
-                            f_ropeSpeed = f_easy;
-                            break;
-                        }
-                    case "Medium":
-                    {
-                        float f_minSpeed = f_easy;
-                        float f_maxSpeed = Random.Range(f_minSpeed, f_medium);
-                        f_ropeSpeed = f_maxSpeed * Time.deltaTime;
-                        break;
-                    }
-                    case "Defeat":
-                    {
-                        f_ropeSpeed = 0f;
-                        break;
-                    }
-                    default:
-                        break;
-                } 
+                f_ropeSpeed = f_easy * Time.deltaTime;
+                break;
             }
-
-            if (GameManager.instance.pregamecountDown <= 0f)
+            case "Medium":
             {
-                if (v2_direction == Vector2.up)
+                float f_minSpeed = f_easy;
+                float f_maxSpeed = Random.Range(f_minSpeed, f_medium);
+                f_ropeSpeed = f_maxSpeed * Time.deltaTime;
+                break;
+            }
+            case "Defeat":
+            {
+                f_ropeSpeed = 0f;
+                break;
+            }
+            default:
+                break;
+        } 
+
+        if (GameManager.instance.pregamecountDown <= 0f)
+        {
+            if (v2_direction == Vector2.up)
+            {
+                if (Vector2.Distance(this.gameObject.transform.position, RopeManager.instance.GetMaxJumpRopeHeight()) <= 0f)
                 {
-                    if (Vector2.Distance(this.gameObject.transform.position, RopeManager.instance.GetMaxJumpRopeHeight()) <= 0f)
-                    {
-                        v2_direction *= -1;
-                    }
-                    else
-                    {
-                        b_ropeislowEnough = false;
-                        this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, RopeManager.instance.GetMaxJumpRopeHeight(), f_ropeSpeed);
-                    }
+                    v2_direction = Vector2.down;
                 }
                 else
                 {
-                    if (Vector2.Distance(this.gameObject.transform.position, RopeManager.instance.GetMinJumpRopeHeight()) <= 0f)
-                    {
-                        b_ropeislowEnough = true;
-                        v2_direction = Vector2.up;
-                        b_scorePoint = true;
-                    }
-                    else
-                    {
-                        float step = f_ropeSpeed * Time.deltaTime;
-                        this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, RopeManager.instance.GetMinJumpRopeHeight(), step);
-                    }
+                    b_ropeislowEnough = false;
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, RopeManager.instance.GetMaxJumpRopeHeight(), f_ropeSpeed);
                 }
-                    
             }
+            else
+            {
+                if (Vector2.Distance(this.gameObject.transform.position, RopeManager.instance.GetMinJumpRopeHeight()) <= 0f)
+                {
+                    b_ropeislowEnough = true;
+                    v2_direction = Vector2.up;
+                    b_scorePoint = true;
+                }
+                else
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, RopeManager.instance.GetMinJumpRopeHeight(), f_ropeSpeed);
+                }
+            }
+                
+        }
         
     }
 
@@ -88,7 +84,6 @@ public class Rope : BaseRope
     {
         if (b_ropeislowEnough)
         {
-            print(collision.gameObject.name);
             PlayerManager.Instance.GetPlayerRef().SetGotCaught(true);
             GameManager.instance.EndRound();
         }

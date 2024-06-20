@@ -20,7 +20,7 @@ public class ReplayGame : MonoBehaviour
         RopeManager.instance.ResetRope();
         UIManager.Instance.GetBasicModeButton().SetActive(true);
         UIManager.Instance.GetYourChoiceButton().SetActive(true);
-        PlayerManager.Instance.SetNumofJumps(0);
+        PlayerManager.Instance.GetPlayerRef().SetNumJumpsThisTurn(0);
         backGround.GetComponent<GameBackground>().ResetBackground();
         PlayerManager.Instance.GetPlayerRef().SetGotCaught(false);
     }

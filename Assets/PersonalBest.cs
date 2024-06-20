@@ -14,6 +14,6 @@ public class PersonalBest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<TextMeshProUGUI>().text = "Personal Best: " + PlayerManager.Instance.GetNumofJumps().ToString();
+        GetComponent<TextMeshProUGUI>().text = "Personal Best: " + SaveData.current.profile.personalbestnumofJumps;
     }
 }
