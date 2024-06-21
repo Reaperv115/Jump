@@ -63,8 +63,6 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject GetPlayerGO() { return playerGOInst; }
     public Player GetPlayerRef() { return playerRef; }
-    public int GetNumofJumps() { return numJumps; }
-    public void SetNumofJumps(int numjumps) { numJumps = numjumps; }
     public Sprite[] GetStandingSprites() { return standingSprites; }
     public Sprite[] GetJumpingSprites()  { return jumpingSprites;  }
 

@@ -13,7 +13,7 @@ public class Rope : BaseRope
         if (b_scorePoint)
         {
             PlayerManager.Instance.GetPlayerRef().SetNumJumpsThisTurn(PlayerManager.Instance.GetPlayerRef().GetNumJumpsthisTurn() + 1);
-            switch (PlayerManager.Instance.GetNumofJumps())
+            switch (PlayerManager.Instance.GetPlayerRef().GetNumJumpsthisTurn())
             {
                 case 5:     ++SaveData.current.profile.numBronze;    break;
                 case 15:    ++SaveData.current.profile.numSilver;    break;
@@ -37,6 +37,20 @@ public class Rope : BaseRope
                 float f_minSpeed = f_easy;
                 float f_maxSpeed = Random.Range(f_minSpeed, f_medium);
                 f_ropeSpeed = f_maxSpeed * Time.deltaTime;
+                break;
+            }
+            case "Hard":
+            {
+                float minspeed = Random.Range(f_easy, f_medium);
+                float maxspeed = Random.Range(minspeed, f_hard);
+                f_ropeSpeed = maxspeed * Time.deltaTime;
+                break;
+            }
+            case "Impossible":
+            {
+                float minspeed = Random.Range(f_easy, f_hard);
+                float maxspeed = Random.Range(minspeed, f_hard);
+                f_ropeSpeed = maxspeed * Time.deltaTime;
                 break;
             }
             case "Defeat":

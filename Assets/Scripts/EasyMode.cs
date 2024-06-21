@@ -8,10 +8,10 @@ public class SlowRope : BaseRope
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Button>().onClick.AddListener(BeginSlowRope);
+        GetComponent<Button>().onClick.AddListener(BeginEasyMode);
     }
 
-    void BeginSlowRope()
+    void BeginEasyMode()
     {
         // begin the game with a slow rope
         GameManager.instance.pregamecountDown = 3f;

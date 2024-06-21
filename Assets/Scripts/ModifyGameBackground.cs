@@ -24,9 +24,9 @@ public class GameBackground : MonoBehaviour
     void Update()
     {
         // change the game background depending on how far the player gas made it
-        if (PlayerManager.Instance.GetNumofJumps().Equals(15))
+        if (PlayerManager.Instance.GetPlayerRef().GetNumJumpsthisTurn().Equals(15))
             spriteRenderer.sprite = background[1];
-        if (PlayerManager.Instance.GetNumofJumps().Equals(30))
+        if (PlayerManager.Instance.GetPlayerRef().GetNumJumpsthisTurn().Equals(30))
             spriteRenderer.sprite = background[2];
 
     }
