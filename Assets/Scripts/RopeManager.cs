@@ -40,9 +40,6 @@ public class RopeManager : MonoBehaviour
         minHeight = GameObject.Find("min height").GetComponent<Transform>();
         maxHeight = GameObject.Find("max height").GetComponent<Transform>();
 
-        // initial direction for the rope
-        direction = Vector2.down;
-
         ropeislowEnough = false;
         scorePoint = false;
     }
@@ -54,7 +51,6 @@ public class RopeManager : MonoBehaviour
     public void ResetRope()
     {
         ropeInst.transform.position = ropestartingPosition.position;
-        direction = Vector3.down;
     }
 
     public Vector2 GetMaxJumpRopeHeight()

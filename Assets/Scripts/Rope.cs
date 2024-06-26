@@ -5,7 +5,7 @@ public class Rope : BaseRope
     bool b_scorePoint = false;
     void Start()
     {
-        v2_direction = Vector2.down;
+        v2_direction = Vector2.up;
         b_modeCheck = true;
     }
     void FixedUpdate()

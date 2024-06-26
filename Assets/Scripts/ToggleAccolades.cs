@@ -9,7 +9,7 @@ public class ToggleAccolades : MonoBehaviour
     void Start()
     {
         accolades = GameObject.FindGameObjectsWithTag("accolade");
-        displayAccolades = false;
+        displayAccolades = true;
     }
 
     // Update is called once per frame
