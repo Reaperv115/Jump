@@ -72,10 +72,10 @@ public class PlayerManager : MonoBehaviour
         switch (playerIndex) 
         {
             case 0:
-                jumpingSprites = Resources.LoadAll<Sprite>("Players/Alexis/jumping");
+                jumpingSprites = Resources.LoadAll<Sprite>("Players/Ryan/jumping");
                 break;
             case 1:
-                jumpingSprites = Resources.LoadAll<Sprite>("Players/Ryan/jumping");
+                jumpingSprites = Resources.LoadAll<Sprite>("Players/Alexis/jumping");
                 break;
             case 2:
                 jumpingSprites = Resources.LoadAll<Sprite>("Players/Tyler/jumping");
