@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RopeManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class RopeManager : MonoBehaviour
     GameObject rope, ropeInst;
     [SerializeField]
     Transform ropestartingPosition;
+
+    GameObject ropeSlider;
 
     Vector2 direction;
 
@@ -42,6 +45,8 @@ public class RopeManager : MonoBehaviour
 
         ropeislowEnough = false;
         scorePoint = false;
+
+        ropeSlider = GameObject.Find("RopeSpeedSlider");
     }
 
 

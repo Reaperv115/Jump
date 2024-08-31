@@ -22,5 +22,6 @@ public class BeginGameSliderValue : MonoBehaviour
         GameManager.instance.gamehasStarted = true;
         GameManager.instance.pregamecountDown = 3f;
         UIManager.Instance.GetBasicModeButton().SetActive(false);
+        RopeManager.instance.SetMode("PC");
     }
 }

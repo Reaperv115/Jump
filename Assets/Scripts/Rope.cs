@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Rope : BaseRope
 {
@@ -56,6 +57,11 @@ public class Rope : BaseRope
             case "Defeat":
             {
                 f_ropeSpeed = 0f;
+                break;
+            }
+            case "PC":
+            {
+                f_ropeSpeed = UIManager.Instance.GetRopeSpeedSlider().GetComponent<Slider>().value * Time.deltaTime;
                 break;
             }
             default:
